@@ -1,0 +1,63 @@
+{
+  "name": "sdjs-speaker-pipeline",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "watch": "webpack -w",
+    "lint": "eslint .",
+    "build": "webpack",
+    "start": "node .",
+    "posttest": "npm run lint",
+    "test": "mocha test/*.spec.js"
+  },
+  "dependencies": {
+    "app": "^0.1.0",
+    "compression": "^1.0.3",
+    "cors": "^2.5.2",
+    "g": "^2.0.1",
+    "helmet": "^3.10.0",
+    "loopback": "^3.19.0",
+    "loopback-boot": "^2.6.5",
+    "loopback-component-explorer": "^6.0.0",
+    "loopback-connector-mongodb": "^1.18.1",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.1.3",
+    "now": "^11.3.12",
+    "serve-favicon": "^2.0.1",
+    "strong-error-handler": "^3.0.0",
+    "webpack": "^4.17.0",
+    "webpack-cli": "^3.1.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "eslint": "^3.17.1",
+    "eslint-config-loopback": "^8.0.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "eslint": "^3.17.1",
+    "eslint-config-loopback": "^8.0.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "env": {
+    "MONGO_TEXT": "test"
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "license": "UNLICENSED",
+  "description": "sdjs-speaker-pipeline"
+}
