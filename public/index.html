@@ -2,63 +2,13 @@
 <html>
 
 <head>
-  <title>sdjs speaker pipeline</title>
   <meta charset="utf-8">
-
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css' />
-  <link rel='stylesheet' href='css/style.css' />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <title>sdjs speaker pipeline</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-  <div id="navbar">
-    <a>
-      <img src="js.png" id="logo" />
-    </a>
-  </div>
-
-  <div id="talk">
-    <h1>Welcome To SDJS</h1>
-
-    <div>
-    <h4>Have you been learning JavaScript and want to spend 5 or less minutes sharing something you learned? Did you find a library
-      or discover a JS feature you'd like to share? Have an interesting method for learning or teaching JavaScript?</h4>
-    </div>
-
-  <div>
- <button>Give A Talk</button>
-  </div>
-
-  </div>
-
-  <footer>
-    <ul>
-      <li>CODE OF CONDUCT</li>
-    </ul>
-  </footer>
-
-
-  <script>
-    window.onscroll = function () { myFunction() };
-
-    var navbar = document.getElementById("navbar");
-    var sticky = navbar.offsetTop;
-
-    function myFunction() {
-      if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
-      } else {
-        navbar.classList.remove("sticky");
-      }
-    }
-  </script>
-
-
   <div id="root"></div>
   <script src="bundle.js"></script>
 </body>
