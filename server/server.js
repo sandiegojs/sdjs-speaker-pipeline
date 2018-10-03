@@ -3,7 +3,9 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
-var app = module.exports = loopback();
+var app = (module.exports = loopback());
+
+app.use(loopback.static('public'));
 
 app.start = function() {
   // start the web server
@@ -24,6 +26,5 @@ boot(app, __dirname, function(err) {
   if (err) throw err;
 
   // start the server if `$ node server.js`
-  if (require.main === module)
-    app.start();
+  if (require.main === module) app.start();
 });
