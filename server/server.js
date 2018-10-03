@@ -2,12 +2,8 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-const express = require('express');
 
 var app = module.exports = loopback();
-app.use(express.static('public'));
-app.use(express.static('dist'));
-
 
 app.start = function() {
   // start the web server

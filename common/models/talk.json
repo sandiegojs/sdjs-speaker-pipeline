@@ -1,0 +1,30 @@
+{
+  "name": "talk",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "status": {
+      "type": "boolean",
+      "required": true
+    },
+    "comments": {
+      "type": "string",
+      "required": true
+    },
+    "reminderSent": {
+      "type": "boolean",
+      "required": true
+    },
+    "topic": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
