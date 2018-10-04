@@ -14,25 +14,37 @@
     ]
   },
   "User": {
-    "dataSource": "MongoDB"
+    "dataSource": "sdjs"
   },
   "AccessToken": {
-    "dataSource": "MongoDB",
+    "dataSource": "sdjs",
     "public": false
   },
   "ACL": {
-    "dataSource": "MongoDB",
+    "dataSource": "sdjs",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "MongoDB",
+    "dataSource": "sdjs",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "MongoDB",
+    "dataSource": "sdjs",
     "public": false
+  },
+  "speaker": {
+    "dataSource": "sdjs",
+    "public": true
+  },
+  "event": {
+    "dataSource": "sdjs",
+    "public": true
+  },
+  "talk": {
+    "dataSource": "sdjs",
+    "public": true
   }
 }
