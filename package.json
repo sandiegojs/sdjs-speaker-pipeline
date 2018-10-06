@@ -7,9 +7,9 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "build": "webpack -d",
-    "start": "npm run build && node .",
-    "posttest": "npm run lint && nsp check"
+    "build": "webpack --mode production",
+    "start": "node .",
+    "test": "npm run build && mocha --require ignore-styles test/**/**.spec.js --exit"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -19,13 +19,24 @@
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.0.0",
     "loopback-connector-mongodb": "^3.8.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0-beta.6",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
-    "nsp": "^2.1.0"
+    "ignore-styles": "^5.0.1",
+    "nsp": "^2.1.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   },
   "repository": {
     "type": "",
