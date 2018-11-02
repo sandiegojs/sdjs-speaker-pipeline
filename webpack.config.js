@@ -4,7 +4,7 @@ module.exports = {
   context: path.join(__dirname, '/src'),
 
   entry: {
-    javascript: './js/index',
+    javascript: './index',
   },
 
   output: {
