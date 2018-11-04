@@ -6,9 +6,15 @@
     "validateUpsert": true
   },
   "properties": {
-    "status": {
+    "pending": {
       "type": "boolean",
-      "required": true
+      "required": true,
+      "default": true
+    },
+    "approved": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     },
     "comments": {
       "type": "string",
@@ -16,7 +22,8 @@
     },
     "reminderSent": {
       "type": "boolean",
-      "required": true
+      "required": true,
+      "default": false
     },
     "topic": {
       "type": "string",

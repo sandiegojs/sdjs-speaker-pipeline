@@ -7,11 +7,12 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "build": "webpack --mode production",
+    "build": "webpack --w",
     "start": "npm run build && node .",
     "test": "npm run build && mocha --require ignore-styles test/**/**.spec.js --exit"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "helmet": "^3.10.0",
