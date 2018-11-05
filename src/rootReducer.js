@@ -10,7 +10,6 @@ const rootReducer = combineReducers({
    SignUp                 : SignUpReducer,
    AdminDashboard         : AdminDashboardReducer,  
    AdminLogin             : AdminLoginReducer,          
-
 });
 
 export default rootReducer; 

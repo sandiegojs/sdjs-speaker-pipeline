@@ -39,7 +39,16 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "talk": {
+      "type": "hasMany",
+      "model": "talk",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }
