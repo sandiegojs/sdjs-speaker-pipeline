@@ -26,6 +26,8 @@ class AdminDashboard extends Component {
         const selectedStatus = status.find((status) => status.talkId === e.target.name)
         if (selectedStatus.status == 'Approve') {
             dispatch(approveTalkStatus(e.target.name))
+            // dispatch(sendEmailToSpeaker(true, 'tiana.hayden@me.com', ))
+            // dispatch(briansfunction(approved, adminemail, meetupdate, meetuptitle, pending, speakeremail ))
         }
         if (selectedStatus.status == 'Deny') {
             dispatch(denyTalkStatus(e.target.name))
