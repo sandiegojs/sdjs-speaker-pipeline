@@ -1,0 +1,9 @@
+$font: 'Open Sans', sans-serif;
+$primary-color: lightgray;
+$secondary-color: gray;
+
+body {
+    font-family: $font;
+    background-color: $primary-color;
+    color: $secondary-color
+}
