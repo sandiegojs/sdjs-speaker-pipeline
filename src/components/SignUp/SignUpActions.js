@@ -60,6 +60,15 @@ export const talkSubmit = (speakerInfo, talkInfo, date) => ({
 	payload: axios.post('api/talks/talkSubmit', {speakerInfo: speakerInfo, talkInfo: talkInfo, date: date})
 })
 
+export const getDates = () => ({
+	type: 'GET_DATES',
+	payload: axios.get('api/talks/getMeetups')
+		.then(response => {
+			console.log(response.data)
+			return response.data
+		})
+})
+
 // export const addSpeaker = (speakerInfo) => ({
 // 	type: 'ADD_SPEAKER',
 // 	payload: axios.post('api/speakers', speakerInfo)

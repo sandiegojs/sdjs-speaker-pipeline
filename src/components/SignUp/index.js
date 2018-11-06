@@ -18,6 +18,7 @@ function mapStoreToProps(store){
       linkedin: store.SignUp.speakerLinkedin,
       speakerId: store.SignUp.speakerId,
       eventId: store.SignUp.eventID,
+      events: store.SignUp.events
         
     };
 }

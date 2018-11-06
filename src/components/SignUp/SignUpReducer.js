@@ -81,11 +81,16 @@ export default function SignUpReducer(state = initialstate, action) {
 				speakerLinkedin: payload
 			}
 		}
-
 		case 'TALK_SUBMIT_FULFILLED': {
 			console.log(payload);
 			return {
 				...state
+			}
+		}
+		case 'GET_DATES_FULFILLED': {
+			return {
+				...state,
+				events: payload
 			}
 		}
 

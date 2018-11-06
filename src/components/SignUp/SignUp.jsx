@@ -13,6 +13,7 @@ import {
 	updateWebsite,
 	updateLinkedin,
 	talkSubmit,
+	getDates,
 	addSpeaker,
 	addEvent,
 	addTalk
@@ -35,6 +36,11 @@ class SignUp extends Component {
 		this.handleLinkedin = this.handleLinkedin.bind(this);
 		this.submitSpeaker = this.submitSpeaker.bind(this);
 	}
+
+	componentDidMount() {
+		const { dispatch } = this.props;
+		dispatch(getDates());
+		}
 
 	handleFirstname(e) {
 		const { dispatch } = this.props;
@@ -131,7 +137,8 @@ class SignUp extends Component {
 	}
 
 	render() {
-
+		const { events } = this.props;
+		console.log({events});
 		return (
 			<div>
 				<h1>Javascript Meetup</h1>
@@ -161,9 +168,9 @@ class SignUp extends Component {
 					<div>
 						<label htmlFor='event-date'>Date Requested: </label>
 						<select name='event-date' id='event-date' type='select' onChange={this.handleDate}>
-							<option>December 4, 2018</option>
-							<option>2018-11-06</option>
-							<option>February 5, 2019</option>
+							{events && events.map(event => (
+							<option key={event.date}>{event.date}</option>
+							))}
 						</select>
 					</div>
 					<div>
