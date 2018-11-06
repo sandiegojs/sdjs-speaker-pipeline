@@ -1,6 +1,7 @@
 'use strict';
 
 const { getMeetups } = require('../../server/utils/getMeetups');
+const { talkSubmit } = require('../../server/utils/talkSubmit')
 
 module.exports = function (Talk) {
 	Talk.getMeetups = function (cb) {
@@ -20,7 +21,39 @@ module.exports = function (Talk) {
 			type: 'array',
 			root: true
 		}
-    })
+	})
+
+	Talk.talkSubmit = function (speakerInfo, talkInfo, date, cb) {
+		talkSubmit(speakerInfo, talkInfo, date)
+			.then(response => cb(null, response))
+			.catch(err => cb(err))
+	}
+
+	Talk.remoteMethod('talkSubmit', {
+		description: 'Adds speaker, event, and talk.',
+		accepts: [{
+			arg: 'speakerInfo',
+			type: 'object'
+		},
+		{
+			arg: 'talkInfo',
+			type: 'object'
+		},
+		{
+			arg: 'date',
+			type: 'string'
+		}
+	],
+		http: {
+			path: '/talkSubmit',
+			verb: 'post'
+		},
+		returns: {
+			arg: 'data',
+			type: 'array',
+			root: true
+		}
+	})
 };
     
 const { sendEmailToSpeaker } = require('../../server/utils/sendGridEmailer');

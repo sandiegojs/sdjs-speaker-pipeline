@@ -7,10 +7,10 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "build": "webpack --w",
+    "build": "webpack --mode development",
     "sass": "sass --watch src/css/style.scss public/style.css",
     "start": "npm run build && node .",
-    "test": "npm run build && mocha --require ignore-styles test/**/**.spec.js --exit"
+    "test": "mocha --require ignore-styles test/**/**.spec.js --exit"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
@@ -23,6 +23,7 @@
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.0.0",
     "loopback-connector-mongodb": "^3.8.0",
+    "nightmare": "^3.0.1",
     "react": "^16.5.2",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
