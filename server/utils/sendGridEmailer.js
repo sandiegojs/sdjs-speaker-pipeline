@@ -86,14 +86,6 @@ function sendEmailToAdmin(adminEmail, meetupDate, meetupTitle, speakerEmail, spe
 
             resolve(email); 
     })
-    //this is where the after remote hook would go in your code
 }
 
 module.exports = { sendEmailToSpeaker, sendEmailToAdmin } 
-
-
-
-Speak.afterRemote('nameOfTianasMethod', function(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate, next) {
-    sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
-    next();
-});
