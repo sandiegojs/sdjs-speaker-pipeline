@@ -37,22 +37,22 @@ class Home extends Component {
 						to chat about your own talk you are preparing?
 					</p>
 					<p>
-						Come talk to us in our
-						<a href='https://sdjs.slack.com/' target="_blank" className='inline-link'>Slack channel</a>
+						Come talk to us in our&nbsp;
+						<a href='https://sdjs.slack.com/' target="_blank" className='inline-link'>Slack channel</a>.
 					</p>
 					<h3>Want to do an extended talk?</h3>
 					<p>
 						We do accept extended talks but prefer presentors to have done a
-						lightning talk before. If you're unsure
+						lightning talk before. If you're unsure&nbsp;
 						<a
 							href="mailto:sandiegojs-organizers@googlegroups.com?subject=Extended%20talk%20request"
 							className='inline-link'>
 							please email us to discuss your talk
-						</a>
+						</a>.
 					</p>
 					<h3>Preparing your talk</h3>
 					<p>
-						First, if you aren't sure what to share,
+						First, if you aren't sure what to share,&nbsp;
 						<a href='https://github.com/sandiegojs/sandiegojs.github.com/wiki/Talk-Ideas'
 							target="_blank" className='inline-link'>
 							 here are a few ideas
