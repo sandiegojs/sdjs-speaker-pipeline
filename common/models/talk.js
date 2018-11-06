@@ -2,6 +2,8 @@
 
 const { getMeetups } = require('../../server/utils/getMeetups');
 const { talkSubmit } = require('../../server/utils/talkSubmit')
+const { getPendingTalkDetails } = require('../../server/utils/getPendingTalkDetails');
+const { changeTalkStatus } = require('../../server/utils/changeTalkStatus');
 
 module.exports = function (Talk) {
 	Talk.getMeetups = function (cb) {
@@ -47,6 +49,44 @@ module.exports = function (Talk) {
 		http: {
 			path: '/talkSubmit',
 			verb: 'post'
+	Talk.getPendingTalkDetails = function (cb) {
+		getPendingTalkDetails()
+			.then(talkInformation => cb(null, talkInformation))
+			.catch(err => cb(err))
+	}
+
+	Talk.remoteMethod('getPendingTalkDetails', {
+		description: 'Gets all pending talks and returns an object formatted with event info and speaker info.',
+		http: {
+			path: '/getPendingTalkDetails',
+			verb: 'get'
+		},
+		returns: {
+			arg: 'data',
+			type: 'array',
+			root: true
+		}
+	})
+
+	Talk.changeTalkStatus = function (talkId, status, cb) {
+		changeTalkStatus(talkId, status)
+			.then(newTalk => cb(null, newTalk))
+			.catch(err => cb(err))
+	}
+
+	Talk.remoteMethod('changeTalkStatus', {
+		description: 'Approves or Denies talk status',
+		accepts: [{
+			arg: 'talkId',
+			type: 'string'
+		},
+		{
+			arg: 'status',
+			type: 'string'
+		}],
+		http: {
+			path: '/changeTalkStatus',
+			verb: 'put'
 		},
 		returns: {
 			arg: 'data',

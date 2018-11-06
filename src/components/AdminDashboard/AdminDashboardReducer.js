@@ -1,8 +1,5 @@
 const initialstate = {
-    talks: [],
-    speakers: [],
-    events: [],
-    status: []
+    talkInfo: [],
 }
 
 export default function AdminDashboardReducer(state = initialstate, action) {
@@ -10,82 +7,49 @@ export default function AdminDashboardReducer(state = initialstate, action) {
 
     switch (type) {
         case 'GET_TALK_DATA_FULFILLED': {
-            let statusObj = payload.map((talk) => {
-                return {
-                    talkId: talk.id,
-                    status: undefined,
-                    confirmationMessage: undefined
-                }
-            })
             return {
                 ...state,
-                talks: payload,
-                status: statusObj
-            }
-        }
-        case 'GET_SPEAKER_DATA_FULFILLED': {
-            return {
-                ...state,
-                speakers: payload
-            }
-        }
-        case 'GET_EVENT_DATA_FULFILLED': {
-            return {
-                ...state,
-                events: payload
+                talkInfo: payload.pendingTalkInfo
             }
         }
         case 'UPDATE_TALK_STATUS_IN_STORE': {
-            const updatedStatus = state.status.map((statusObj) => {
-                if (statusObj.talkId == payload.talkId) {
+            const updatedTalkInfo = state.talkInfo.map((talk) => {
+                if (talk.talkId == payload.talkId) {
                     return {
-                        talkId: payload.talkId,
+                        ...talk,
                         status: payload.status
                     }
                 }
                 else {
-                    return statusObj
+                    return talk
                 }
             })
             return {
                 ...state,
-                status: updatedStatus
+                talkInfo: updatedTalkInfo
             }
         }
-        case 'APPROVE_TALK_STATUS_IN_DB_FULFILLED': {
-            const updatedStatus = state.status.map((statusObj) => {
-                if (statusObj.talkId == payload) {
+        case 'CHANGE_TALK_STATUS_IN_DB_FULFILLED': {
+            const updatedTalkInfo = state.talkInfo.map((talk) => {
+                if (talk.talkId == payload.id && payload.approved == true) {
                     return {
-                        talkId: statusObj.talkId,
-                        status: statusObj.status,
+                        ...talk,
                         confirmationMessage: 'Success. The talk is now approved.'
                     }
                 }
-                else {
-                    return statusObj
-                }
-            })
-            return {
-                ...state,
-                status: updatedStatus
-            }
-        }
-        case 'DENY_TALK_STATUS_IN_DB_FULFILLED': {
-            const updatedStatus = state.status.map((statusObj) => {
-                if (statusObj.talkId == payload) {
+                if (talk.talkId == payload.id && payload.approved == false) {
                     return {
-                        talkId: statusObj.talkId,
-                        status: statusObj.status,
+                        ...talk,
                         confirmationMessage: 'Success. The talk is now denied.'
                     }
                 }
                 else {
-                    return statusObj
+                    return talk
                 }
             })
             return {
                 ...state,
-                status: updatedStatus
+                talkInfo: updatedTalkInfo
             }
         }
         default: {
