@@ -5,6 +5,7 @@ const { talkSubmit } = require('../../server/utils/talkSubmit')
 const { getPendingTalkDetails } = require('../../server/utils/getPendingTalkDetails');
 const { changeTalkStatus } = require('../../server/utils/changeTalkStatus');
 const { sendEmailToSpeaker } = require('../../server/utils/sendGridEmailer');
+const { formatTalkForEmail } = require('../../server/utils/formatTalkForEmail');
 
 module.exports = function (Talk) {
 	Talk.getMeetups = function (cb) {
@@ -58,97 +59,130 @@ module.exports = function (Talk) {
 	})
 
 	Talk.getPendingTalkDetails = function (cb) {
-				getPendingTalkDetails()
-					.then(talkInformation => cb(null, talkInformation))
-					.catch(err => cb(err))
-			}
+		getPendingTalkDetails()
+			.then(talkInformation => cb(null, talkInformation))
+			.catch(err => cb(err))
+	}
 
 	Talk.remoteMethod('getPendingTalkDetails', {
-				description: 'Gets all pending talks and returns an object formatted with event info and speaker info.',
-				http: {
-					path: '/getPendingTalkDetails',
-					verb: 'get'
-				},
-				returns: {
-					arg: 'data',
-					type: 'array',
-					root: true
-				}
-			})
+		description: 'Gets all pending talks and returns an object formatted with event info and speaker info.',
+		http: {
+			path: '/getPendingTalkDetails',
+			verb: 'get'
+		},
+		returns: {
+			arg: 'data',
+			type: 'array',
+			root: true
+		}
+	})
 
 	Talk.changeTalkStatus = function (talkId, status, cb) {
-				changeTalkStatus(talkId, status)
-					.then(newTalk => cb(null, newTalk))
-					.catch(err => cb(err))
-			}
+		changeTalkStatus(talkId, status)
+			.then(newTalk => cb(null, newTalk))
+			.catch(err => cb(err))
+	}
 
 	Talk.remoteMethod('changeTalkStatus', {
-				description: 'Approves or Denies talk status',
-				accepts: [{
-					arg: 'talkId',
-					type: 'string'
-				},
-				{
-					arg: 'status',
-					type: 'string'
-				}],
-				http: {
-					path: '/changeTalkStatus',
-					verb: 'put'
-				},
-				returns: {
-					arg: 'data',
-					type: 'array',
-					root: true
-				}
-			})
+		description: 'Approves or Denies talk status',
+		accepts: [{
+			arg: 'talkId',
+			type: 'string'
+		},
+		{
+			arg: 'status',
+			type: 'string'
+		}],
+		http: {
+			path: '/changeTalkStatus',
+			verb: 'put'
+		},
+		returns: {
+			arg: 'data',
+			type: 'array',
+			root: true
+		}
+	})
 
 	Talk.sendEmailToSpeaker = function (adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate, cb) {
-				sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate, cb)
-					.then(email => cb(null, email))
-					.catch(err => cb(err))
-			}
+		sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate, cb)
+			.then(email => cb(null, email))
+			.catch(err => cb(err))
+	}
 
-    Talk.remoteMethod('sendEmailToSpeaker', {
-				description: 'Email speaker',
-				accepts: [{
-					arg: 'adminEmail',
-					type: 'string'
-				},
-				{
-					arg: 'approved',
-					type: 'Boolean'
-				},
-				{
-					arg: 'pending',
-					type: 'Boolean'
-				},
-				{
-					arg: 'speakerEmail',
-					type: 'string'
-				},
-				{
-					arg: 'speakerName',
-					type: 'string'
-				},
-				{
-					arg: 'meetupTitle',
-					type: 'string'
-				},
-				{
-					arg: 'meetupDate',
-					type: 'string'
-				},
-				],
-				http: {
-					path: '/sendEmailToSpeaker',
-					veb: 'get'
-				},
-				returns: {
-					arg: 'data',
-					type: 'array',
-					root: true
-				}
+	Talk.remoteMethod('sendEmailToSpeaker', {
+		description: 'Email speaker',
+		accepts: [{
+			arg: 'adminEmail',
+			type: 'string'
+		},
+		{
+			arg: 'approved',
+			type: 'Boolean'
+		},
+		{
+			arg: 'pending',
+			type: 'Boolean'
+		},
+		{
+			arg: 'speakerEmail',
+			type: 'string'
+		},
+		{
+			arg: 'speakerName',
+			type: 'string'
+		},
+		{
+			arg: 'meetupTitle',
+			type: 'string'
+		},
+		{
+			arg: 'meetupDate',
+			type: 'string'
+		},
+		],
+		http: {
+			path: '/sendEmailToSpeaker',
+			veb: 'get'
+		},
+		returns: {
+			arg: 'data',
+			type: 'array',
+			root: true
+		}
+	})
+
+	Talk.afterRemote('talkSubmit', function (ctx, next) {
+		console.log('this is the ctx result', ctx.result)
+		const speakerId = ctx.result.speakerId
+		const eventId = ctx.result.eventId
+		const approved = false
+		const pending = true
+		formatTalkForEmail(speakerId, eventId)
+			.then((response) => {
+				const speakerName = response.speakerName;
+				const speakerEmail = response.speakerEmail;
+				const meetupTitle = response.meetupTitle;
+				const meetupDate = response.meetupDate;
+				sendEmailToSpeaker('tiana.hayden@me.com', approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
 			})
-		};
+			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
+	});
 
+	Talk.afterRemote('changeTalkStatus', function (ctx, next) {
+		const speakerId = ctx.result.speakerId;
+		const eventId = ctx.result.eventId;
+		const approved = ctx.result.approved;
+		const pending = false;
+		formatTalkForEmail(speakerId, eventId)
+			.then((response) => {
+				const speakerName = response.speakerName;
+				const speakerEmail = response.speakerEmail;
+				const meetupTitle = response.meetupTitle;
+				const meetupDate = response.meetupDate;
+				sendEmailToSpeaker('tiana.hayden@me.com', approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
+			})
+			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
+		// next();
+	});
+};
