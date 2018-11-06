@@ -13,9 +13,11 @@
     "test": "npm run build && mocha --require ignore-styles test/**/**.spec.js --exit"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "axios": "^0.18.0",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
+    "dotenv": "^6.1.0",
     "helmet": "^3.10.0",
     "loopback": "^3.19.0",
     "loopback-boot": "^2.6.5",
