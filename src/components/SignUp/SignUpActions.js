@@ -64,46 +64,6 @@ export const getDates = () => ({
 	type: 'GET_DATES',
 	payload: axios.get('api/talks/getMeetups')
 		.then(response => {
-			console.log(response.data)
 			return response.data
 		})
 })
-
-// export const addSpeaker = (speakerInfo) => ({
-// 	type: 'ADD_SPEAKER',
-// 	payload: axios.post('api/speakers', speakerInfo)
-// 		.then(response => {
-// 			console.log(response.data)
-// 			return response.data
-// 		})
-// 		.catch(err => console.log('Unable to submit speaker', err))
-// })
-
-// export const addEvent = (date) => ({
-// 	type: 'ADD_EVENT_TALK',
-// 	payload: axios.get('api/talks/getMeetups')
-// 		.then(response => {
-// 			const index = response.data.findIndex((item) => {
-// 				return item.date == date
-// 			})
-// 			console.log(response.data[index].name, response.data[index].description)
-// 			let name = response.data[index].name;
-// 			let details = response.data[index].description;
-// 			return axios.post('api/events',{date, name, details})
-// 				.then(response2 => {
-// 					console.log(response2.data)
-// 					return response2.data
-// 				})
-// 				.catch(err => console.log('Unable to create event', err))
-// 		})
-// 		.catch(err => console.log('Unable to get event info', err))
-// })
-
-// export const addTalk = (talkInfo) => ({
-// 	type: 'ADD_TALK',
-// 	payload: axios.post('api/talks', talkInfo)
-// 		.then(response => {
-// 			console.log(response.data)
-// 			return response.data
-// 		})
-// })

@@ -24,15 +24,4 @@ function formatTalkForEmail(speakerId, eventId) {
     })
 }
 
-// { pending: false,
-			// 	approved: true,
-			// 	comments: 'will bring live elephant',
-			// 	reminderSent: false,
-			// 	topic: 'tiana\'s talk',
-			// 	id: 5be1e034711684b9d8a8d8c2,
-			// 	speakerId: 5be1dffb711684b9d8a8d8c1,
-			// 	eventId: 5bdcdcf5f418ef6bb83a1b15 }
-
-// sendEmailToSpeaker('tiana.hayden@me.com', true, false, speakerEmail, speakerName, meetupTitle, meetupDate)
-
 module.exports = { formatTalkForEmail };

@@ -9,7 +9,6 @@ class AdminLogin extends Component {
     render() {
         return (
             <div>
-                {console.log('hello world')}
                 <Link to="/Home">
                     <button className="btn">Home</button>
                 </Link>

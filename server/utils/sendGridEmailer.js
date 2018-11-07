@@ -6,8 +6,6 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
             
 function sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate) {
     return new Promise((resolve, reject) => {
-        console.log('this is speakerEmail', speakerEmail);
-        console.log('this is adminEmail', adminEmail);
 
         if (speakerEmail == undefined) {
             resolve('Bad Speaker Email1');

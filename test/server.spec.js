@@ -18,10 +18,6 @@ describe('server/server.js', function() {
     
   });
 
-  // afterEach(done => {
-  //   done();
-  // });
-
   it('should respond to /', done => {
     chai
       .request(server)
