@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getTalkData, handleRadioChange, changeTalkStatus } from './AdminDashboardActions';
+import Navbar from '../Navbar/Navbar';
 
 class AdminDashboard extends Component {
     constructor(props) {
@@ -35,13 +36,7 @@ class AdminDashboard extends Component {
         if (talkInfo[0]) {
             return (
                 <div>
-                    <div className='navbar'>
-                        <img className='logo' src='https://tinyurl.com/yb9xzoo5' />
-                        <Link to='/'>
-                            <button className="btn">Home</button>
-                        </Link>
-                    </div>
-
+                    <Navbar />
                     <div className='admin-banner'>
                         <h1>Admin Dashboard</h1>
                     </div>
@@ -77,12 +72,7 @@ class AdminDashboard extends Component {
         else {
             return (
                 <div>
-                    <div className='navbar'>
-                        <img className='logo' src='https://tinyurl.com/yb9xzoo5' />
-                        <Link to='/'>
-                            <button className="btn">Home</button>
-                        </Link>
-                    </div>
+                    <Navbar />
                     <div className='navbar'>
 
                     </div>

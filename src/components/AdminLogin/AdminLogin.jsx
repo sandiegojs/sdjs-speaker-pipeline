@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link }             from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
 class AdminLogin extends Component {
     constructor(props) {
@@ -9,9 +10,7 @@ class AdminLogin extends Component {
     render() {
         return (
             <div>
-                <Link to="/Home">
-                    <button className="btn">Home</button>
-                </Link>
+            <Navbar />
             </div>
         )
     }
