@@ -31,6 +31,9 @@ export const changeTalkStatus = (talkId, status) => {
             talkId,
             status
           })
-          .then((updatedTalk) => updatedTalk.data)
+          .then((updatedTalk) => {
+              console.log('updatedTalk', updatedTalk.data)
+              return updatedTalk.data
+          })
     }
 }

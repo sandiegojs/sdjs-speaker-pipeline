@@ -167,6 +167,7 @@ module.exports = function (Talk) {
 				sendEmailToSpeaker('tiana.hayden@me.com', approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
 			})
 			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
+		// next()
 	});
 
 	Talk.afterRemote('changeTalkStatus', function (ctx, next) {
@@ -182,7 +183,7 @@ module.exports = function (Talk) {
 				const meetupDate = response.meetupDate;
 				sendEmailToSpeaker('tiana.hayden@me.com', approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
 			})
-			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
+			.catch(err =>  console.log('error with formatTalkForEmail function', err) )
 		// next();
 	});
 };
