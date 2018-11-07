@@ -152,38 +152,37 @@ module.exports = function (Talk) {
 		}
 	})
 
-	Talk.afterRemote('talkSubmit', function (ctx, next) {
-		console.log('this is the ctx result', ctx.result)
+	Talk.afterRemote('talkSubmit', function (ctx, modelInstance, next) {
 		const speakerId = ctx.result.speakerId
 		const eventId = ctx.result.eventId
 		const approved = false
 		const pending = true
-		formatTalkForEmail(speakerId, eventId)
+		formatTalkForEmail(speakerId, eventId, next)
 			.then((response) => {
 				const speakerName = response.speakerName;
 				const speakerEmail = response.speakerEmail;
 				const meetupTitle = response.meetupTitle;
 				const meetupDate = response.meetupDate;
 				sendEmailToSpeaker('tiana.hayden@me.com', approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
+				next();
 			})
 			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
-		// next()
 	});
 
-	Talk.afterRemote('changeTalkStatus', function (ctx, next) {
+	Talk.afterRemote('changeTalkStatus', function (ctx, modelInstance, next) {
 		const speakerId = ctx.result.speakerId;
 		const eventId = ctx.result.eventId;
 		const approved = ctx.result.approved;
 		const pending = false;
-		formatTalkForEmail(speakerId, eventId)
+		formatTalkForEmail(speakerId, eventId, next)
 			.then((response) => {
 				const speakerName = response.speakerName;
 				const speakerEmail = response.speakerEmail;
 				const meetupTitle = response.meetupTitle;
 				const meetupDate = response.meetupDate;
 				sendEmailToSpeaker('tiana.hayden@me.com', approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
+				next();
 			})
 			.catch(err =>  console.log('error with formatTalkForEmail function', err) )
-		// next();
 	});
 };
