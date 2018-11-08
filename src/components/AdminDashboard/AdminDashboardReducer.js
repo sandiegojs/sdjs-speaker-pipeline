@@ -17,7 +17,7 @@ export default function AdminDashboardReducer(state = initialstate, action) {
                 if (talk.talkId == payload.talkId) {
                     return {
                         ...talk,
-                        status: payload.status
+                        selectedStatus: payload.selectedStatus
                     }
                 }
                 else {
@@ -31,16 +31,10 @@ export default function AdminDashboardReducer(state = initialstate, action) {
         }
         case 'CHANGE_TALK_STATUS_IN_DB_FULFILLED': {
             const updatedTalkInfo = state.talkInfo.map((talk) => {
-                if (talk.talkId == payload.id && payload.approved == true) {
+                if (talk.talkId == payload.id) {
                     return {
                         ...talk,
-                        confirmationMessage: 'Success. The talk is now approved.'
-                    }
-                }
-                if (talk.talkId == payload.id && payload.approved == false) {
-                    return {
-                        ...talk,
-                        confirmationMessage: 'Success. The talk is now denied.'
+                        confirmationMessage: `Success. The talk status is now '${payload.status}'.`
                     }
                 }
                 else {

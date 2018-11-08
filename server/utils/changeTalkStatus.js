@@ -1,15 +1,12 @@
 const app = require('../server');
 
-function changeTalkStatus(talkId, status) {
+function changeTalkStatus(talkId, selectedStatus) {
 	return new Promise((resolve, reject) => {
 		const { Talk } = app.models;
 				Talk.findById(talkId)
 					.then((talk) => {
-						let newTalk;
-						if (status == 'Approve') {
-							newTalk = {
-								"pending": false,
-								"approved": true,
+						const newTalk = {
+								"status": selectedStatus,
 								"comments": talk.comments,
 								"reminderSent": talk.reminderSent,
 								"topic": talk.topic,
@@ -17,19 +14,6 @@ function changeTalkStatus(talkId, status) {
 								"speakerId": talk.speakerId,
 								"eventId": talk.eventId
 							}
-						}
-						if (status == 'Deny') {
-							newTalk = {
-								"pending": false,
-								"approved": false,
-								"comments": talk.comments,
-								"reminderSent": talk.reminderSent,
-								"topic": talk.topic,
-								"id": talk.id,
-								"speakerId": talk.speakerId,
-								"eventId": talk.eventId
-							}
-						}
 						Talk.replaceOrCreate(newTalk)
 						return resolve(newTalk)
 					})

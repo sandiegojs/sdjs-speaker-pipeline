@@ -14,26 +14,23 @@ export const getTalkData = () => {
     }
 }
 
-export const handleRadioChange = (talkId, status) => {
+export const handleSelect = (talkId, selectedStatus) => {
     return {
         type: 'UPDATE_TALK_STATUS_IN_STORE',
         payload: {
             talkId,
-            status
+            selectedStatus
         }
     }
 }
 
-export const changeTalkStatus = (talkId, status) => {
+export const changeTalkStatus = (talkId, selectedStatus) => {
     return {
         type: 'CHANGE_TALK_STATUS_IN_DB',
         payload: axios.put('api/talks/changeTalkStatus', {
             talkId,
-            status
+            selectedStatus
           })
-          .then((updatedTalk) => {
-              console.log('updatedTalk', updatedTalk.data)
-              return updatedTalk.data
-          })
+          .then((updatedTalk) => updatedTalk.data)
     }
 }

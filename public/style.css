@@ -205,6 +205,7 @@ html {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #efefef;
+  margin-bottom: 50px;
 }
 .table th {
   padding: 20px;

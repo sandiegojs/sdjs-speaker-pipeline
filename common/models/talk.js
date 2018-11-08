@@ -77,8 +77,8 @@ module.exports = function (Talk) {
 		}
 	})
 
-	Talk.changeTalkStatus = function (talkId, status, cb) {
-		changeTalkStatus(talkId, status)
+	Talk.changeTalkStatus = function (talkId, selectedStatus, cb) {
+		changeTalkStatus(talkId, selectedStatus)
 			.then(newTalk => cb(null, newTalk))
 			.catch(err => cb(err))
 	}
@@ -90,7 +90,7 @@ module.exports = function (Talk) {
 			type: 'string'
 		},
 		{
-			arg: 'status',
+			arg: 'selectedStatus',
 			type: 'string'
 		}],
 		http: {

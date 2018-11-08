@@ -6,15 +6,10 @@
     "validateUpsert": true
   },
   "properties": {
-    "pending": {
-      "type": "boolean",
+    "status": {
+      "type": "string",
       "required": true,
-      "default": true
-    },
-    "approved": {
-      "type": "boolean",
-      "required": true,
-      "default": false
+      "default": "Pending"
     },
     "comments": {
       "type": "string",
