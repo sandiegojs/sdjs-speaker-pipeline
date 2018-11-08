@@ -31,13 +31,7 @@ class AdminDashboard extends Component {
     if (talkInfo[0]) {
       return (
         <div>
-          <div className='navbar'>
-            <img className='logo' src='https://tinyurl.com/yb9xzoo5' />
-            <Link to='/'>
-              <button className="btn">Home</button>
-            </Link>
-          </div>
-
+          <Navbar />
           <div className='admin-banner'>
             <h1>Admin Dashboard</h1>
           </div>
