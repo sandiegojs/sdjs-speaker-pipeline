@@ -81,4 +81,15 @@ describe('server/server.js', function() {
       .catch(err => console.log(err))
   })
 
+  it('Speaker signup should have in input tag with the id of speaker-lastname', (done) => {
+    nightmare
+      .goto('http://localhost:4444/#/SignUp')
+      .evaluate(() => document.querySelector('#speaker-lastname'))
+        .then(input => expect(input).to.exist)
+        done()
+  });
+
+  it('should shallow render', () => {
+    expect(shallow(<Navbar />).contains(<a>SPEAK</a>)).to.equal(true);
+  });
 });

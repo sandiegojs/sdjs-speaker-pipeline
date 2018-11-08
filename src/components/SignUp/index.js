@@ -10,6 +10,7 @@ function mapStoreToProps(store){
       date: store.SignUp.speakerDate,
       details: store.SignUp.eventDetails,
       name: store.SignUp.eventName,
+      newSpeaker: store.Home.newSpeaker,
       organization: store.SignUp.speakerCompany,
       topic: store.SignUp.talkTopic,
       comments: store.SignUp.talkTopic,

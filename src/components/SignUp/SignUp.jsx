@@ -116,7 +116,7 @@ class SignUp extends Component {
 			website,
 			linkedin,
 		} = this.props;
-
+		dispatch(newSpeaker(true));
 		dispatch(talkSubmit({
 			firstName,
 			lastName,
@@ -137,68 +137,104 @@ class SignUp extends Component {
 	}
 
 	render() {
-		const { events, submitted } = this.props;
-		return (
-			<div>
-				<Navbar />
-				<div className='signUp-container'>
-					<div className='form-container'>
-						<form onSubmit={this.submitSpeaker}>
-							<h3>Speaker Registration</h3>
-							<div>
-								<label htmlFor='speaker-firstname'>First Name: </label>
-								<input name='speaker-firstname' id='speaker-firstname' type='text' onChange={this.handleFirstname} />
-							</div>
-							<div>
-								<label htmlFor='speaker-lastname'>Last Name: </label>
-								<input name='speaker-lastname' id='speaker-lastname' type='text' onChange={this.handleLastname} />
-							</div>
-							<div>
-								<label htmlFor='speaker-email'>Email: </label>
-								<input name='speaker-email' id='speaker-email' type='text' onChange={this.handleEmail} />
-							</div>
-							<div>
-								<label htmlFor='phone'>Phone Number: </label>
-								<input name='phone' id='phone' type='text' onChange={this.handlePhone} />
-							</div>
-							<div>
-								<label htmlFor='company'>Company: </label>
-								<input name='company' id='company' type='text' onChange={this.handleCompany} />
-							</div>
-							<div>
-								<label htmlFor='event-date'>Date Requested: </label>
-								<select name='event-date' id='event-date' type='select' onChange={this.handleDate}>
-									{events && events.map(event => (
-										<option key={event.date}>{event.date}</option>
-									))}
-								</select>
-							</div>
-							<div>
-								<label htmlFor='topic'>Topic:</label>
-								<input name='topic' id='topic' type='text' onChange={this.handleTopic} />
-							</div>
-							<div>
-								<label htmlFor='description'>Description: </label>
-								<textarea name='description' id='description' type='text' onChange={this.handleDescription} />
-							</div>
-							<div>
-								<label>Additional Links: </label>
-								<br />
-								<input name='github-link' id='github-link' placeholder='Github' onChange={this.handleGithub} />
-								<br />
-								<input name='website-link' id='website-link' placeholder='Website' onChange={this.handleWebsite} />
-								<br />
-								<input name='linkedin-link' id='linkedin-link' placeholder='linkedin' onChange={this.handleLinkedin} />
-							</div>
-							<div>
-								<button id='speaker-submit'>Submit!</button>
-							</div>
-						</form>
+		const { events, newSpeaker, submitted } = this.props;
+		if (newSpeaker) {
+			return (
+				<div>
+					<Navbar />
+					<div className='signUp-container'>
+						<div className='form-container'>
+							<form onSubmit={this.submitSpeaker}>
+								<h3>Speaker Registration</h3>
+								<div>
+									<label htmlFor='speaker-firstname'>First Name: </label>
+									<input name='speaker-firstname' id='speaker-firstname' type='text' onChange={this.handleFirstname} />
+								</div>
+								<div>
+									<label htmlFor='speaker-lastname'>Last Name: </label>
+									<input name='speaker-lastname' id='speaker-lastname' type='text' onChange={this.handleLastname} />
+								</div>
+								<div>
+									<label htmlFor='speaker-email'>Email: </label>
+									<input name='speaker-email' id='speaker-email' type='text' onChange={this.handleEmail} />
+								</div>
+								<div>
+									<label htmlFor='phone'>Phone Number: </label>
+									<input name='phone' id='phone' type='text' onChange={this.handlePhone} />
+								</div>
+								<div>
+									<label htmlFor='company'>Company: </label>
+									<input name='company' id='company' type='text' onChange={this.handleCompany} />
+								</div>
+								<div>
+									<label htmlFor='event-date'>Date Requested: </label>
+									<select name='event-date' id='event-date' type='select' onChange={this.handleDate}>
+										{events && events.map(event => (
+											<option key={event.date}>{event.date}</option>
+										))}
+									</select>
+								</div>
+								<div>
+									<label htmlFor='topic'>Topic:</label>
+									<input name='topic' id='topic' type='text' onChange={this.handleTopic} />
+								</div>
+								<div>
+									<label htmlFor='description'>Description: </label>
+									<textarea name='description' id='description' type='text' onChange={this.handleDescription} />
+								</div>
+								<div>
+									<label>Additional Links: </label>
+									<br />
+									<input name='github-link' id='github-link' placeholder='Github' onChange={this.handleGithub} />
+									<br />
+									<input name='website-link' id='website-link' placeholder='Website' onChange={this.handleWebsite} />
+									<br />
+									<input name='linkedin-link' id='linkedin-link' placeholder='linkedin' onChange={this.handleLinkedin} />
+								</div>
+								<div>
+									<button id='speaker-submit'>Submit!</button>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-		)
+
+			)
+		} else {
+			return (
+				<div>
+					<Navbar />
+					<div className='signUp-container'>
+						<div className='form-container'>
+							<form onSubmit={this.submitSpeaker}>
+								<h3>Speaker Registration</h3>
+								<div>
+									<label htmlFor='event-date'>Date Requested: </label>
+									<select name='event-date' id='event-date' type='select' onChange={this.handleDate}>
+										{events && events.map(event => (
+											<option key={event.date}>{event.date}</option>
+										))}
+									</select>
+								</div>
+								<div>
+									<label htmlFor='topic'>Topic:</label>
+									<input name='topic' id='topic' type='text' onChange={this.handleTopic} />
+								</div>
+								<div>
+									<label htmlFor='description'>Description: </label>
+									<textarea name='description' id='description' type='text' onChange={this.handleDescription} />
+								</div>
+								<div>
+									<button id='speaker-submit'>Submit!</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			)
+		}
 	}
+
 }
 
 export default SignUp;

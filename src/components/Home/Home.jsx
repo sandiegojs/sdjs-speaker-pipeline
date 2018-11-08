@@ -5,6 +5,13 @@ import Navbar from '../Navbar/Navbar';
 class Home extends Component {
 	constructor(props) {
 		super(props);
+
+		this.handleNewSpeaker = this.handleNewSpeaker.bind(this);
+
+	}
+	handleNewSpeaker() {
+		const { dispatch } = this.props;
+		dispatch(newSpeaker(true));
 	}
 
 	render() {
@@ -16,7 +23,7 @@ class Home extends Component {
 					<h2>Speaker Pipeline</h2>
 					<p>Share your perspective with the San Diego JavaScript community</p>
 					<Link to='/SignUp'>
-						<button className="btn">Get Started</button>
+						<button className="btn" onClick={this.handleNewSpeaker}>Get Started</button>
 					</Link>
 				</div>
 				<div className='info'>
