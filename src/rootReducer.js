@@ -1,15 +1,18 @@
 import { combineReducers }     from 'redux';
 import  HomeReducer            from './components/Home/HomeReducer';
 import SignUpReducer           from './components/SignUp/SignUpReducer';
-import AdminDashboardReducer   from './components/AdminDashboard/AdminDashboardReducer';
+import TalksReducer            from './components/Talks/TalksReducer';
 import AdminLoginReducer       from './components/AdminLogin/AdminLoginReducer';
+import MeetupsReducer                 from './components/Meetups/MeetupsReducer'
 
 
 const rootReducer = combineReducers({
    Home                   : HomeReducer,
    SignUp                 : SignUpReducer,
-   AdminDashboard         : AdminDashboardReducer,  
-   AdminLogin             : AdminLoginReducer,          
+   Talks                  : TalksReducer,  
+   AdminLogin             : AdminLoginReducer, 
+   Meetups                : MeetupsReducer,
+            
 });
 
 export default rootReducer; 

@@ -5,8 +5,9 @@ import {
 } from 'react-router-dom';
 import Home        		  from './components/Home';
 import SignUp           from './components/SignUp';
-import AdminDashboard   from './components/AdminDashboard';
+import Talks            from './components/Talks';
 import AdminLogin       from './components/AdminLogin';
+import Meetups          from './components/Meetups'
 
 
 class App extends Component {
@@ -16,8 +17,9 @@ class App extends Component {
         	<div>
 				<Route exact path='/'           component={Home} />
 				<Route path='/SignUp'           component={SignUp} />
-				<Route path='/AdminDashboard'	  component={AdminDashboard} />
+				<Route path='/Admin/Talks'      component={Talks} />
 				<Route path='/AdminLogin'       component={AdminLogin} />
+        <Route path='/Admin/Meetups'      component={Meetups} />
 			</div>
       </Router>
     );

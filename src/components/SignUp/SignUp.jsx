@@ -116,7 +116,6 @@ class SignUp extends Component {
 			website,
 			linkedin,
 		} = this.props;
-		dispatch(newSpeaker(true));
 		dispatch(talkSubmit({
 			firstName,
 			lastName,

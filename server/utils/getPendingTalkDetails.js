@@ -3,7 +3,7 @@ const app = require('../server')
 function getPendingTalkDetails() {
   return new Promise((resolve, reject) => {
     const { Talk, Speaker, Event } = app.models;
-    Talk.find({ where: { or: [{status: "Pending" }, {status: "In Contact"}] }})
+    Talk.find({ where: { status: 'Pending' } })
       .then(pendingTalks => {
         const talkInformation = pendingTalks.map((talk) => {
           return Speaker.findById(talk.speakerId)
@@ -28,7 +28,10 @@ function getPendingTalkDetails() {
             .catch(err => ({ error: 'could not find speaker', err }))
         })
         Promise.all(talkInformation)
-          .then((results) => resolve(results))
+          .then(results => {
+            console.log(results)
+            return resolve(results);
+          })
           .catch(err => ({ error: 'could not return results', err }))
       })
       .catch(err => ({ error: 'could not find pending talks', err }))

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import { getTalkData, handleSelect, changeTalkStatus } from './AdminDashboardActions';
+import { getTalkData, handleSelect, changeTalkStatus } from './TalksActions';
 const moment = require('moment');
 
-class AdminDashboard extends Component {
+class Talks extends Component {
   constructor(props) {
     super(props);
     this.handleSelect = this.handleSelect.bind(this)
@@ -100,6 +100,7 @@ class AdminDashboard extends Component {
           <Navbar />
           <div className='admin-banner'>
             <h1>Admin Dashboard</h1>
+            <p>hello</p>
           </div>
           <div className='admin-info'>
             <h3>Pending Speakers</h3>
@@ -111,4 +112,4 @@ class AdminDashboard extends Component {
   }
 }
 
-export default AdminDashboard;
+export default Talks;
