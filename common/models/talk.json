@@ -11,7 +11,7 @@
       "required": true,
       "default": "Pending"
     },
-    "comments": {
+    "description": {
       "type": "string",
       "required": true
     },

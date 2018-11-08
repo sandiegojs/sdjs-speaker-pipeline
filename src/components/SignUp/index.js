@@ -13,7 +13,7 @@ function mapStoreToProps(store){
       newSpeaker: store.Home.newSpeaker,
       organization: store.SignUp.speakerCompany,
       topic: store.SignUp.talkTopic,
-      comments: store.SignUp.talkTopic,
+      description: store.SignUp.talkDescription,
       github: store.SignUp.speakerGithub,
       website: store.SignUp.speakerWebsite,
       linkedin: store.SignUp.speakerLinkedin,

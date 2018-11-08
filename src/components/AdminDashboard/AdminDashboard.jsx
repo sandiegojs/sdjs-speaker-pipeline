@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { getTalkData, handleSelect, changeTalkStatus } from './AdminDashboardActions';
+const moment = require('moment');
 
 class AdminDashboard extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ class AdminDashboard extends Component {
                 <th>Speaker</th>
                 <th>Talk</th>
                 <th>Event</th>
+                <th>Current Status</th>
                 <th>Action</th>
               </tr>
               {
@@ -50,32 +52,39 @@ class AdminDashboard extends Component {
                     <td>
                       <div className='table-speaker'>
                         <div className='table-speaker-name'>{talk.speaker}</div>
-                        <div className='table-speaker-email'>{talk.speakerEmail}</div>
-                        <a href='#'>See All Details</a>
+                        <a href={`mailto:${talk.speakerEmail}`} target="_top"><i className="far fa-envelope"></i>Send Email</a>
+                        <div className='show-more'><i className="fas fa-plus"></i>Show More</div>
                       </div>
                     </td>
                     <td>
                       <div className='table-talk'>
-                        <div className='table-talk-topic'>Topic: {talk.topic}</div>
-                        <div className='table-talk-description'>Description: {talk.description}</div>
+                        <div className='table-talk-topic'>{talk.topic}</div>
+                        <div className='table-talk-description'>{talk.description}</div>
                       </div>
                     </td>
                     <td>
                       <div className='table-event'>
                         <div className='table-event-name'>{talk.eventName}</div>
-                        <div className='table-event-date'>{talk.eventDate}</div>
+                        <div className='table-event-date'>{moment(talk.eventDate).format('YYYY-MM-DD')}</div>
                       </div>
                     </td>
                     <td>
+                      <div className='table-status'>
+                        <div className='table-status-current'>{talk.currentStatus}</div>
+                      </div>
+                    </td>
+                    <td>
+                      <div className='table-action'>
                       <select name={talk.talkId} onChange={this.handleSelect}>
-                        <option value=''>Select Status</option>
+                        <option value=''>Change Status</option>
                         <option value='In Contact'>In Contact</option>
                         <option value='Approve'>Approve</option>
                         <option value='Deny'>Deny</option>
                         <option value='Disengaged'>Disengaged</option>
                       </select>
                       <button className='btn' name={talk.talkId} onClick={this.handleSubmit}>Submit</button>
-                      <div>{talk.confirmationMessage ? talk.confirmationMessage : null}</div>
+                      </div>
+                      <div className='table-confirmation'>{talk.confirmationMessage ? talk.confirmationMessage : null}</div>
                     </td>
                   </tr>
                 ))
@@ -88,15 +97,7 @@ class AdminDashboard extends Component {
     else {
       return (
         <div>
-          <div className='navbar'>
-            <img className='logo' src='https://tinyurl.com/yb9xzoo5' />
-            <Link to='/'>
-              <button className="btn">Home</button>
-            </Link>
-          </div>
-          <div className='navbar'>
-
-          </div>
+          <Navbar />
           <div className='admin-banner'>
             <h1>Admin Dashboard</h1>
           </div>

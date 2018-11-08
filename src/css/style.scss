@@ -2,6 +2,8 @@ $font: 'Open Sans', sans-serif;
 $primary-color: lightgray;
 $secondary-color: gray;
 
+// Admin Dash 
+
 .admin-banner{
     margin-top: 60px;
     align-items: center;
@@ -208,6 +210,29 @@ html{
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+    }
+    select {
+        height: 50px;
+        width: 120px;
+        margin-right: 10px;
+    }
+    .btn {
+        margin: auto;
+        width: 120px;
+        border-radius: 5%;
+    }
+    .btn:hover {
+        background-color: #146fa5;
+    }
+
+    .table-confirmation {
+        font-size: 15px;
+    }
+
+    .table-action {
+        display: flex;
+        margin-bottom: 10px;
     }
 }
 tr:first-child {
@@ -231,6 +256,35 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;        
+}
+
+.table-speaker {
+    font-size: 15px;
+
+    .table-speaker-name {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    i {
+        margin-right: 5px;
+    }
+}
+
+.table-talk-topic {
+    margin-bottom: 10px;
+}
+
+.table-talk-description {
+    font-size: 15px;
+}
+
+.table-event-name {
+    margin-bottom: 10px;
+}
+
+.table-event-date {
+    font-size: 15px;
 }
 
 .navbar {

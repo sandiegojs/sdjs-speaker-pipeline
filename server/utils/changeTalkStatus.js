@@ -7,7 +7,7 @@ function changeTalkStatus(talkId, selectedStatus) {
 					.then((talk) => {
 						const newTalk = {
 								"status": selectedStatus,
-								"comments": talk.comments,
+								"description": talk.description,
 								"reminderSent": talk.reminderSent,
 								"topic": talk.topic,
 								"id": talk.id,

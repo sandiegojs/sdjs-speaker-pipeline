@@ -34,6 +34,7 @@ export default function AdminDashboardReducer(state = initialstate, action) {
                 if (talk.talkId == payload.id) {
                     return {
                         ...talk,
+                        currentStatus: payload.status,
                         confirmationMessage: `Success. The talk status is now '${payload.status}'.`
                     }
                 }

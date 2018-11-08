@@ -111,7 +111,7 @@ class SignUp extends Component {
 			name,
 			company,
 			topic,
-			comments,
+			description,
 			github,
 			website,
 			linkedin,
@@ -128,7 +128,7 @@ class SignUp extends Component {
 			linkedin
 		},
 			{
-				comments,
+				description,
 				topic,
 			},
 			date
