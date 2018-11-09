@@ -17,6 +17,10 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "meetupId": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

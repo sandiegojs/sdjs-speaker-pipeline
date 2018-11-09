@@ -52,63 +52,6 @@
   margin-left: 20px;
 }
 
-.banner {
-  margin-top: 80px;
-  align-items: center;
-  background-image: linear-gradient(180deg, rgba(24, 132, 195, 0.64), rgba(24, 132, 195, 0.64)), url(https://tinyurl.com/ycn372dv);
-  background-size: auto, cover;
-  background-repeat: no-repeat;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  margin-left: 0;
-  margin-right: 0;
-}
-.banner .btn {
-  background-color: #ff5041;
-  margin-bottom: 40px;
-}
-.banner h1 {
-  font-size: 60px;
-  margin-bottom: 10px;
-}
-.banner h2 {
-  font-size: 40px;
-  padding: 0;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.banner p {
-  font-size: 24px;
-  padding-bottom: 15px;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
-  background-size: cover;
-  margin: 0;
-}
-
-.btn {
-  background-color: #1884c3;
-  border: 3px solid transparent;
-  color: white;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 12px 23px;
-  padding-top: 12px;
-  padding-right: 23px;
-  padding-bottom: 12px;
-  padding-left: 23px;
-  text-transform: uppercase;
-  transition: border 200ms ease, color 200ms ease, background-color 200ms ease;
-  transition-property: border, color, background-color;
-  transition-duration: 200ms, 200ms, 200ms;
-  transition-timing-function: ease, ease, ease;
-  transition-delay: 0s, 0s, 0s;
-}
-
 .dos-and-donts {
   display: flex;
   align-items: center;
@@ -167,10 +110,6 @@ body {
   width: 50%;
 }
 
-html {
-  -webkit-font-smoothing: antialiased;
-}
-
 .info {
   margin-left: 15%;
   margin-right: 15%;
@@ -197,98 +136,35 @@ html {
   height: auto;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid #efefef;
-  margin-bottom: 50px;
-}
-.table th {
-  padding: 20px;
-}
-.table td {
-  padding: 20px;
-  height: 100px;
-  border-bottom: 1px solid #efefef;
-}
-.table td:last-child {
-  display: flex;
+.banner {
+  margin-top: 80px;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.table select {
-  height: 50px;
-  width: 120px;
-  margin-right: 10px;
-}
-.table .btn {
-  margin: auto;
-  width: 120px;
-  border-radius: 5%;
-}
-.table .btn:hover {
-  background-color: #146fa5;
-}
-.table .table-confirmation {
-  font-size: 15px;
-}
-.table .table-action {
+  background-image: linear-gradient(180deg, rgba(24, 132, 195, 0.64), rgba(24, 132, 195, 0.64)), url(https://tinyurl.com/ycn372dv);
+  background-size: auto, cover;
+  background-repeat: no-repeat;
+  color: white;
   display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  margin-right: 0;
+}
+.banner .btn {
+  background-color: #ff5041;
+  margin-bottom: 40px;
+}
+.banner h1 {
+  font-size: 60px;
   margin-bottom: 10px;
 }
-
-tr:first-child {
-  color: #1884c3;
+.banner h2 {
+  font-size: 40px;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.banner p {
   font-size: 24px;
-  background-color: #daf1ff;
-  margin: 0;
-  border: 1px solid lightblue;
-}
-
-tr {
-  color: #3b3b3b;
-  font-size: 20px;
-}
-
-.form-title {
-  margin-bottom: 30px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #fff;
-  text-align: center;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.table-speaker {
-  font-size: 15px;
-}
-.table-speaker .table-speaker-name {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.table-speaker i {
-  margin-right: 5px;
-}
-
-.table-talk-topic {
-  margin-bottom: 10px;
-}
-
-.table-talk-description {
-  font-size: 15px;
-}
-
-.table-event-name {
-  margin-bottom: 10px;
-}
-
-.table-event-date {
-  font-size: 15px;
+  padding-bottom: 15px;
 }
 
 .navbar {
@@ -392,31 +268,90 @@ label {
   margin: 30px;
 }
 
-.header {
-  border: 3px solid black;
-  width: 50vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  margin-bottom: 50px;
-  padding: 20px;
-  font-size: 15pt;
-}
-
-.meetups {
-  display: flex;
-  justify-content: center;
+.form-title {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #fff;
   text-align: center;
 }
 
-.meetup-link {
-  background: #f13a59;
-  color: white;
-  font-size: 20pt;
-  border: 1px solid black;
-  text-decoration: none;
-  padding: 5px;
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #efefef;
+  margin-bottom: 50px;
+}
+.table tr:first-child {
+  color: #1884c3;
+  font-size: 24px;
+  background-color: #daf1ff;
+  margin: 0;
+  border: 1px solid lightblue;
+}
+.table tr {
+  color: #3b3b3b;
+  font-size: 20px;
+  border: 1px solid #efefef;
+}
+.table td {
+  padding: 20px;
+  height: 100px;
+}
+.table td:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.table select {
+  height: 50px;
+  width: 120px;
+  margin-right: 10px;
+}
+.table .btn {
+  margin: auto;
+  width: 120px;
+  border-radius: 5%;
+}
+.table .btn:hover {
+  background-color: #146fa5;
+}
+.table .table-speakerEmail {
+  font-size: 15px;
+  margin: 10px 0;
+}
+.table a {
+  color: #1884c3;
+}
+.table i {
+  margin-right: 5px;
+  color: #3b3b3b;
+}
+.table .table-description {
+  font-size: 15px;
+  margin-top: 5px;
+}
+.table .table-eventDate {
+  font-size: 15px;
+  margin-top: 5px;
+}
+.table .table-tableAction {
+  display: flex;
+  flex-direction: column;
+}
+.table .table-tableStatus {
+  display: flex;
+  flex-direction: row;
+}
+.table .table-tableConfirmation {
+  font-size: 15px;
+  margin-top: 5px;
 }
 
 .login {
@@ -438,6 +373,36 @@ label {
 
 .login .btn {
   margin-bottom: 5px;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-size: cover;
+  margin: 0;
+}
+
+.btn {
+  background-color: #1884c3;
+  border: 3px solid transparent;
+  color: white;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 23px;
+  padding-top: 12px;
+  padding-right: 23px;
+  padding-bottom: 12px;
+  padding-left: 23px;
+  text-transform: uppercase;
+  transition: border 200ms ease, color 200ms ease, background-color 200ms ease;
+  transition-property: border, color, background-color;
+  transition-duration: 200ms, 200ms, 200ms;
+  transition-timing-function: ease, ease, ease;
+  transition-delay: 0s, 0s, 0s;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -5,8 +5,8 @@ function formatTalkForEmail(speakerId, eventId) {
         const { Speaker, Event } = app.models;
         Speaker.findById(speakerId)
             .then(speaker => {
-                const speakerName = speaker.firstName + ' ' + speaker.lastName;
-                const speakerEmail = speaker.email
+                const speakerName = speaker.speakerName;
+                const speakerEmail = speaker.speakerEmail
                 Event.findById(eventId)
                     .then(selectedEvent => {
                         const meetupTitle = selectedEvent.name;

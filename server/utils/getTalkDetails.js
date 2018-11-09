@@ -1,24 +1,25 @@
 const app = require('../server')
 
-function getPendingTalkDetails() {
+function getTalkDetails() {
   return new Promise((resolve, reject) => {
     const { Talk, Speaker, Event } = app.models;
-    Talk.find({ where: { status: 'Pending' } })
-      .then(pendingTalks => {
-        const talkInformation = pendingTalks.map((talk) => {
+    Talk.find({})
+      .then(talks => {
+        const talkInformation = talks.map((talk) => {
           return Speaker.findById(talk.speakerId)
             .then(speaker => {
               return Event.findById(talk.eventId)
                 .then(selectedEvent => {
                   return {
-                    speaker: speaker.firstName + ' ' + speaker.lastName,
-                    speakerEmail: speaker.email,
+                    speaker: speaker.speakerName,
+                    speakerEmail: speaker.speakerEmail,
                     topic: talk.topic,
                     description: talk.description,
                     talkId: talk.id,
                     currentStatus: talk.status,
                     eventName: selectedEvent.name,
                     eventDate: selectedEvent.date,
+                    meetupId: selectedEvent.meetupId,
                     selectedStatus: undefined,
                     confirmationMessage: undefined 
                   }
@@ -28,10 +29,7 @@ function getPendingTalkDetails() {
             .catch(err => ({ error: 'could not find speaker', err }))
         })
         Promise.all(talkInformation)
-          .then(results => {
-            //console.log(results)
-            return resolve(results);
-          })
+          .then(results => resolve(results))
           .catch(err => ({ error: 'could not return results', err }))
       })
       .catch(err => ({ error: 'could not find pending talks', err }))
@@ -39,4 +37,4 @@ function getPendingTalkDetails() {
   })
 }
 
-module.exports = { getPendingTalkDetails };
+module.exports = { getTalkDetails };

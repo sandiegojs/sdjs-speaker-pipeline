@@ -7,7 +7,7 @@ import AdminHome  from './components/AdminHome';
 import AdminLogin from './components/AdminLogin';
 import Home       from './components/Home';
 import Meetups    from './components/Meetups';
-import Talks      from './components/Talks';
+import TalksPage  from './components/TalksPage';
 import Organizers from './components/Organizers';
 import SignUp     from './components/SignUp';
 
@@ -20,7 +20,7 @@ class App extends Component {
         <Route path='/AdminHome'     component={AdminHome} />
 				<Route path='/AdminLogin'    component={AdminLogin} />
         <Route path='/Admin/Meetups' component={Meetups} />
-				<Route path='/Admin/Talks'   component={Talks} />
+				<Route path='/Admin/Talks'   component={TalksPage} />
         <Route path='/Organizers'    component={Organizers} />
 				<Route path='/SignUp'        component={SignUp} />
 			</div>

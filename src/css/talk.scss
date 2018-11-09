@@ -1,0 +1,88 @@
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #efefef;
+    margin-bottom: 50px;
+
+    tr:first-child {
+        color:#1884c3;
+        font-size: 24px;
+        background-color: #daf1ff;
+        margin: 0;
+        border: 1px solid lightblue;
+    }
+
+    tr {
+        color:rgb(59, 59, 59);
+        font-size: 20px;
+        border: 1px solid #efefef;
+    }
+
+    td {
+        padding: 20px;
+        height: 100px;
+    }
+
+    td:last-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    select {
+        height: 50px;
+        width: 120px;
+        margin-right: 10px;
+    }
+
+    .btn {
+        margin: auto;
+        width: 120px;
+        border-radius: 5%;
+    }
+
+    .btn:hover {
+        background-color: #146fa5;
+    }
+
+    .table-speakerEmail {
+        font-size: 15px;
+        margin: 10px 0;
+    }
+
+    a {
+        color: #1884c3;
+    }
+
+    i {
+        margin-right: 5px;
+        color: rgb(59, 59, 59);
+    }
+
+    .table-description {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    .table-eventDate {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    .table-tableAction {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .table-tableStatus {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .table-tableConfirmation {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+}
+

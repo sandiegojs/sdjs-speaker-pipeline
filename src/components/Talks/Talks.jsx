@@ -4,6 +4,17 @@ import { getTalkData, handleSelect, changeTalkStatus } from './TalksActions';
 import AdminNav from '../AdminNav/AdminNav';
 const moment = require('moment');
 
+const TableRow = ({ data, children }) => {
+  return <td>
+    {children
+      ? children
+      : Object.keys(data).map(key =>
+        <div className={`table-${key}`}>{data[key]}</div>
+      )
+    }
+  </td>
+}
+
 class Talks extends Component {
   constructor(props) {
     super(props);
@@ -30,64 +41,65 @@ class Talks extends Component {
   render() {
     const { talkInfo } = this.props;
     if (talkInfo[0]) {
+      let talks = talkInfo;
+      console.log(this.props.filter);
+      if (this.props.filter) {
+        talks = talkInfo.filter(this.props.filter);
+        console.log(talks);
+      }
+
+      let headers = ['Speaker', 'Talk', 'Event', 'Current Status', 'Action']
+      if (this.props.include) {
+        headers = headers.filter((header) => this.props.include.includes(header))
+        console.log('talks before render', talks)
+      }
+
+
       return (
         <div>
-          <AdminNav/>
-          <div className='admin-banner'>
-            <h1>Admin Dashboard</h1>
-          </div>
           <div className='admin-info'>
-            <h3>Pending Speakers</h3>
             <table className='table'>
               <tr>
-                <th>Speaker</th>
-                <th>Talk</th>
-                <th>Event</th>
-                <th>Current Status</th>
-                <th>Action</th>
+                {
+                  headers.map(header => (
+                    <th>{header}</th>
+                  ))}
               </tr>
               {
-                talkInfo.map((talk, i) => (
-                  <tr key={i}>
-                    <td>
-                      <div className='table-speaker'>
-                        <div className='table-speaker-name'>{talk.speaker}</div>
-                        <a href={`mailto:${talk.speakerEmail}`} target="_top"><i className="far fa-envelope"></i>Send Email</a>
-                        <div className='show-more'><i className="fas fa-plus"></i>Show More</div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className='table-talk'>
-                        <div className='table-talk-topic'>{talk.topic}</div>
-                        <div className='table-talk-description'>{talk.description}</div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className='table-event'>
-                        <div className='table-event-name'>{talk.eventName}</div>
-                        <div className='table-event-date'>{moment(talk.eventDate).format('YYYY-MM-DD')}</div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className='table-status'>
-                        <div className='table-status-current'>{talk.currentStatus}</div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className='table-action'>
-                      <select name={talk.talkId} onChange={this.handleSelect}>
-                        <option value=''>Change Status</option>
-                        <option value='In Contact'>In Contact</option>
-                        <option value='Approve'>Approve</option>
-                        <option value='Deny'>Deny</option>
-                        <option value='Disengaged'>Disengaged</option>
-                      </select>
-                      <button className='btn' name={talk.talkId} onClick={this.handleSubmit}>Submit</button>
-                      </div>
-                      <div className='table-confirmation'>{talk.confirmationMessage ? talk.confirmationMessage : null}</div>
-                    </td>
-                  </tr>
-                ))
+                talks.map((talk, i) => <tr key={i}>
+                  {
+                    headers.map(column => {
+                      switch (column) {
+                        case 'Speaker':
+                          return <TableRow data={{ speaker: talk.speaker, speakerEmail: <a href={`mailto:${talk.speakerEmail}`} target="_top"><i className="far fa-envelope"></i>Send Email</a> }} />
+                        case 'Talk':
+                          return <TableRow data={{ topic: talk.topic, description: talk.description }} />
+                        case 'Current Status':
+                          return <TableRow data={{ currentStatus: talk.currentStatus }} />
+                        case 'Event':
+                          return <TableRow data={{ eventName: talk.eventName, eventDate: moment(talk.eventDate).format('YYYY-MM-DD')}} />
+                        case 'Action':
+                          return <TableRow>
+                            <div className='table-tableAction'>
+                              <div className='table-tableStatus'>
+                                <select name={talk.talkId} onChange={this.handleSelect}>
+                                  <option value=''>Change Status</option>
+                                  <option value='In Contact'>In Contact</option>
+                                  <option value='Approve'>Approve</option>
+                                  <option value='Deny'>Deny</option>
+                                  <option value='Disengaged'>Disengaged</option>
+                                </select>
+                                <button className='btn' name={talk.talkId} onClick={this.handleSubmit}>Submit</button>
+                              </div>
+                              <div className='table-tableConfirmation'>{talk.confirmationMessage ? talk.confirmationMessage : ' '}</div>
+                            </div>
+                          </TableRow>
+                        default:
+                          return null;
+                      }
+                    })
+                  }
+                </tr>)
               }
             </table>
           </div>

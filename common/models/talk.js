@@ -2,7 +2,7 @@
 
 const { getMeetups } = require('../../server/utils/getMeetups');
 const { talkSubmit } = require('../../server/utils/talkSubmit')
-const { getPendingTalkDetails } = require('../../server/utils/getPendingTalkDetails');
+const { getTalkDetails } = require('../../server/utils/getTalkDetails');
 const { changeTalkStatus } = require('../../server/utils/changeTalkStatus');
 const { sendEmailToSpeaker } = require('../../server/utils/sendGridEmailer');
 const { formatTalkForEmail } = require('../../server/utils/formatTalkForEmail');
@@ -58,16 +58,16 @@ module.exports = function (Talk) {
 		}
 	})
 
-	Talk.getPendingTalkDetails = function (cb) {
-		getPendingTalkDetails()
+	Talk.getTalkDetails = function (cb) {
+		getTalkDetails()
 			.then(talkInformation => cb(null, talkInformation))
 			.catch(err => cb(err))
 	}
 
-	Talk.remoteMethod('getPendingTalkDetails', {
-		description: 'Gets all pending talks and returns an object formatted with event info and speaker info.',
+	Talk.remoteMethod('getTalkDetails', {
+		description: 'Gets all talks and returns an object formatted with event info and speaker info.',
 		http: {
-			path: '/getPendingTalkDetails',
+			path: '/getTalkDetails',
 			verb: 'get'
 		},
 		returns: {

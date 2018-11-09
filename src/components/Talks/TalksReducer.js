@@ -8,10 +8,9 @@ export default function TalksReducer(state = initialstate, action) {
 
     switch (type) {
         case 'GET_TALK_DATA_FULFILLED': {
-            //console.log(payload);
             return {
                 ...state,
-                talkInfo: payload.pendingTalkInfo
+                talkInfo: payload.talkInfo
             }
         }
         case 'UPDATE_TALK_STATUS_IN_STORE': {

@@ -4,12 +4,12 @@ import Talks from './Talks'
 export const getTalkData = () => {
 	return {
 		type: 'GET_TALK_DATA',
-		payload: axios.get('api/talks/getPendingTalkDetails')
-			.then(pendingTalkInfo => {
-				const talkIds = pendingTalkInfo.data.map(talk => talk.talkId)
-				//console.log('pendingTalkInfo: ', pendingTalkInfo.data)
+		payload: axios.get('api/talks/getTalkDetails')
+			.then(talkInfo => {
+				const talkIds = talkInfo.data.map(talk => talk.talkId)
+				console.log('talkInfo: ', talkInfo.data)
 				return {
-					pendingTalkInfo: pendingTalkInfo.data,
+					talkInfo: talkInfo.data,
 					talkIds: talkIds
 				}
 			})

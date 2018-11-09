@@ -1,6 +1,5 @@
 const app = require('../server');
 const { getMeetups } = require('./getMeetups')
-const { getPendingTalkDetails } = require('./getPendingTalkDetails')
 const moment = require('moment');
 moment().format()
 
@@ -36,7 +35,7 @@ function getEvents() {
 												Speaker.find({ where: {id: foundTalk[0].speakerId }})
 												.then(foundSpeaker => {
 													console.log('foundSpeaker: ', foundSpeaker)
-													singleEvent.speakers.push(`${foundSpeaker[0].firstName} ${foundSpeaker[0].lastName}`)
+													singleEvent.speakers.push(foundSpeaker[0].speakerName)
 													counter ++;
 													singleEvent.topic = foundTalk[0].topic
 													console.log('singleEvent: ', singleEvent);

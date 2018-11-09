@@ -17,7 +17,8 @@ function talkSubmit(speakerInfo, talkInfo, date) {
 						})
 						let name = response2[index].name;
 						let details = response2[index].description;
-						Event.findOrCreate({date, name, details})
+						let meetupId = response2[index].meetupId;
+						Event.findOrCreate({date, name, details, meetupId})
 							.then(response3 => {
 								let eventId = response3[0].id
 								let ids = { speakerId, eventId };
