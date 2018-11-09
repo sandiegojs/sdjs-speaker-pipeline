@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Field } from 'react-redux-form';
+import { connect } from 'react-redux';
 import {
-	updateFirstname,
-	updateLastname,
+	updateSpeakerName,
 	updateEmail,
 	updatePhone,
-	updateCompany,
 	updateDate,
 	updateTopic,
 	updateDescription,
-	updateGithub,
-	updateWebsite,
-	updateLinkedin,
 	talkSubmit,
 	getDates,
-	addSpeaker,
-	addEvent,
-	addTalk
 } from './SignUpActions'
 import Navbar from '../Navbar/Navbar';
 
@@ -24,18 +17,13 @@ class SignUp extends Component {
 	constructor(props) {
 		super(props);
 
-		this.handleFirstname = this.handleFirstname.bind(this);
-		this.handleLastname = this.handleLastname.bind(this);
-		this.handleEmail = this.handleEmail.bind(this);
-		this.handlePhone = this.handlePhone.bind(this);
-		this.handleCompany = this.handleCompany.bind(this);
-		this.handleDate = this.handleDate.bind(this);
-		this.handleTopic = this.handleTopic.bind(this);
-		this.handleDescription = this.handleDescription.bind(this);
-		this.handleWebsite = this.handleWebsite.bind(this);
-		this.handleGithub = this.handleGithub.bind(this);
-		this.handleLinkedin = this.handleLinkedin.bind(this);
-		this.submitSpeaker = this.submitSpeaker.bind(this);
+		this.handleSpeakerName 	= this.handleSpeakerName.bind(this);
+		this.handleEmail 		= this.handleEmail.bind(this);
+		this.handlePhone 		= this.handlePhone.bind(this);
+		this.handleDate 		= this.handleDate.bind(this);
+		this.handleTopic 		= this.handleTopic.bind(this);
+		this.handleDescription 	= this.handleDescription.bind(this);
+		this.submitSpeaker 		= this.submitSpeaker.bind(this);
 	}
 
 	componentDidMount() {
@@ -43,14 +31,9 @@ class SignUp extends Component {
 		dispatch(getDates());
 	}
 
-	handleFirstname(e) {
+	handleSpeakerName(e) {
 		const { dispatch } = this.props;
-		dispatch(updateFirstname(e.target.value));
-	}
-
-	handleLastname(e) {
-		const { dispatch } = this.props;
-		dispatch(updateLastname(e.target.value))
+		dispatch(updateSpeakerName(e.target.value));
 	}
 
 	handleEmail(e) {
@@ -61,11 +44,6 @@ class SignUp extends Component {
 	handlePhone(e) {
 		const { dispatch } = this.props;
 		dispatch(updatePhone(e.target.value));
-	}
-
-	handleCompany(e) {
-		const { dispatch } = this.props;
-		dispatch(updateCompany(e.target.value));
 	}
 
 	handleDate(e) {
@@ -83,51 +61,11 @@ class SignUp extends Component {
 		dispatch(updateDescription(e.target.value));
 	}
 
-	handleGithub(e) {
-		const { dispatch } = this.props;
-		dispatch(updateGithub(e.target.value));
-	}
-
-	handleWebsite(e) {
-		const { dispatch } = this.props;
-		dispatch(updateWebsite(e.target.value));
-	}
-
-	handleLinkedin(e) {
-		const { dispatch } = this.props;
-		dispatch(updateLinkedin(e.target.value));
-	}
-
 	submitSpeaker(e) {
 		e.preventDefault();
-		const {
-			dispatch,
-			firstName,
-			lastName,
-			email,
-			phone,
-			date,
-			details,
-			name,
-			company,
-			topic,
-			description,
-			github,
-			website,
-			linkedin,
-		} = this.props;
-		dispatch(talkSubmit({
-			firstName,
-			lastName,
-			email,
-			phone,
-			company,
-			github,
-			website,
-			linkedin
-		},
-			{
-				description,
+		const { dispatch, speakerName, speakerEmail, date, topic } = this.props;
+		dispatch(talkSubmit({ speakerName, speakerEmail },
+			 {
 				topic,
 			},
 			date
@@ -136,8 +74,7 @@ class SignUp extends Component {
 	}
 
 	render() {
-		const { events, newSpeaker, submitted } = this.props;
-		if (newSpeaker) {
+		const { events, phone } = this.props;
 			return (
 				<div>
 					<Navbar />
@@ -145,53 +82,37 @@ class SignUp extends Component {
 						<div className='form-container'>
 							<form onSubmit={this.submitSpeaker}>
 								<h3>Speaker Registration</h3>
-								<div>
-									<label htmlFor='speaker-firstname'>First Name: </label>
-									<input name='speaker-firstname' id='speaker-firstname' type='text' onChange={this.handleFirstname} />
-								</div>
-								<div>
-									<label htmlFor='speaker-lastname'>Last Name: </label>
-									<input name='speaker-lastname' id='speaker-lastname' type='text' onChange={this.handleLastname} />
-								</div>
-								<div>
+								<Field model='user.name'>
+									<label htmlFor='speaker-name'>Name: </label>
+									<input name='speaker-name' placeholder='John Smith' id='speaker-firstname' type='text' required onChange={this.handleFirstname} />
+								</Field >
+								<Field model='user.speaker-email'>
 									<label htmlFor='speaker-email'>Email: </label>
-									<input name='speaker-email' id='speaker-email' type='text' onChange={this.handleEmail} />
-								</div>
-								<div>
-									<label htmlFor='phone'>Phone Number: </label>
-									<input name='phone' id='phone' type='text' onChange={this.handlePhone} />
-								</div>
-								<div>
-									<label htmlFor='company'>Company: </label>
-									<input name='company' id='company' type='text' onChange={this.handleCompany} />
-								</div>
+									<input type="email" placeholder='iamJohnSmith@email.com' name="speaker-email" required onChange={this.handleEmail} />
+								</Field>
+								<Field model='user.phone'>
+									<label htmlFor='speaker-phone'>Phone Number: </label>
+									{console.log('this is phone', phone)}
+									<input type="tel" name="speaker-email" placeholder='123-456-7890' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3')}format="### ### ####" onChange={this.handlePhone} />
+								</Field>
 								<div>
 									<label htmlFor='event-date'>Date Requested: </label>
-									<select name='event-date' id='event-date' type='select' onChange={this.handleDate}>
+									<select name='event-date' id='event-date' type='select' required onChange={this.handleDate}>
 										{events && events.map(event => (
 											<option key={event.date}>{event.date}</option>
 										))}
 									</select>
 								</div>
-								<div>
+								<Field model='user.topic'>
 									<label htmlFor='topic'>Topic:</label>
-									<input name='topic' id='topic' type='text' onChange={this.handleTopic} />
-								</div>
-								<div>
+									<input name='topic' id='topic' type='text' required onChange={this.handleTopic} />
+								</Field>
+								<Field model='user.description'>
 									<label htmlFor='description'>Description: </label>
-									<textarea name='description' id='description' type='text' onChange={this.handleDescription} />
-								</div>
+									<textarea name='description' id='description' type='text' required onChange={this.handleDescription} />
+								</Field>
 								<div>
-									<label>Additional Links: </label>
-									<br />
-									<input name='github-link' id='github-link' placeholder='Github' onChange={this.handleGithub} />
-									<br />
-									<input name='website-link' id='website-link' placeholder='Website' onChange={this.handleWebsite} />
-									<br />
-									<input name='linkedin-link' id='linkedin-link' placeholder='linkedin' onChange={this.handleLinkedin} />
-								</div>
-								<div>
-									<button id='speaker-submit'>Submit!</button>
+									<button className='btn' id='speaker-submit'>Submit!</button>
 								</div>
 							</form>
 						</div>
@@ -199,41 +120,8 @@ class SignUp extends Component {
 				</div>
 
 			)
-		} else {
-			return (
-				<div>
-					<Navbar />
-					<div className='signUp-container'>
-						<div className='form-container'>
-							<form onSubmit={this.submitSpeaker}>
-								<h3>Speaker Registration</h3>
-								<div>
-									<label htmlFor='event-date'>Date Requested: </label>
-									<select name='event-date' id='event-date' type='select' onChange={this.handleDate}>
-										{events && events.map(event => (
-											<option key={event.date}>{event.date}</option>
-										))}
-									</select>
-								</div>
-								<div>
-									<label htmlFor='topic'>Topic:</label>
-									<input name='topic' id='topic' type='text' onChange={this.handleTopic} />
-								</div>
-								<div>
-									<label htmlFor='description'>Description: </label>
-									<textarea name='description' id='description' type='text' onChange={this.handleDescription} />
-								</div>
-								<div>
-									<button id='speaker-submit'>Submit!</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			)
-		}
 	}
-
 }
 
-export default SignUp;
+const selector = (state) => ({ user: state.user });
+export default connect(selector)(SignUp);

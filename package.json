@@ -28,10 +28,12 @@
     "react": "^16.5.2",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
+    "react-redux-form": "^1.16.10",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-promise-middleware": "^5.1.1",
+    "redux-thunk": "^2.3.0",
     "sass": "^1.14.3",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^3.0.0"

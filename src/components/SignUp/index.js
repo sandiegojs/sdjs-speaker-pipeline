@@ -3,24 +3,17 @@ import SignUp from './SignUp';
 
 function mapStoreToProps(store){
     return {
-      firstName: store.SignUp.speakerFirstname,
-      lastName: store.SignUp.speakerLastname,
-      email: store.SignUp.speakerEmail,
-      phone: store.SignUp.speakerPhone,
-      date: store.SignUp.speakerDate,
-      details: store.SignUp.eventDetails,
-      name: store.SignUp.eventName,
-      newSpeaker: store.Home.newSpeaker,
-      organization: store.SignUp.speakerCompany,
-      topic: store.SignUp.talkTopic,
-      description: store.SignUp.talkDescription,
-      github: store.SignUp.speakerGithub,
-      website: store.SignUp.speakerWebsite,
-      linkedin: store.SignUp.speakerLinkedin,
-      speakerId: store.SignUp.speakerId,
-      eventId: store.SignUp.eventID,
-      events: store.SignUp.events,
-      submitted: store.SignUp.submitted
+      eventDetails  : store.SignUp.eventDetails,
+      speakerDate   : store.SignUp.speakerDate,
+      speakerEmail  : store.SignUp.speakerEmail,
+      eventId       : store.SignUp.eventID,
+      events        : store.SignUp.events,
+      speakerName   : store.SignUp.speakerName,
+      eventName     : store.SignUp.eventName,
+      speakerId     : store.SignUp.speakerId,
+      submitted     : store.SignUp.submitted,
+      talkTopic     : store.SignUp.talkTopic,
+      phone         : store.SignUp.phone
         
     };
 }

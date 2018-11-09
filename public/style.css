@@ -375,14 +375,17 @@ label {
 .form-container form div input {
   width: 80%;
   height: 30px;
+  font-size: 20px;
 }
 .form-container form div textarea {
   width: 80%;
   height: 90px;
+  font-size: 20px;
 }
 .form-container form div select {
   width: 80%;
-  height: 30px;
+  height: 40px;
+  font-size: 25px;
 }
 .form-container form div button {
   background-color: #ff5041;

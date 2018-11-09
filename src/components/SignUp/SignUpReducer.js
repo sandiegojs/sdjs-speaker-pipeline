@@ -1,31 +1,20 @@
 const initialstate = {
-	speakerFirstname: '',
-	speakerLastname: '',
+	speakerName: '',
 	speakerEmail: '',
-	speakerPhone: '',
 	speakerDate: '',
-	speakerCompany: '',
 	talkTopic: '',
 	talkDescription: '',
-	speakerGithub: '',
-	speakerWebsite: '',
-	speakerLinkedin: '',
-	submitted: 'false'
+	submitted: 'false',
+	phone: ''
 }
 export default function SignUpReducer(state = initialstate, action) {
 	const { payload, type } = action;
 
 	switch (type) {
-		case 'UPDATE_FIRSTNAME': {
+		case 'UPDATE_NAME': {
 			return {
 				...state,
-				speakerFirstname: payload
-			}
-		}
-		case 'UPDATE_LASTNAME': {
-			return {
-				...state,
-				speakerLastname: payload
+				speakerName: payload
 			}
 		}
 		case 'UPDATE_EMAIL': {
@@ -34,22 +23,16 @@ export default function SignUpReducer(state = initialstate, action) {
 				speakerEmail: payload
 			}
 		}
-		case 'UPDATE_PHONE': {
-			return {
-				...state,
-				speakerPhone: payload
-			}
-		}
-		case 'UPDATE_COMPANY': {
-			return {
-				...state,
-				speakerCompany: payload
-			}
-		}
 		case 'UPDATE_DATE': {
 			return {
 				...state,
 				speakerDate: payload
+			}
+		}
+		case 'UPDATE_PHONE': {
+			return {
+				...state,
+				phone: payload
 			}
 		}
 		case 'UPDATE_TOPIC': {
@@ -62,24 +45,6 @@ export default function SignUpReducer(state = initialstate, action) {
 			return {
 				...state,
 				talkDescription: payload
-			}
-		}
-		case 'UPDATE_GITHUB': {
-			return {
-				...state,
-				speakerGithub: payload
-			}
-		}
-		case 'UPDATE_WEBSITE': {
-			return {
-				...state,
-				speakerWebsite: payload
-			}
-		}
-		case 'UPDATE_LINKEDIN': {
-			return {
-				...state,
-				speakerLinkedin: payload
 			}
 		}
 		case 'TALK_SUBMIT_FULFILLED': {
