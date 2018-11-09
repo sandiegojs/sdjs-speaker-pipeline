@@ -3,7 +3,6 @@ import {
   HashRouter as Router,
   Route
 } from 'react-router-dom';
-import Account    from './components/Account';
 import AdminHome  from './components/AdminHome';
 import AdminLogin from './components/AdminLogin';
 import Home       from './components/Home';
@@ -18,7 +17,6 @@ class App extends Component {
             <Router>
         	<div>
 				<Route exact path='/'        component={Home} />
-        <Route path='/Account'       component={Account} />
         <Route path='/AdminHome'     component={AdminHome} />
 				<Route path='/AdminLogin'    component={AdminLogin} />
         <Route path='/Admin/Meetups' component={Meetups} />

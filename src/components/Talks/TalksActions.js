@@ -7,7 +7,7 @@ export const getTalkData = () => {
 		payload: axios.get('api/talks/getPendingTalkDetails')
 			.then(pendingTalkInfo => {
 				const talkIds = pendingTalkInfo.data.map(talk => talk.talkId)
-				console.log('pendingTalkInfo: ', pendingTalkInfo.data)
+				//console.log('pendingTalkInfo: ', pendingTalkInfo.data)
 				return {
 					pendingTalkInfo: pendingTalkInfo.data,
 					talkIds: talkIds

@@ -1,13 +1,14 @@
 const initialstate = {
-
-}
-export default function AdminHomeReducer(state = initialstate, action) {
-    const { payload, type } = action;
     
+}
+
+export default function AdminLoginReducer(state = initialstate, action) {
+    const { payload, type } = action;
+
     switch (type){
         default: {
             return state
           }
     }
-
+    
 }

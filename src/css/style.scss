@@ -388,5 +388,29 @@ label {
         }
     }
 }
-
+// meetups 
+.header{
+    border: 3px solid black;
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    font-size: 15pt;
+}
+.meetups{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.meetup-link{
+    background: #f13a59;
+    color: white;
+    font-size: 20pt;
+    border: 1px solid black;
+    text-decoration: none;
+    padding: 5px;
+}
 

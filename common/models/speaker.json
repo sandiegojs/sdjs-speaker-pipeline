@@ -1,41 +1,22 @@
 {
   "name": "speaker",
-  "base": "User",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "firstName": {
+    "speakerName": {
       "type": "string",
       "required": true
     },
-    "lastName": {
-      "type": "string",
-      "required": true
-    },
-    "email": {
+    "speakerEmail": {
       "type": "string",
       "required": true
     },
     "phone": {
       "type": "string",
       "required": true
-    },
-    "organization": {
-      "type": "string"
-    },
-    "github": {
-      "type": "string"
-    },
-    "twitter": {
-      "type": "string"
-    },
-    "website": {
-      "type": "string"
-    },
-    "linkedin": {
-      "type": "string"
     }
   },
   "validations": [],

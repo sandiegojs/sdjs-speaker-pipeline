@@ -4,7 +4,7 @@ import SignUp from './SignUp';
 function mapStoreToProps(store){
     return {
       eventDetails  : store.SignUp.eventDetails,
-      speakerDate   : store.SignUp.speakerDate,
+      date          : store.SignUp.date,
       speakerEmail  : store.SignUp.speakerEmail,
       eventId       : store.SignUp.eventID,
       events        : store.SignUp.events,
@@ -12,8 +12,9 @@ function mapStoreToProps(store){
       eventName     : store.SignUp.eventName,
       speakerId     : store.SignUp.speakerId,
       submitted     : store.SignUp.submitted,
-      talkTopic     : store.SignUp.talkTopic,
-      phone         : store.SignUp.phone
+      topic         : store.SignUp.talkTopic,
+      phone         : store.SignUp.phone,
+      description   : store.SignUp.description
         
     };
 }

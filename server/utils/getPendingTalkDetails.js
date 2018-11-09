@@ -29,7 +29,7 @@ function getPendingTalkDetails() {
         })
         Promise.all(talkInformation)
           .then(results => {
-            console.log(results)
+            //console.log(results)
             return resolve(results);
           })
           .catch(err => ({ error: 'could not return results', err }))

@@ -14,9 +14,27 @@ class Meetups extends Component {
     }
 
     render(){
+        const { eventInfo } = this.props;
         return(
             <div>
-                <h1>Meetups</h1>
+                <div className='meetups'>
+                    <div>
+                        <h1>Meetups</h1>
+                        <div>
+                            {eventInfo && eventInfo.map(meetup => (
+                                <div key={meetup.venue.id}>
+                                    <div className='header'>
+                                        <div>{meetup.date}</div>
+                                        <div>{meetup.name}</div>
+                                        <div >
+                                            <a className='meetup-link' href={meetup.link}>Meetup</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

@@ -63,10 +63,10 @@ class SignUp extends Component {
 
 	submitSpeaker(e) {
 		e.preventDefault();
-		const { dispatch, speakerName, speakerEmail, date, topic } = this.props;
-		dispatch(talkSubmit({ speakerName, speakerEmail },
+		const { dispatch, speakerName, speakerEmail, date, topic, phone, description } = this.props;
+		dispatch(talkSubmit({ speakerName, speakerEmail, phone, speakerEmail },
 			 {
-				topic,
+				topic, description
 			},
 			date
 		));
@@ -84,7 +84,7 @@ class SignUp extends Component {
 								<h3>Speaker Registration</h3>
 								<Field model='user.name'>
 									<label htmlFor='speaker-name'>Name: </label>
-									<input name='speaker-name' placeholder='John Smith' id='speaker-firstname' type='text' required onChange={this.handleFirstname} />
+									<input name='speaker-name' placeholder='John Smith' id='speaker-firstname' type='text'  onChange={this.handleSpeakerName} required />
 								</Field >
 								<Field model='user.speaker-email'>
 									<label htmlFor='speaker-email'>Email: </label>

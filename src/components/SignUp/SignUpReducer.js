@@ -1,11 +1,11 @@
 const initialstate = {
 	speakerName: '',
 	speakerEmail: '',
-	speakerDate: '',
-	talkTopic: '',
-	talkDescription: '',
+	date: '',
+	topic: '',
+	description: '',
 	submitted: 'false',
-	phone: ''
+	phone: '',
 }
 export default function SignUpReducer(state = initialstate, action) {
 	const { payload, type } = action;
@@ -26,7 +26,7 @@ export default function SignUpReducer(state = initialstate, action) {
 		case 'UPDATE_DATE': {
 			return {
 				...state,
-				speakerDate: payload
+				date: payload
 			}
 		}
 		case 'UPDATE_PHONE': {
@@ -44,7 +44,7 @@ export default function SignUpReducer(state = initialstate, action) {
 		case 'UPDATE_DESCRIPTION': {
 			return {
 				...state,
-				talkDescription: payload
+				description: payload
 			}
 		}
 		case 'TALK_SUBMIT_FULFILLED': {
