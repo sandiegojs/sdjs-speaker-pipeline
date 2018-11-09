@@ -3,23 +3,28 @@ import {
   HashRouter as Router,
   Route
 } from 'react-router-dom';
-import Home        		  from './components/Home';
-import SignUp           from './components/SignUp';
-import Talks            from './components/Talks';
-import AdminLogin       from './components/AdminLogin';
-import Meetups          from './components/Meetups'
-
+import Account    from './components/Account';
+import AdminHome  from './components/AdminHome';
+import AdminLogin from './components/AdminLogin';
+import Home       from './components/Home';
+import Meetups    from './components/Meetups';
+import Talks      from './components/Talks';
+import Organizers from './components/Organizers';
+import SignUp     from './components/SignUp';
 
 class App extends Component {
     render() {
         return (
             <Router>
         	<div>
-				<Route exact path='/'           component={Home} />
-				<Route path='/SignUp'           component={SignUp} />
-				<Route path='/Admin/Talks'      component={Talks} />
-				<Route path='/AdminLogin'       component={AdminLogin} />
-        <Route path='/Admin/Meetups'      component={Meetups} />
+				<Route exact path='/'        component={Home} />
+        <Route path='/Account'       component={Account} />
+        <Route path='/AdminHome'     component={AdminHome} />
+				<Route path='/AdminLogin'    component={AdminLogin} />
+        <Route path='/Admin/Meetups' component={Meetups} />
+				<Route path='/Admin/Talks'   component={Talks} />
+        <Route path='/Organizers'    component={Organizers} />
+				<Route path='/SignUp'        component={SignUp} />
 			</div>
       </Router>
     );

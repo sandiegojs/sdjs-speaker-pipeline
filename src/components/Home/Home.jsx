@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import AdminNav from '../AdminNav/AdminNav';
 
 class Home extends Component {
 	constructor(props) {
@@ -12,7 +13,7 @@ class Home extends Component {
 	handleNewSpeaker() {
 		const { dispatch } = this.props;
 		dispatch(newSpeaker(true));
-	}
+	} 
 
 	render() {
 		return (

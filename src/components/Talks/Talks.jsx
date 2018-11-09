@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
 import { getTalkData, handleSelect, changeTalkStatus } from './TalksActions';
+import AdminNav from '../AdminNav/AdminNav';
 const moment = require('moment');
 
 class Talks extends Component {
@@ -32,7 +32,7 @@ class Talks extends Component {
     if (talkInfo[0]) {
       return (
         <div>
-          <Navbar />
+          <AdminNav/>
           <div className='admin-banner'>
             <h1>Admin Dashboard</h1>
           </div>
@@ -97,7 +97,7 @@ class Talks extends Component {
     else {
       return (
         <div>
-          <Navbar />
+          <AdminNav />
           <div className='admin-banner'>
             <h1>Admin Dashboard</h1>
             <p>hello</p>
