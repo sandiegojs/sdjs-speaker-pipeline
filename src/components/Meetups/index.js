@@ -3,7 +3,8 @@ import Meetups from './Meetups';
 
 function mapStoreToProps(store){
     return {
-        eventInfo: store.Meetups.eventInfo
+        eventInfo: store.Meetups.eventInfo,
+        accessToken: store.AdminLogin.token
     };
 }
 

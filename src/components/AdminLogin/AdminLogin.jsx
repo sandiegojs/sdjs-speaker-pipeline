@@ -25,7 +25,7 @@ class AdminLogin extends Component {
   submitLogin(e) {
     e.preventDefault();
     const { dispatch, username, password } = this.props;
-    dispatch(postLogin({ username, password }));
+    dispatch(postLogin({ username, password, ttl: 60 * 60 }));
   }
 
 	render() {

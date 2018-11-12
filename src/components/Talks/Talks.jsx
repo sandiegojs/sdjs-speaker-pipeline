@@ -23,8 +23,8 @@ class Talks extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(getTalkData());
+    const { dispatch, accessToken } = this.props;
+    dispatch(getTalkData(accessToken));
   }
 
   handleSelect(e) {
@@ -33,9 +33,9 @@ class Talks extends Component {
   }
 
   handleSubmit(e) {
-    const { dispatch, talkInfo } = this.props;
+    const { dispatch, talkInfo, accessToken } = this.props;
     const selectedTalk = talkInfo.find((talk) => talk.talkId === e.target.name)
-    dispatch(changeTalkStatus(e.target.name, selectedTalk.selectedStatus))
+    dispatch(changeTalkStatus(e.target.name, selectedTalk.selectedStatus, accessToken))
   }
 
   render() {

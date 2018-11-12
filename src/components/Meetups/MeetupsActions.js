@@ -1,9 +1,15 @@
 const axios = require('axios');
 
-export const getEvents = () => {
+export const getEvents = accessToken => {
 	return {
 		type: 'GET_EVENTS',
-		payload: axios.get('api/events/getEvents')
+		payload: axios({
+			method: 'get',
+			url: 'api/events/getEvents',
+			headers: {
+				Authorization: accessToken
+			}
+		})
 			.then(response => {
 				console.log(response.data)
 				return response.data

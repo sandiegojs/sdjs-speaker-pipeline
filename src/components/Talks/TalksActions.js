@@ -1,10 +1,16 @@
 const axios = require('axios');
 import Talks from './Talks'
 
-export const getTalkData = () => {
+export const getTalkData = accessToken => {
 	return {
 		type: 'GET_TALK_DATA',
-		payload: axios.get('api/talks/getTalkDetails')
+		payload: axios({
+            method: 'get',
+            url: 'api/talks/getTalkDetails',
+            headers: {
+                Authorization: accessToken
+            }
+        })
 			.then(talkInfo => {
 				const talkIds = talkInfo.data.map(talk => talk.talkId)
 				console.log('talkInfo: ', talkInfo.data)
@@ -26,13 +32,20 @@ export const handleSelect = (talkId, selectedStatus) => {
     }
 }
 
-export const changeTalkStatus = (talkId, selectedStatus) => {
+export const changeTalkStatus = (talkId, selectedStatus, accessToken) => {
     return {
         type: 'CHANGE_TALK_STATUS_IN_DB',
-        payload: axios.put('api/talks/changeTalkStatus', {
-            talkId,
-            selectedStatus
-          })
+        payload: axios({
+            method: 'put',
+            url: 'api/talks/changeTalkStatus',
+            headers: {
+                Authorization: accessToken
+            },
+            data: {
+                talkId,
+                selectedStatus
+            }
+        })
           .then((updatedTalk) => updatedTalk.data)
     }
 }
