@@ -23,23 +23,19 @@
         height: 100px;
     }
 
-    td:last-child {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-
     select {
         height: 50px;
         width: 120px;
-        margin-right: 10px;
+        margin-bottom: 10px;
     }
 
     .btn {
-        margin: auto;
-        width: 120px;
+        width: 60px;
         border-radius: 5%;
+        font-size: 10px;
+        padding: 2px;
+        margin-left: initial;
+        margin: 5px;
     }
 
     .btn:hover {
@@ -48,7 +44,11 @@
 
     .table-speakerEmail {
         font-size: 15px;
-        margin: 10px 0;
+        margin-top: 10px;
+    }
+
+    .table-speakerPhone {
+        font-size: 15px;
     }
 
     a {
@@ -67,7 +67,7 @@
 
     .table-eventDate {
         font-size: 15px;
-        margin-top: 5px;
+        margin-top: 10px;
     }
 
     .table-tableAction {
@@ -77,12 +77,51 @@
     
     .table-tableStatus {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
     }
 
     .table-tableConfirmation {
         font-size: 15px;
         margin-top: 5px;
+    }
+
+    .table-flex-column-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-by-side-btns {
+        margin: 5px;
+    }
+
+    .options {
+        i {
+            margin-left: 10px;
+        }
+    }
+
+    .table-editTalk {
+        margin: 20px 0;
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        input {
+            height: 20px;
+            border: 1px solid lightgray;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        textarea {
+            height: 50px;
+            border: 1px solid lightgray;
+            margin-bottom: 10px;
+            width: 100%;
+        }
     }
 }
 

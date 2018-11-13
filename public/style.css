@@ -215,8 +215,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 h1;
-  margin-text-align: center;
+  margin: 0;
+}
+.signUp-container h1 {
+  text-align: center;
 }
 .signUp-container h3 {
   text-align: center;
@@ -303,28 +305,28 @@ label {
   padding: 20px;
   height: 100px;
 }
-.table td:last-child {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 .table select {
   height: 50px;
   width: 120px;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 .table .btn {
-  margin: auto;
-  width: 120px;
+  width: 60px;
   border-radius: 5%;
+  font-size: 10px;
+  padding: 2px;
+  margin-left: initial;
+  margin: 5px;
 }
 .table .btn:hover {
   background-color: #146fa5;
 }
 .table .table-speakerEmail {
   font-size: 15px;
-  margin: 10px 0;
+  margin-top: 10px;
+}
+.table .table-speakerPhone {
+  font-size: 15px;
 }
 .table a {
   color: #1884c3;
@@ -339,7 +341,7 @@ label {
 }
 .table .table-eventDate {
   font-size: 15px;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .table .table-tableAction {
   display: flex;
@@ -347,11 +349,41 @@ label {
 }
 .table .table-tableStatus {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
 }
 .table .table-tableConfirmation {
   font-size: 15px;
   margin-top: 5px;
+}
+.table .table-flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.table .side-by-side-btns {
+  margin: 5px;
+}
+.table .options i {
+  margin-left: 10px;
+}
+.table .table-editTalk {
+  margin: 20px 0;
+}
+.table .table-editTalk div {
+  margin-bottom: 10px;
+}
+.table .table-editTalk input {
+  height: 20px;
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.table .table-editTalk textarea {
+  height: 50px;
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .login {
@@ -400,6 +432,13 @@ label {
   border: 1px solid black;
   text-decoration: none;
   padding: 5px;
+}
+
+.talks-container {
+  margin: 20px;
+}
+.talks-container h1 {
+  color: #f90;
 }
 
 html {

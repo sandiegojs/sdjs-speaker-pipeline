@@ -8,7 +8,8 @@ class TalksPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className='talks-container'>
+                <h1>All Talks</h1>
                 <Talks 
                 // filter={(talk) => talk.currentStatus === 'Pending'} 
                 // include = {['Speaker', 'Talk', 'Current Status']}

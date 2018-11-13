@@ -25,11 +25,11 @@ class AdminLogin extends Component {
   submitLogin(e) {
     e.preventDefault();
     const { dispatch, username, password } = this.props;
-    dispatch(postLogin({ username, password, ttl: 60 * 60 }));
+    dispatch(postLogin({ username, password, ttl: 60 * 60 * 24 }));
   }
 
 	render() {
-		if (this.props.token) return <Redirect push to='/admin/talks' />;
+		// if (this.props.token) return <Redirect push to='/admin/talks' />;
 		const { username, password } = this.props;
 		return (
 			<div>
