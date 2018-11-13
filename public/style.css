@@ -286,24 +286,21 @@ label {
 .table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid #efefef;
-  margin-bottom: 50px;
+  font-size: 15px;
 }
 .table tr:first-child {
-  color: #1884c3;
-  font-size: 24px;
-  background-color: #daf1ff;
+  font-size: 15px;
   margin: 0;
-  border: 1px solid lightblue;
+  border: 1px solid black;
 }
 .table tr {
   color: #3b3b3b;
-  font-size: 20px;
+  font-size: 15px;
   border: 1px solid #efefef;
+  text-transform: capitalize;
 }
 .table td {
   padding: 20px;
-  height: 100px;
 }
 .table select {
   height: 50px;
@@ -408,15 +405,14 @@ label {
 }
 
 .header {
-  border: 3px solid black;
-  width: 50vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  margin-bottom: 50px;
   padding: 20px;
   font-size: 15pt;
+  background-color: #146fa5;
+  color: white;
 }
 
 .meetups {
@@ -425,13 +421,22 @@ label {
   text-align: center;
 }
 
+.meetups-child {
+  width: 80%;
+}
+
 .meetup-link {
   background: #f13a59;
   color: white;
-  font-size: 20pt;
+  font-size: 20px;
   border: 1px solid black;
   text-decoration: none;
   padding: 5px;
+}
+
+.single-meetup {
+  margin: 50px 0;
+  border: 1px solid black;
 }
 
 .talks-container {

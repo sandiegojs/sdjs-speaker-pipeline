@@ -1,24 +1,31 @@
 .header{
-    border: 3px solid black;
-    width: 50vw;
+    // border: 3px solid black;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50px;
-    margin-bottom: 50px;
     padding: 20px;
     font-size: 15pt;
+    background-color: #146fa5;
+    color: white;
 }
 .meetups{
     display: flex;
     justify-content: center;
     text-align: center;
 }
+.meetups-child{
+    width: 80%;
+}
 .meetup-link{
     background: #f13a59;
     color: white;
-    font-size: 20pt;
+    font-size: 20px;
     border: 1px solid black;
     text-decoration: none;
     padding: 5px;
+}
+.single-meetup{
+    margin: 50px 0;
+    border: 1px solid black;
 }

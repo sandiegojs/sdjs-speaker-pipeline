@@ -1,26 +1,23 @@
 .table{
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #efefef;
-    margin-bottom: 50px;
+    font-size: 15px;
 
     tr:first-child {
-        color:#1884c3;
-        font-size: 24px;
-        background-color: #daf1ff;
+        font-size: 15px;
         margin: 0;
-        border: 1px solid lightblue;
+        border: 1px solid black;
     }
 
     tr {
         color:rgb(59, 59, 59);
-        font-size: 20px;
+        font-size: 15px;
         border: 1px solid #efefef;
+        text-transform: capitalize;
     }
 
     td {
         padding: 20px;
-        height: 100px;
     }
 
     select {

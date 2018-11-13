@@ -51,12 +51,12 @@ const ShowMore = ({ topic, description, adminNotes, talkId, toggleShowMoreFuncti
         <div>
           <i className="fas fa-chevron-left" name={talkId} onClick={toggleShowMoreFunction}></i>
           <div className='table-editTalk'>
-              <label> Topic: </label>
-              <div> {topic} </div>
-              <label> Description: </label>
-              <div> {description} </div>
-              <label> Admin Notes: </label>
-              <div> {adminNotes} </div>
+            <label> Topic: </label>
+            <div> {topic} </div>
+            <label> Description: </label>
+            <div> {description} </div>
+            <label> Admin Notes: </label>
+            <div> {adminNotes} </div>
           </div>
           <i className="far fa-edit" name={talkId} value={toggleTalkEditProp} onClick={toggleTalkEditFunction}></i>
           <i className="fas fa-trash-alt" name={talkId} onClick={deleteTalk}></i>
@@ -150,30 +150,30 @@ class Talks extends Component {
 
   render() {
     const { talkInfo } = this.props;
-    if (talkInfo[0]) {
-      let talks = talkInfo;
-      if (this.props.filter) {
-        talks = talkInfo.filter(this.props.filter);
-      }
 
-      let headers = ['Speaker', 'Talk', 'Event', 'Status', 'Owner']
-      if (this.props.include) {
-        headers = headers.filter((header) => this.props.include.includes(header))
-      }
+    let talks = talkInfo;
+    if (this.props.filter) {
+      talks = talkInfo.filter(this.props.filter);
+    }
 
+    let headers = ['Speaker', 'Talk', 'Event', 'Status', 'Owner']
+    if (this.props.include) {
+      headers = headers.filter((header) => this.props.include.includes(header))
+    }
 
+    if (talks[0]) {
       return (
         <div>
-          <div className='admin-info'>
-            <table className='table'>
-              <tr>
-                {
-                  headers.map(header => (
-                    <th>{header}</th>
-                  ))}
-              </tr>
+          <table className='table'>
+            <tr>
               {
-                talks.map((talk, i) => <tr key={i}>
+                headers.map(header => (
+                  <th>{header}</th>
+                ))}
+            </tr>
+            {
+              talks.map((talk, i) =>
+                <tr key={i}>
                   {
                     headers.map(column => {
                       switch (column) {
@@ -266,25 +266,22 @@ class Talks extends Component {
                     })
                   }
                 </tr>)
-              }
-            </table>
-          </div>
+            }
+          </table>
         </div>
       )
     }
     else {
       return (
-        <div>
-          <AdminNav />
-          <div className='admin-banner'>
-            <h1>Admin Dashboard</h1>
-            <p>hello</p>
-          </div>
-          <div className='admin-info'>
-            <h3>Pending Speakers</h3>
-            <p>There are no pending speakers.</p>
-          </div>
-        </div>
+          <table className='table'>
+            <tr>
+              {
+                headers.map(header => (
+                  <th>{header}</th>
+                ))}
+            </tr>
+            <td colspan={headers.length}>There are no speakers.</td>
+          </table>
       )
     }
   }
