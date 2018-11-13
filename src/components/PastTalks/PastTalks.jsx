@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getPastTalks } from './PastTalksActions'
+import moment from 'moment';
 
 class PastTalks extends Component {
     constructor(props) {
@@ -20,16 +21,16 @@ class PastTalks extends Component {
                     <h1>Past Talks: </h1>
                 </div>
                 <div>
-                    <table>
-                        <tr>
+                    <table className='table'>
+                        <tr className='past-talk-header'>
                             <th>Date</th>
                             <th>Event</th>
                             <th>Speaker</th>
                             <th>Topic</th>
                         </tr>
-                        {pastTalks.map(talk => (
+                        {pastTalks && pastTalks.map(talk => (
                             <tr>
-                                <td>{talk.date}</td>
+                                <td>{moment(talk.date).add(1, 'day').format('YYYY-MM-DD')}</td>
                                 <td>{talk.event}</td>
                                 <td>{talk.speaker}</td>
                                 <td>{talk.topic}</td>
