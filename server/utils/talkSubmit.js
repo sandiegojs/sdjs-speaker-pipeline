@@ -1,5 +1,6 @@
 const app = require('../server');
-const { getMeetups } = require('./getMeetups')
+const { getMeetups } = require('./getMeetups');
+const moment = require('moment');
 
 function talkSubmit(speakerInfo, talkInfo, date) {
 	return new Promise((resolve, reject) => {

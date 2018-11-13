@@ -12,6 +12,8 @@ import {
 	getDates,
 } from './SignUpActions'
 import Navbar from '../Navbar/Navbar';
+import moment from 'moment';
+
 
 class SignUp extends Component {
 	constructor(props) {
@@ -64,11 +66,12 @@ class SignUp extends Component {
 	submitSpeaker(e) {
 		e.preventDefault();
 		const { dispatch, speakerName, speakerEmail, date, topic, phone, description } = this.props;
+		let zone = "America/Los_Angeles"
 		dispatch(talkSubmit({ speakerName, speakerEmail, phone, speakerEmail },
 			 {
 				topic, description
 			},
-			date
+			date,
 		));
 
 	}

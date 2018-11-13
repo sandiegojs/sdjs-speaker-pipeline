@@ -6,6 +6,7 @@ const { getTalkDetails } = require('../../server/utils/getTalkDetails');
 const { changeTalkStatus } = require('../../server/utils/changeTalkStatus');
 const { sendEmailToSpeaker } = require('../../server/utils/sendGridEmailer');
 const { formatTalkForEmail } = require('../../server/utils/formatTalkForEmail');
+const { pastTalks } = require('../../server/utils/pastTalks')
 
 module.exports = function (Talk) {
 	Talk.getMeetups = function (cb) {
@@ -18,6 +19,25 @@ module.exports = function (Talk) {
 		description: 'Gets all SDJS meetups for the next 3 months.',
 		http: {
 			path: '/getMeetups',
+			verb: 'get'
+		},
+		returns: {
+			arg: 'data',
+			type: 'array',
+			root: true
+		}
+	})
+
+	Talk.pastTalks = function (cb) {
+		pastTalks()
+			.then(talks => cb(null, talks))
+			.catch(err => cb(err))
+	}
+
+	Talk.remoteMethod('pastTalks', {
+		description:'Gets all talks from before today.',
+		http: {
+			path: '/pastTalks',
 			verb: 'get'
 		},
 		returns: {
@@ -186,4 +206,5 @@ module.exports = function (Talk) {
 			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
 
 	});
+
 };

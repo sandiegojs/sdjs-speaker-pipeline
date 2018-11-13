@@ -16,7 +16,7 @@ function getEvents() {
 						const allSpeakerEvents = SpeakerEvents
 						// console.log('allMeetupEvents: ', allMeetupEvents)
 						// console.log('allSpeakerEvents: ', allSpeakerEvents)
-						const speakerDates = allSpeakerEvents.map(event => moment(event.date).format('YYYY-MM-DD'))
+						const speakerDates = allSpeakerEvents.map(event => moment(event.date).add(1, 'day').format('YYYY-MM-DD'))
 						console.log('speakerDates: ', speakerDates)
 						const meetupDates = allMeetupEvents.map(event => moment(event.date).format('YYYY-MM-DD'))
 						console.log('meetUpDates: ', meetupDates)
@@ -26,9 +26,9 @@ function getEvents() {
 								singleEvent.speakers = [];
 								//console.log('single event: ', singleEvent)
 								//console.log('hello')
-								Event.find({ where: { date: `${singleEvent.date}T14:00:00.000Z` }})
+								Event.find({ where: { date: `${singleEvent.date}T00:00:00.000Z` }})
 									.then(response => {
-										console.log(response)
+										console.log('response: ', response)
 										Talk.find({ where: {eventId: response[0].id}})
 											.then(foundTalk => {
 												console.log('foundTalk: ', foundTalk)
@@ -38,9 +38,10 @@ function getEvents() {
 													singleEvent.speakers.push(foundSpeaker[0].speakerName)
 													counter ++;
 													singleEvent.topic = foundTalk[0].topic
-													console.log('singleEvent: ', singleEvent);
+													//console.log('singleEvent: ', singleEvent);
 													mappedEvents.push(singleEvent);
 													if(counter == speakerDates.length){
+														//console.log('allMeetupEvents: ', allMeetupEvents)
 														resolve(allMeetupEvents);
 													}
 												})

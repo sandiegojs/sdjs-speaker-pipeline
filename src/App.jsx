@@ -10,6 +10,7 @@ import Meetups    from './components/Meetups';
 import TalksPage  from './components/TalksPage';
 import Organizers from './components/Organizers';
 import SignUp     from './components/SignUp';
+import PastTalks  from './components/PastTalks'
 
 class App extends Component {
     render() {
@@ -23,6 +24,7 @@ class App extends Component {
 				<Route path='/Admin/Talks'   component={TalksPage} />
         <Route path='/Organizers'    component={Organizers} />
 				<Route path='/SignUp'        component={SignUp} />
+        <Route path='/PastTalks'     component={PastTalks} />
 			</div>
       </Router>
     );

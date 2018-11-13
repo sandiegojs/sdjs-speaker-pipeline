@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "webpack",
-    "sass": "sass --watch src/css/style.scss public/style.css",
+    "sass": "sass src/css/style.scss public/style.css",
     "start": "npm run build && node .",
     "test": "mocha --require ignore-styles test/**/**.spec.js --exit"
   },
@@ -24,6 +24,7 @@
     "loopback-component-explorer": "^6.0.0",
     "loopback-connector-mongodb": "^3.8.0",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.23",
     "nightmare": "^3.0.1",
     "react": "^16.5.2",
     "react-dom": "^16.6.0",

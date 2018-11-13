@@ -77,7 +77,7 @@ class Talks extends Component {
                         case 'Current Status':
                           return <TableRow data={{ currentStatus: talk.currentStatus }} />
                         case 'Event':
-                          return <TableRow data={{ eventName: talk.eventName, eventDate: moment(talk.eventDate).format('YYYY-MM-DD')}} />
+                          return <TableRow data={{ eventName: talk.eventName, eventDate: moment(talk.eventDate).add(1, 'day').format('YYYY-MM-DD')}} />
                         case 'Action':
                           return <TableRow>
                             <div className='table-tableAction'>
