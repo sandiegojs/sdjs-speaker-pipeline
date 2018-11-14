@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field } from 'react-redux-form';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import {
 	talkSubmit,
 	getDates,
@@ -12,6 +13,8 @@ import {
 	updateDescription,
 } from './SignUpActions'
 import Navbar from '../Navbar/Navbar';
+import { push } from 'react-router-redux'
+
 
 class SignUp extends Component {
 	constructor(props) {
@@ -66,11 +69,16 @@ class SignUp extends Component {
 			},
 			date,
 		));
+		dispatch(push('/Thankyou'));
+		
 
 	}
 
 	render() {
-		const { events, phone, speakerEmail, speakerName } = this.props;
+		const { events, phone, submitted, speakerName, speakerEmail } = this.props;
+		if (submitted == true) {
+			return <Redirect push to='/Thankyou' />
+		  }
 			return (
 				<div>
 					<Navbar />
@@ -108,7 +116,7 @@ class SignUp extends Component {
 									<label htmlFor='description'>Description: </label>
 									<textarea name='description' id='description' type='text' required onChange={this.handleDescription} />
 								</Field>
-								<div>
+								<div>									
 									<button className='btn' id='speaker-submit'>Submit!</button>
 								</div>
 							</form>
