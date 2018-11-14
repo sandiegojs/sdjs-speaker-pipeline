@@ -36,7 +36,9 @@ const ShowMore = ({ topic, description, adminNotes, talkId, toggleShowMoreFuncti
     <div>
       {toggleTalkEditProp ?
         <div>
-          <i className="fas fa-chevron-left" name={talkId} onClick={toggleTalkEditFunction}></i>
+          <div className='table-eventDate'>
+            <i className="fas fa-chevron-up" name={talkId} onClick={toggleTalkEditFunction}></i>
+          </div>
           <div className='table-editTalk'>
             <label>Topic: </label>
             <input defaultValue={topic} name={talkId} data-type={'Topic'} onChange={handleTalkChange} />
@@ -49,7 +51,9 @@ const ShowMore = ({ topic, description, adminNotes, talkId, toggleShowMoreFuncti
         </div>
         :
         <div>
-          <i className="fas fa-chevron-left" name={talkId} onClick={toggleShowMoreFunction}></i>
+          <div className='table-eventDate'>
+            <i className="fas fa-chevron-up" name={talkId} onClick={toggleShowMoreFunction}></i>
+          </div>
           <div className='table-editTalk'>
             <label> Topic: </label>
             <div> {topic} </div>
@@ -152,6 +156,8 @@ class Talks extends Component {
     const { talkInfo } = this.props;
 
     let talks = talkInfo;
+    let styling = ''
+
     if (this.props.filter) {
       talks = talkInfo.filter(this.props.filter);
     }
@@ -161,11 +167,15 @@ class Talks extends Component {
       headers = headers.filter((header) => this.props.include.includes(header))
     }
 
+    if (this.props.styling) {
+      styling = this.props.styling
+    }
+
     if (talks[0]) {
       return (
         <div>
           <table className='table'>
-            <tr>
+            <tr className={styling}>
               {
                 headers.map(header => (
                   <th>{header}</th>
@@ -187,25 +197,26 @@ class Talks extends Component {
                           return <TableRow>
                             <div className='options'>
                               {talk.toggleShowMore ?
-                                <ShowMore
-                                  topic={talk.topic}
-                                  description={talk.description}
-                                  adminNotes={talk.adminNotes}
-                                  talkId={talk.talkId}
-                                  toggleShowMoreFunction={this.toggleShowMore}
-                                  deleteTalk={this.deleteTalk}
-                                  toggleTalkEditFunction={this.toggleTalkEdit}
-                                  toggleTalkEditProp={talk.toggleTalkEdit}
-                                  handleTalkChange={this.handleTalkChange}
-                                  updateTalkInfo={this.updateTalkInfo}
-                                />
+                                <div>
+                                  {talk.topic}
+                                  <ShowMore
+                                    topic={talk.topic}
+                                    description={talk.description}
+                                    adminNotes={talk.adminNotes}
+                                    talkId={talk.talkId}
+                                    toggleShowMoreFunction={this.toggleShowMore}
+                                    deleteTalk={this.deleteTalk}
+                                    toggleTalkEditFunction={this.toggleTalkEdit}
+                                    toggleTalkEditProp={talk.toggleTalkEdit}
+                                    handleTalkChange={this.handleTalkChange}
+                                    updateTalkInfo={this.updateTalkInfo}
+                                  />
+                                </div>
                                 :
                                 <div>
                                   {talk.topic}
                                   <div className='table-eventDate'>
-                                    <i className="fas fa-plus" name={talk.talkId} value={talk.toggleShowMore} onClick={this.toggleShowMore}></i>
-                                    Details
-                                </div>
+                                    <i className="fas fa-chevron-down" name={talk.talkId} value={talk.toggleShowMore} onClick={this.toggleShowMore}></i></div>
                                 </div>
                               }
                             </div>
@@ -273,15 +284,15 @@ class Talks extends Component {
     }
     else {
       return (
-          <table className='table'>
-            <tr>
-              {
-                headers.map(header => (
-                  <th>{header}</th>
-                ))}
-            </tr>
-            <td colspan={headers.length}>There are no speakers.</td>
-          </table>
+        <table className='table'>
+          <tr className={styling}>
+            {
+              headers.map(header => (
+                <th>{header}</th>
+              ))}
+          </tr>
+          <td colspan={headers.length}>There are no speakers.</td>
+        </table>
       )
     }
   }

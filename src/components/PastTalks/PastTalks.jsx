@@ -7,38 +7,36 @@ class PastTalks extends Component {
         super(props)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const { dispatch, accessToken } = this.props;
         dispatch(getPastTalks(accessToken));
     }
 
-    render(){
+    render() {
         const { pastTalks } = this.props;
-        return(
-            
-            <div>
-                <div>
-                    <h1>Past Talks: </h1>
-                </div>
-                <div>
-                    <table className='table'>
-                        <tr className='past-talk-header'>
-                            <th>Date</th>
-                            <th>Event</th>
-                            <th>Speaker</th>
-                            <th>Topic</th>
-                        </tr>
-                        {pastTalks && pastTalks.map(talk => (
-                            <tr>
-                                <td>{moment(talk.date).add(1, 'day').format('YYYY-MM-DD')}</td>
-                                <td>{talk.event}</td>
-                                <td>{talk.speaker}</td>
-                                <td>{talk.topic}</td>
-                            </tr>
-                        ))}
-                    </table>
-                </div>
-            </div>
+        let styling =''
+
+        if (this.props.styling) {
+            styling = this.props.styling
+          }
+
+        return (
+            <table className='table'>
+                <tr className={styling}>
+                    <th>Date</th>
+                    <th>Event</th>
+                    <th>Speaker</th>
+                    <th>Topic</th>
+                </tr>
+                {pastTalks.map(talk => (
+                    <tr>
+                        <td>{moment(talk.date).add(1, 'day').format('YYYY-MM-DD')}</td>
+                        <td>{talk.event}</td>
+                        <td>{talk.speaker}</td>
+                        <td>{talk.topic}</td>
+                    </tr>
+                ))}
+            </table>
         )
     }
 }

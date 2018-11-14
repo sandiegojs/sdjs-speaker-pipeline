@@ -184,6 +184,7 @@
   top: 10px;
   float: right;
   margin-right: 35px;
+  text-transform: uppercase;
 }
 
 .nav-item {
@@ -288,11 +289,6 @@ label {
   border-collapse: collapse;
   font-size: 15px;
 }
-.table tr:first-child {
-  font-size: 15px;
-  margin: 0;
-  border: 1px solid black;
-}
 .table tr {
   color: #3b3b3b;
   font-size: 15px;
@@ -364,6 +360,11 @@ label {
 .table .options i {
   margin-left: 10px;
 }
+.table .table-header-meetups-page {
+  font-size: 15px;
+  margin: 0;
+  border-bottom: 1px solid black;
+}
 .table .table-editTalk {
   margin: 20px 0;
 }
@@ -419,6 +420,7 @@ label {
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-top: 100px;
 }
 
 .meetups-child {
@@ -426,10 +428,10 @@ label {
 }
 
 .meetup-link {
-  background: #f13a59;
+  background: #ff5041;
   color: white;
   font-size: 20px;
-  border: 1px solid black;
+  box-shadow: 1px 1px darkslategrey;
   text-decoration: none;
   padding: 5px;
 }
@@ -439,11 +441,26 @@ label {
   border: 1px solid black;
 }
 
-.talks-container {
-  margin: 20px;
+.talks-page-container {
+  margin: 120px 20px 20px 20px;
+  text-align: center;
 }
-.talks-container h1 {
-  color: #f90;
+.talks-page-container h1 {
+  color: #ff5041;
+  text-align: center;
+}
+.talks-page-container .talks-component-container {
+  border: 1px solid black;
+}
+.talks-page-container .talk-component-on-talks-page {
+  background-color: #146fa5;
+  color: white;
+  border: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  height: 50px;
+}
+.talks-page-container .talks-allTalks {
+  margin-bottom: 50px;
 }
 
 html {

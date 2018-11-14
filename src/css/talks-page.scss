@@ -1,8 +1,26 @@
-.talks-container {
-    margin: 20px;
+.talks-page-container {
+    margin: 120px 20px 20px 20px;
+    text-align: center;
 
     h1 {
-        color: #f90
+        color: $secondary-color;
+        text-align: center;
+    }
+
+    .talks-component-container {
+        border: 1px solid black;
+    }
+
+    .talk-component-on-talks-page {
+        background-color: $primary-color;
+        color: white;
+        border: 1px solid #efefef;
+        border-bottom: 1px solid #efefef;
+        height: 50px;
+    }
+
+    .talks-allTalks {
+        margin-bottom: 50px;
     }
 
 }

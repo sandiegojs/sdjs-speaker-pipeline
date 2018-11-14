@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
 import { getEvents } from './MeetupsActions';
 import Talks from '../Talks';
+import AdminNav from '../AdminNav/AdminNav';
 
 class Meetups extends Component {
     constructor(props) {
@@ -16,11 +15,13 @@ class Meetups extends Component {
 
     render() {
         const { eventInfo } = this.props;
+
         return (
             <div>
+                <AdminNav />
                 <div className='meetups'>
                     <div className='meetups-child'>
-                        <h1>Meetups</h1>
+                        <h1>Upcoming Meetups</h1>
                         <div>
                             {eventInfo && eventInfo.map(meetup => (
                                 <div className='single-meetup' key={meetup.venue.id}>
@@ -35,6 +36,7 @@ class Meetups extends Component {
                                             <Talks
                                              filter={(talk) => talk.meetupId === meetup.meetupId}
                                              include = {['Speaker', 'Talk', 'Status', 'Owner']}
+                                             styling='table-header-meetups-page'
                                             />
                                         </div>
                                 </div>

@@ -13,15 +13,16 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    margin-top: 100px;
 }
 .meetups-child{
     width: 80%;
 }
 .meetup-link{
-    background: #f13a59;
+    background: $secondary-color;
     color: white;
     font-size: 20px;
-    border: 1px solid black;
+    box-shadow: 1px 1px darkslategrey;
     text-decoration: none;
     padding: 5px;
 }

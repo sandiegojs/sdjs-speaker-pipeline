@@ -3,12 +3,6 @@
     border-collapse: collapse;
     font-size: 15px;
 
-    tr:first-child {
-        font-size: 15px;
-        margin: 0;
-        border: 1px solid black;
-    }
-
     tr {
         color:rgb(59, 59, 59);
         font-size: 15px;
@@ -97,6 +91,12 @@
         i {
             margin-left: 10px;
         }
+    }
+
+    .table-header-meetups-page {
+        font-size: 15px;
+        margin: 0;
+        border-bottom: 1px solid black;
     }
 
     .table-editTalk {
