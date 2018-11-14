@@ -178,18 +178,20 @@
   background-color: #f7f7f7;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.55);
   height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-items {
-  top: 10px;
-  float: right;
-  margin-right: 35px;
   text-transform: uppercase;
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .nav-item {
   display: inline-block;
-  margin-left: 25px;
   border-bottom: 1px dotted transparent;
   -webkit-transition: color 200ms ease, border 200ms ease;
   transition: color 200ms ease, border 200ms ease;
@@ -198,8 +200,6 @@
   line-height: 24px;
   text-decoration: none;
   text-transform: uppercase;
-  padding-top: 16px;
-  padding-right: 16px;
 }
 
 .nav-item.w--current {
@@ -210,6 +210,13 @@
 .nav-item:hover {
   color: #1884c3;
   border-bottom-color: #1884c3;
+}
+
+.home-nav .nav-items {
+  text-transform: uppercase;
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .signUp-container {
@@ -294,9 +301,11 @@ label {
   font-size: 15px;
   border: 1px solid #efefef;
   text-transform: capitalize;
+  background-color: white;
 }
 .table td {
   padding: 20px;
+  background-color: white;
 }
 .table select {
   height: 50px;
@@ -414,13 +423,20 @@ label {
   font-size: 15pt;
   background-color: #146fa5;
   color: white;
+  letter-spacing: 1px;
 }
 
 .meetups {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-top: 100px;
+  width: 100%;
+}
+.meetups h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 1px;
 }
 
 .meetups-child {
@@ -430,10 +446,10 @@ label {
 .meetup-link {
   background: #ff5041;
   color: white;
-  font-size: 20px;
+  font-size: 15px;
   box-shadow: 1px 1px darkslategrey;
   text-decoration: none;
-  padding: 5px;
+  padding: 10px;
 }
 
 .single-meetup {
@@ -442,22 +458,34 @@ label {
 }
 
 .talks-page-container {
-  margin: 120px 20px 20px 20px;
+  width: 80%;
   text-align: center;
+  height: 100%;
 }
 .talks-page-container h1 {
-  color: #ff5041;
+  color: #313131;
   text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 1px;
+  margin-bottom: 50px;
 }
-.talks-page-container .talks-component-container {
-  border: 1px solid black;
+.talks-page-container tr {
+  border: 1px solid #313131;
 }
 .talks-page-container .talk-component-on-talks-page {
-  background-color: #146fa5;
   color: white;
-  border: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
-  height: 50px;
+  border: 1px solid #313131;
+  height: 100px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #146fa5;
+}
+.talks-page-container .talk-component-on-talks-page th {
+  font-weight: normal;
 }
 .talks-page-container .talks-allTalks {
   margin-bottom: 50px;
@@ -522,6 +550,13 @@ body {
   transition-duration: 200ms, 200ms, 200ms;
   transition-timing-function: ease, ease, ease;
   transition-delay: 0s, 0s, 0s;
+}
+
+.top-div {
+  background-color: #efebeb;
+  padding: 120px 0;
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */

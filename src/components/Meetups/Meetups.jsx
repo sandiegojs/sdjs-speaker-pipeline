@@ -17,7 +17,7 @@ class Meetups extends Component {
         const { eventInfo } = this.props;
 
         return (
-            <div>
+            <div className='top-div'>
                 <AdminNav />
                 <div className='meetups'>
                     <div className='meetups-child'>

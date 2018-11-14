@@ -1,6 +1,8 @@
 $font: 'Open Sans', sans-serif;
 $primary-color: #146fa5;
 $secondary-color: #ff5041;
+$background-color: #efebeb;
+$dark-gray: #313131;
 
 @import 'js-meetup-home';
 @import 'navbar';
@@ -41,4 +43,10 @@ body {
     transition-delay: 0s, 0s, 0s;
 }
 
+.top-div {
+    background-color: $background-color;
+    padding: 120px 0;
+    display: flex;
+    justify-content: center;
+}
 

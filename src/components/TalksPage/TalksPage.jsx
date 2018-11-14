@@ -10,7 +10,7 @@ class TalksPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className='top-div'>
                 <AdminNav />
                 <div className='talks-page-container'>
                     <div className='talks-allTalks'>

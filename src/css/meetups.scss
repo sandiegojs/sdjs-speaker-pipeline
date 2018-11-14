@@ -1,5 +1,4 @@
 .header{
-    // border: 3px solid black;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -8,12 +7,20 @@
     font-size: 15pt;
     background-color: #146fa5;
     color: white;
+    letter-spacing: 1px;
 }
 .meetups{
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 100px;
+    width: 100%;
+
+    h1 {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: normal;
+        letter-spacing: 1px;
+    }
 }
 .meetups-child{
     width: 80%;
@@ -21,10 +28,10 @@
 .meetup-link{
     background: $secondary-color;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     box-shadow: 1px 1px darkslategrey;
     text-decoration: none;
-    padding: 5px;
+    padding: 10px;
 }
 .single-meetup{
     margin: 50px 0;
