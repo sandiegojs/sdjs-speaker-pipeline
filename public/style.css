@@ -463,6 +463,37 @@ label {
   margin-bottom: 50px;
 }
 
+.trash-icon {
+  height: 25px;
+}
+
+.edit-icon {
+  height: 25px;
+}
+
+.add-admin-title {
+  text-align: center;
+}
+
+.admin-map-content {
+  background: #1884c3;
+  color: white;
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  font-size: 15pt;
+  padding-top: 15px;
+  padding-right: 35px;
+  padding-bottom: 15px;
+  padding-left: 35px;
+  margin-top: 1px;
+  margin-right: auto;
+  margin-bottom: 1px;
+  margin-left: auto;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
 }

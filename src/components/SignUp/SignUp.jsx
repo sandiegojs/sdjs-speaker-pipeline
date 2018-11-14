@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import { Field } from 'react-redux-form';
 import { connect } from 'react-redux';
 import {
+	talkSubmit,
+	getDates,
 	updateSpeakerName,
 	updateEmail,
 	updatePhone,
 	updateDate,
 	updateTopic,
 	updateDescription,
-	talkSubmit,
-	getDates,
 } from './SignUpActions'
 import Navbar from '../Navbar/Navbar';
-import moment from 'moment';
-
 
 class SignUp extends Component {
 	constructor(props) {
@@ -37,28 +35,23 @@ class SignUp extends Component {
 		const { dispatch } = this.props;
 		dispatch(updateSpeakerName(e.target.value));
 	}
-
-	handleEmail(e) {
+ 	handleEmail(e) {
 		const { dispatch } = this.props;
 		dispatch(updateEmail(e.target.value));
 	}
-
-	handlePhone(e) {
+ 	handlePhone(e) {
 		const { dispatch } = this.props;
 		dispatch(updatePhone(e.target.value));
 	}
-
-	handleDate(e) {
+ 	handleDate(e) {
 		const { dispatch } = this.props;
 		dispatch(updateDate(e.target.value));
 	}
-
-	handleTopic(e) {
+ 	handleTopic(e) {
 		const { dispatch } = this.props;
 		dispatch(updateTopic(e.target.value));
 	}
-
-	handleDescription(e) {
+ 	handleDescription(e) {
 		const { dispatch } = this.props;
 		dispatch(updateDescription(e.target.value));
 	}
@@ -77,7 +70,7 @@ class SignUp extends Component {
 	}
 
 	render() {
-		const { events, phone } = this.props;
+		const { events, phone, speakerEmail, speakerName } = this.props;
 			return (
 				<div>
 					<Navbar />
@@ -87,22 +80,23 @@ class SignUp extends Component {
 								<h3>Speaker Registration</h3>
 								<Field model='user.name'>
 									<label htmlFor='speaker-name'>Name: </label>
-									<input name='speaker-name' placeholder='John Smith' id='speaker-firstname' type='text'  onChange={this.handleSpeakerName} required />
+									<input name='speakerName' placeholder='John Smith' id='speaker-firstname' value={speakerName} type='text'  onChange={this.handleSpeakerName} required />
 								</Field >
 								<Field model='user.speaker-email'>
 									<label htmlFor='speaker-email'>Email: </label>
-									<input type="email" placeholder='iamJohnSmith@email.com' name="speaker-email" required onChange={this.handleEmail} />
+									<input type="email" placeholder='iamJohnSmith@email.com' name="speakerEmail" value={speakerEmail} required onChange={this.handleEmail} />
 								</Field>
 								<Field model='user.phone'>
 									<label htmlFor='speaker-phone'>Phone Number: </label>
 									{console.log('this is phone', phone)}
-									<input type="tel" name="speaker-email" placeholder='123-456-7890' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3')}format="### ### ####" onChange={this.handlePhone} />
+									<input type="tel" name="phone" placeholder='123-456-7890' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3')}format="### ### ####" onChange={this.handlePhone} />
 								</Field>
 								<div>
 									<label htmlFor='event-date'>Date Requested: </label>
-									<select name='event-date' id='event-date' type='select' required onChange={this.handleDate}>
+									<select name='date' id='event-date' type='select' required onChange={this.handleDate}>
+										<option>Select a Date</option>
 										{events && events.map(event => (
-											<option key={event.date}>{event.date}</option>
+											<option key={event.date} >{event.date}</option>
 										))}
 									</select>
 								</div>

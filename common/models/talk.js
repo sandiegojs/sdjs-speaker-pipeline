@@ -1,5 +1,6 @@
 'use strict';
 
+const { addAdmin } = require('../../server/utils/addAdmin');
 const { getMeetups } = require('../../server/utils/getMeetups');
 const { talkSubmit } = require('../../server/utils/talkSubmit')
 const { getTalkDetails } = require('../../server/utils/getTalkDetails');
@@ -299,4 +300,39 @@ module.exports = function (Talk) {
 
 	});
 
+
+	Talk.addAdmin = function (newAdminName, newAdminEmail, newAdminPhone, adminTempPw, cb) {
+		addAdmin(newAdminName, newAdminEmail, newAdminPhone, adminTempPw, cb)
+			.then(addAdminToDb => cb(null, addAdminToDb))
+			.catch(err => cb(err))
+	}
+
+	Talk.remoteMethod('addAdminToDb', {
+		description: 'add admin to db',
+		accepts: [{
+			arg: 'newAdminName',
+			type: 'string'
+		},
+		{
+			arg: 'newAdminEmail',
+			type: 'string'
+		},
+		{
+			arg: 'newAdminPhone',
+			type: 'string'
+		},
+		{
+			arg: 'adminTempPw',
+			type: 'string'
+		}],
+		http: {
+			path: '/addAdmin',
+			veb: 'post'
+		},
+		returns: {
+			arg: 'data',
+			type: 'array',
+			root: true
+		}
+	})
 };

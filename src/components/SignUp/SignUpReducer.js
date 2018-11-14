@@ -47,12 +47,6 @@ export default function SignUpReducer(state = initialstate, action) {
 				description: payload
 			}
 		}
-		case 'TALK_SUBMIT_FULFILLED': {
-			return {
-				...state,
-				submitted: true
-			}
-		}
 		case 'GET_DATES_FULFILLED': {
 			return {
 				...state,

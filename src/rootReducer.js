@@ -5,11 +5,11 @@ import MeetupsReducer          from './components/Meetups/MeetupsReducer'
 import OrganizersReducer       from './components/Organizers/OrganizersReducer';
 import SignUpReducer           from './components/SignUp/SignUpReducer';
 import TalksReducer            from './components/Talks/TalksReducer';
-import PastTalksReducer               from './components/PastTalks/PastTalksReducer'
+import PastTalksReducer        from './components/PastTalks/PastTalksReducer';
 
 const rootReducer = combineReducers({
     AdminHome        : AdminHomeReducer,
-    AdminLogin       : AdminLoginReducer, 
+    AdminLogin       : AdminLoginReducer,
     Meetups          : MeetupsReducer,
     Organizers       : OrganizersReducer,
     SignUp           : SignUpReducer,
