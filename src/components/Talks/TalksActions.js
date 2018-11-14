@@ -78,7 +78,6 @@ export const changeTalkOwner = (talkId, selectedOwner, toggle, accessToken) => {
             }
         })
             .then((updatedTalk) => {
-                console.log(updatedTalk)
                 return {
                     data: updatedTalk.data,
                     toggle: !toggle
@@ -118,7 +117,6 @@ export const toggleShowMore = (talkId, toggle) => {
 }
 
 export const toggleTalkEdit = (talkId, toggle) => {
-    console.log('in actions', talkId, toggle)
     return {
         type: 'TOGGLE_TALK_EDIT',
         payload: {

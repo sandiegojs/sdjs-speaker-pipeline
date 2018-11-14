@@ -13,9 +13,6 @@
       "./mixins"
     ]
   },
-  "User": {
-    "dataSource": "sdjs"
-  },
   "AccessToken": {
     "dataSource": "sdjs",
     "public": false
@@ -44,6 +41,10 @@
     "public": true
   },
   "talk": {
+    "dataSource": "sdjs",
+    "public": true
+  },
+  "organizer": {
     "dataSource": "sdjs",
     "public": true
   }

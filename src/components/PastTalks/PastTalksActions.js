@@ -10,7 +10,6 @@ export const getPastTalks = (accessToken) => ({
 		}
 	})
 		.then(response => {
-			console.log('response: ', response.data)
 			return response.data
 		})
 })

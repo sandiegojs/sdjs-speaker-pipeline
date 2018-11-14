@@ -11,9 +11,8 @@ export const getEvents = accessToken => {
 			}
 		})
 			.then(response => {
-				console.log(response.data)
 				return response.data
 			})
-			.catch(err => console.log(err))
+			.catch(err => reject(err))
 	}
 }

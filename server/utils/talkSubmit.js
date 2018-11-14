@@ -1,18 +1,14 @@
 const app = require('../server');
 const { getMeetups } = require('./getMeetups');
-const moment = require('moment');
 
 function talkSubmit(speakerInfo, talkInfo, date) {
 	return new Promise((resolve, reject) => {
 		const { Talk, Speaker, Event } = app.models;
 		Speaker.create(speakerInfo)
 			.then(response => {
-				console.log('response: ', response)
 				let speakerId = response.id
 				getMeetups()
 					.then(response2 => {
-						console.log('response2: ', response2)
-						console.log('date: ', date)
 						const index = response2.findIndex((item) => {
 							return item.date == date
 						})

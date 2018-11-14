@@ -1,12 +1,22 @@
 const axios = require('axios');
 
-export const addAdmin = (realm, newAdminName, newAdminEmail, newAdminPhone, adminTempPw) => {
-	console.log('addAdmin action')
-	console.log('newAdminName: ', newAdminName, 'newAdminEmail: ', newAdminEmail, 'newAdminPhone: ', newAdminPhone, 'adminTempP: ', adminTempPw)
+export const addAdmin = (realm, newAdminName, newAdminEmail, newAdminPhone, adminTempPw, accessToken) => {
 	return {
 		type: 'ADD_ADMIN',
-		payload: axios.post('api/Users', { realm: realm, username: newAdminName, email: newAdminEmail, phone: newAdminPhone, password: adminTempPw }
-		)
+		payload: axios({
+			method: 'post',
+			url: 'api/organizers',
+			data: {
+				realm: realm, 
+				username: newAdminName, 
+				email: newAdminEmail, 
+				phone: newAdminPhone, 
+				password: adminTempPw 
+			},
+			headers: {
+				Authorization: accessToken
+			}
+		})
 	}
 }
 export const adminChangeInput = (id, type, value) => {
@@ -19,37 +29,52 @@ export const adminChangeInput = (id, type, value) => {
 	}
 }
 export const adminUpdate = (index) => {
-	console.log('hello from admin update action')
 	return {
 		type: 'ADMIN_UPDATE',
 		payload: index
 	}
 }
-export const editAdmin = (adminId, adminName, adminEmail, adminPhone) => {
-	console.log('edit Admin action')
-	console.log('AdminName: ', adminName, 'AdminEmail: ', adminEmail, 'AdminPhone: ', adminPhone)
+export const editAdmin = (adminId, adminName, adminEmail, adminPhone, accessToken) => {
 	return {
 		type: 'EDIT_ADMIN',
-		payload: axios.patch('api/Users/:id', { id: adminId, newAdminEmail: adminEmail, adminPhone: adminPhone }
-		)
+		payload: axios({ 
+			method: 'patch',
+			url:'api/organizers/:id',
+			data: {
+				id: adminId, 
+				newAdminEmail: adminEmail, 
+				adminPhone: adminPhone 
+			},
+			headers: {
+				Authorization: accessToken
+			}
+		})
 	}
 }
-export const deleteAdmin = (id) => {
-	console.log('this is delete admin in actions')
+export const deleteAdmin = (id, accessToken) => {
 	return {
 		type: 'DELETE_ADMIN',
-		payload: axios
-			.delete(`api/Users/${id}`)
+		payload: axios({ 
+			method: 'delete',
+			url:`api/organizers/${id}`,
+			headers: {
+				Authorization: accessToken
+			}
+		})
 			.then(() => id)
 	}
 }
-export const getAdmins = () => {
-	console.log('organizers edit get admins')
+export const getAdmins = (accessToken) => {
 	return {
 		type: 'GET_ADMINS',
-		payload: axios.get('api/users')
+		payload: axios({
+			method: 'get',
+			url: 'api/organizers',
+			headers: {
+				Authorization: accessToken
+			}
+		})
 			.then(response => {
-				//for each user, add isEditing property, and return that
 				return response.data.map(admin => Object.assign({}, admin, { isEditing: false }))
 			})
 	}
@@ -76,10 +101,17 @@ export const updateAdminList = (value) => {
 	}
 }
 
-export const patchAdmin = (id, index, jsonObject) => {
+export const patchAdmin = (id, index, jsonObject, accessToken) => {
 	return {
 				type: 'PATCH_ADMIN',
-				payload: axios.patch(`api/Users/${id}`, jsonObject)
+				payload: axios({
+					method: 'patch',
+					url:`api/organizers/${id}`, 
+					data: jsonObject,
+					headers: {
+						Authorization: accessToken
+					}
+				})
 				.then((response) => {
 					return {
 						index,

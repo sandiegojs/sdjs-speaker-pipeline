@@ -40,7 +40,6 @@ export default class OrganizersEdit extends Component {
 
     render() {
         const { admin }  = this.props;
-        console.log('this is name: ', admin.username, 'this is email: ', admin.email, 'this is phone: ', admin.phone)
         return (
         <div>
             <form onSubmit={this.handleUpdate} className='admin-map-content'>

@@ -13,7 +13,7 @@ export const updatePassword = (value) => ({
 export const postLogin = (userData) => {
     return {
         type: 'POST_LOGIN',
-        payload: axios.post('api/users/login', userData)
+        payload: axios.post('api/organizers/login', userData)
         .then(response => {
             return response.data
         })

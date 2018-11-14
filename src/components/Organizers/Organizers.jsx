@@ -36,59 +36,47 @@ class Organizers extends Component {
 
     addAdmin(e) {
         e.preventDefault();
-        console.log('create password')
         var length = 8,
             charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
             adminTempPw = "";
         for (var i = 0, n = charset.length; i < length; ++i) {
             adminTempPw += charset.charAt(Math.floor(Math.random() * n));
         }
-        console.log('this is admintempw', adminTempPw)
         let realm = 'string'
-        const { newAdminName, newAdminEmail, newAdminPhone, dispatch } = this.props;
-        dispatch(addAdmin(realm, newAdminName, newAdminEmail, newAdminPhone, adminTempPw));
+        const { newAdminName, newAdminEmail, newAdminPhone, dispatch, accessToken } = this.props;
+        dispatch(addAdmin(realm, newAdminName, newAdminEmail, newAdminPhone, adminTempPw, accessToken));
     }
     componentDidMount() {
-        console.log('compoent did mount')
-        const { dispatch } = this.props;
-        dispatch(getAdmins());
+        const { dispatch, accessToken } = this.props;
+        dispatch(getAdmins(accessToken));
     }
 
     handleAdminChange(e) {
-        console.log('handle  admin change fired')
         const { adminList, dispatch } = this.props;
         const index = adminList.findIndex(admin => {
             return admin.id == e.target.name
         })
-        console.log('this is index in handleAdminChange', index)
-        console.log('this is adminList[index] index in handleAdminChange', adminList[index])
         dispatch(adminUpdate(index));
     }
     handleAdminUpdate(e) {
-        console.log('handle admin update triggered')
-        console.log('this is name" ', e.target.name, 'this is id: ', e.target.id, 'this is value: ', e.target.value)
         const { dispatch } = this.props;
         dispatch(adminChangeInput(e.target.name, e.target.id, e.target.value))
     }
 
     handleChange(e) {
-        console.log('handle change fired')
         const { dispatch } = this.props;
         dispatch(onChange(e.target.name, e.target.value))
     }
 
 
     handleDelete(e) {
-       // debugger;
-        const { dispatch } = this.props;
-        console.log('this is e.target.name',e.target.name)
-        dispatch(deleteAdmin(e.target.name))
+        const { dispatch, accessToken } = this.props;
+        dispatch(deleteAdmin(e.target.name, accessToken))
     }
 
     handleEdit(e) {
-        console.log('handle edit triggered')
-        const { dispatch } = this.props;
-        dispatch(editAdmin(e.target.name));
+        const { dispatch, accessToken } = this.props;
+        dispatch(editAdmin(e.target.name, accessToken));
         this.toggleEdit()
     }
 
@@ -107,9 +95,9 @@ class Organizers extends Component {
     }
 
     handleUpdate(id, index, obj) {
-        const { dispatch } = this.props;
+        const { dispatch, accessToken } = this.props;
 
-        dispatch(patchAdmin(id, index, obj))
+        dispatch(patchAdmin(id, index, obj, accessToken))
     }
 
     handleSubmit(e) {
@@ -117,13 +105,10 @@ class Organizers extends Component {
         dispatch(updateAdminInfo(adminName, adminEmail, adminPhone));
     }
     toggleEdit(e) {
-        console.log('toggle edit triggered')
         const { adminList, dispatch } = this.props;
         const index = adminList.findIndex(admin => {
             return admin.id == e.target.name
         })
-        console.log('this is adminList index', index)
-        console.log('this is adminList[index] index', adminList[index])
         dispatch(toggleEdit(index));
     }
 
@@ -161,7 +146,6 @@ class Organizers extends Component {
                     {adminList && adminList.map((admin, index) => {
 
                         if (admin.isEditing) {
-                            console.log('this is admin.phone', admin.phone)
                             return (
                                 <OrganizersEdit key={admin.id} index={index} admin={admin} id={admin.id} onSubmit={this.handleUpdate} toggleEdit={this.toggleEdit}/>
                             )
@@ -194,81 +178,8 @@ class Organizers extends Component {
                     })}
                 </div>
             </div>
-
-
-
-
-
     
-        /* {adminList && adminList.map(admin => {
-
-            
-            return (
-                <div key={adminList.id}>
-                    <div >
-                        <div className='admin-map-content'>
-                            <div> {admin.username}</div>
-                            <div> {admin.email}</div>
-                            <div> {admin.phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')}</div>
-                            <div >
-                                <img
-                                    name={admin.id}
-                                    className="edit-icon"
-                                    onClick={this.toggleEdit}
-                                    src={`/pics/edit-icon.png`}
-                                />
-                                <img
-                                    name={admin.id}
-                                    className="trash-icon"
-                                    onClick={this.handleDelete}
-                                    src={`/pics/trash-icon.png`}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    {this.renderEdit()}
-                </div>
-            ) 
-        })}
-        </div>
-    )
-}
-    renderEdit() {
-        const { adminList, isEditing } = this.props;
-
-        if (!isEditing) {
-            console.log('editing is false')
-            return null;
-        }
-        return (
-        <div>
-            {adminList && adminList.map(admin => {
-                console.log('editing is true, should render out edit')
-                    return (
-                        <div key={admin.id} className='admin-map-content'>
-                        <Field model='user.name'>
-                            <label htmlFor='admin-name'>Name: </label>
-                            <input name='adminName' id='admin-firstname' type='text' value={admin.username} onChange={this.handleChange} />
-                        </Field>
-                        <Field model='user.admin-email'>
-                            <label htmlFor='admin-email'>Email: </label>
-                            <input type="email"  name="adminEmail" value={admin.email} onChange={this.handleChange} />
-                        </Field>
-                        <Field model='user.admin-phone'>
-                            <label htmlFor='admin-phone'>Phone Number: </label>
-                            <input type="tel" name="adminPhone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={admin.phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} format="### ### ####" onChange={this.handleChange} />
-                        </Field>
-                            <div>
-                                <button className='btn' id='admin-submit' onClick={this.handleSubmit}>Update Changes</button>
-                            </div>
-                        </div>
-                    )
-                })
-            }
-        </div>) */
-
-    
-    )
+        )
     }
 }
 

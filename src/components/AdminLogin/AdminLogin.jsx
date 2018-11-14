@@ -29,8 +29,8 @@ class AdminLogin extends Component {
   }
 
 	render() {
-		// if (this.props.token) return <Redirect push to='/admin/talks' />;
-		const { username, password } = this.props;
+		const { username, password, token} = this.props;
+		if (token) return <Redirect push to= '/Admin/Meetups' />
 		return (
 			<div>
 				<Navbar />

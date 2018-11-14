@@ -96,7 +96,6 @@ class SignUp extends Component {
 								</Field>
 								<Field model='user.phone'>
 									<label htmlFor='speaker-phone'>Phone Number: </label>
-									{console.log('this is phone', phone)}
 									<input type="tel" name="phone" placeholder='123-456-7890' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3')}format="### ### ####" onChange={this.handlePhone} />
 								</Field>
 								<div>

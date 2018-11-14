@@ -33,8 +33,7 @@ export const getDates = () => ({
 	type: 'GET_DATES',
 	payload: axios.get('api/talks/getMeetups')
 	.then(response => {
-		console.log('this is response.data in sign up action', response.data)
 		return response.data
 	})
-	.catch(err => console.log(err))
+	.catch(err => reject(err))
 })

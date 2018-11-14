@@ -93,7 +93,6 @@ class Talks extends Component {
   }
 
   handleSelectStatus(e) {
-    //if (e.target.getAttribute('data-type') === 'Status')
     const { dispatch } = this.props;
     dispatch(handleSelectStatus(e.target.name, e.target.value));
   }
@@ -106,7 +105,6 @@ class Talks extends Component {
   handleSubmitOwner(e) {
     const { dispatch, talkInfo, accessToken } = this.props;
     const selectedTalk = talkInfo.find((talk) => talk.talkId === e.target.name);
-    console.log('handle submit args', e.target.name, selectedTalk.selectedOwner, e.target.value)
     dispatch(changeTalkOwner(e.target.name, selectedTalk.selectedOwner, e.target.value, accessToken));
   }
 

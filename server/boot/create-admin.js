@@ -1,7 +1,7 @@
 module.exports = app => {
-  const {User, Role, RoleMapping} = app.models;
+  const {Organizer, Role, RoleMapping} = app.models;
 
-  User.findOrCreate(
+  Organizer.findOrCreate(
     {
       where: {
         'username': process.env.ADMIN_USERNAME,
@@ -11,8 +11,9 @@ module.exports = app => {
       'username': process.env.ADMIN_USERNAME,
       'email': process.env.ADMIN_EMAIL,
       'password': process.env.ADMIN_PASSWORD,
+      'phone': '111-111-1111'
     },
-    (err, user) => {
+    (err, organizer) => {
       if (err) console.log(err);
       Role.findOrCreate(
         {
@@ -29,12 +30,12 @@ module.exports = app => {
             {
               where: {
                 principalType: 'admin',
-                principalId: user.id,
+                principalId: organizer.id,
               },
             },
             {
               principalType: 'admin',
-              principalId: user.id,
+              principalId: organizer.id,
             },
             (err) => {
               if (err) console.log(err);
