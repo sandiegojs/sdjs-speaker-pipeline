@@ -8,7 +8,6 @@ function mapStoreToProps(store){
         newAdminName : store.Organizers.newAdminName,
         newAdminPhone: store.Organizers.newAdminPhone,
         newAdminEmail: store.Organizers.newAdminEmail,
-        password     : store.Organizers.password,
         accessToken  : store.AdminLogin.token
     };
 }

@@ -1,19 +1,28 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage';
+import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from './rootReducer';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const persistConfig = {
   key: 'root',
+  whitelist: ['AdminLogin'],
   storage,
-}
+};
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default () => {
-  let rootStore = createStore(
+/* eslint-disable no-underscore-dangle */
+  export const store = createStore(
     persistedReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeEnhancers(
+      applyMiddleware(
+        promiseMiddleware()
+      )
+    )
   );
-  let persistor = persistStore(store)
-  return { rootStore, persistor }
-}
+  export const persistor = persistStore(store)
+  export default { store, persistor }
+/* eslint-enable */

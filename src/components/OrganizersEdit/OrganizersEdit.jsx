@@ -59,6 +59,10 @@ export default class OrganizersEdit extends Component {
                 <label htmlFor='password'>Password: </label>
                 <input type="password"  id='password' placeholder='********' onChange={this.handleAdminUpdate} />
             </Field>
+            <Field model='user.admin-password'>
+                <label htmlFor='password'>Password: </label>
+                <input type="password"  id='password' placeholder='********' onChange={this.handleAdminUpdate} />
+            </Field>
                 <div>
                     <button className='btn' id='admin-submit'>Update!</button>
                 </div>

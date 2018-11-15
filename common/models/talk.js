@@ -1,6 +1,5 @@
 'use strict';
 
-const { addAdmin } = require('../../server/utils/addAdmin');
 const { getMeetups } = require('../../server/utils/getMeetups');
 const { talkSubmit } = require('../../server/utils/talkSubmit')
 const { getTalkDetails } = require('../../server/utils/getTalkDetails');
@@ -263,21 +262,21 @@ module.exports = function (Talk) {
 			type: 'array',
 			root: true
 		}
-	})
+	});
 
 	Talk.afterRemote('talkSubmit', function (ctx, modelInstance, next) {
-		const speakerId = ctx.result.speakerId
-		const eventId = ctx.result.eventId
-		const approved = false
-		const pending = true
-		formatTalkForEmail(speakerId, eventId, next)
+		const speakerId = ctx.result.speakerId;
+		const eventId = ctx.result.eventId;
+		const approved = false;
+		const pending = true;
+		formatTalkForEmail(speakerId, eventId)
 			.then((response) => {
 				const speakerName = response.speakerName;
 				const speakerEmail = response.speakerEmail;
 				const meetupTitle = response.meetupTitle;
 				const meetupDate = response.meetupDate;
-				sendEmailToSpeaker('tiana.hayden@me.com', approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
-				next();
+				sendEmailToSpeaker(process.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
+				.then(next);
 			})
 			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
 	});
@@ -293,46 +292,10 @@ module.exports = function (Talk) {
 				const speakerEmail = response.speakerEmail;
 				const meetupTitle = response.meetupTitle;
 				const meetupDate = response.meetupDate;
-				sendEmailToSpeaker('tiana.hayden@me.com', approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
-				next();
+				sendEmailToSpeaker(proccess.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
+				.then(next);
 			})
 			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
 
 	});
-
-
-	Talk.addAdmin = function (newAdminName, newAdminEmail, newAdminPhone, adminTempPw, cb) {
-		addAdmin(newAdminName, newAdminEmail, newAdminPhone, adminTempPw, cb)
-			.then(addAdminToDb => cb(null, addAdminToDb))
-			.catch(err => cb(err))
-	}
-
-	Talk.remoteMethod('addAdminToDb', {
-		description: 'add admin to db',
-		accepts: [{
-			arg: 'newAdminName',
-			type: 'string'
-		},
-		{
-			arg: 'newAdminEmail',
-			type: 'string'
-		},
-		{
-			arg: 'newAdminPhone',
-			type: 'string'
-		},
-		{
-			arg: 'adminTempPw',
-			type: 'string'
-		}],
-		http: {
-			path: '/addAdmin',
-			veb: 'post'
-		},
-		returns: {
-			arg: 'data',
-			type: 'array',
-			root: true
-		}
-	})
 };

@@ -1,7 +1,7 @@
 .admin-banner {
   margin-top: 60px;
   align-items: center;
-  background-image: linear-gradient(180deg, rgba(24, 132, 195, 0.64), rgba(24, 132, 195, 0.64)), url(https://tinyurl.com/ycn372dv);
+  background-image: linear-gradient(180deg, rgba(24, 132, 195, 0.64), rgba(24, 132, 195, 0.64)), url("/pics/background-meetup.png");
   background-size: auto, cover;
   background-repeat: no-repeat;
   color: white;
@@ -139,7 +139,7 @@
 .banner {
   margin-top: 80px;
   align-items: center;
-  background-image: linear-gradient(180deg, rgba(24, 132, 195, 0.64), rgba(24, 132, 195, 0.64)), url(https://tinyurl.com/ycn372dv);
+  background-image: linear-gradient(180deg, rgba(24, 132, 195, 0.64), rgba(24, 132, 195, 0.64)), url("/pics/background-meetup.png");
   background-size: auto, cover;
   background-repeat: no-repeat;
   color: white;

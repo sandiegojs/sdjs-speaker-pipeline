@@ -35,16 +35,15 @@ function getTalkDetails() {
                     }
                   }
                 })
-                .catch(err => ({ error: 'could not find event', err }))
+                .catch(err => reject({ error: 'could not find event', err }))
             })
-            .catch(err => ({ error: 'could not find speaker', err }))
+            .catch(err => reject({ error: 'could not find speaker', err }))
         })
         Promise.all(talkInformation)
           .then(results => resolve(results))
-          .catch(err => ({ error: 'could not return results', err }))
+          .catch(err => reject({ error: 'could not return results', err }))
       })
-      .catch(err => ({ error: 'could not find pending talks', err }))
-      .catch(err => reject(err))
+      .catch(err => reject({ error: 'could not find pending talks', err }))
   })
 }
 

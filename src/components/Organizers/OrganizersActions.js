@@ -19,38 +19,6 @@ export const addAdmin = (realm, newAdminName, newAdminEmail, newAdminPhone, admi
 		})
 	}
 }
-export const adminChangeInput = (id, type, value) => {
-	return {
-		type: 'ADMIN_CHANGE_INPUT',
-		payload: {
-			[type]: value,
-			id: id,
-		}
-	}
-}
-export const adminUpdate = (index) => {
-	return {
-		type: 'ADMIN_UPDATE',
-		payload: index
-	}
-}
-export const editAdmin = (adminId, adminName, adminEmail, adminPhone, accessToken) => {
-	return {
-		type: 'EDIT_ADMIN',
-		payload: axios({ 
-			method: 'patch',
-			url:'api/organizers/:id',
-			data: {
-				id: adminId, 
-				newAdminEmail: adminEmail, 
-				adminPhone: adminPhone 
-			},
-			headers: {
-				Authorization: accessToken
-			}
-		})
-	}
-}
 export const deleteAdmin = (id, accessToken) => {
 	return {
 		type: 'DELETE_ADMIN',
@@ -93,14 +61,6 @@ export const toggleEdit = (index) => {
 		payload: index
 	}
 }
-
-export const updateAdminList = (value) => {
-	return {
-		type: 'UPDATE_ADMIN_LIST',
-		payload: value
-	}
-}
-
 export const patchAdmin = (id, index, jsonObject, accessToken) => {
 	return {
 				type: 'PATCH_ADMIN',

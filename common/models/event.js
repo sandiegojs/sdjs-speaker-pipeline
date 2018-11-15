@@ -1,7 +1,5 @@
 'use strict';
 
-const { getEvents } = require('../../server/utils/getEvents');
-
 module.exports = function(Event) {
 	Event.getEvents = function (cb) {
 		getEvents()

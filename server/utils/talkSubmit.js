@@ -8,29 +8,27 @@ function talkSubmit(speakerInfo, talkInfo, date) {
 			.then(response => {
 				let speakerId = response.id
 				getMeetups()
-					.then(response2 => {
-						const index = response2.findIndex((item) => {
+					.then(meetups => {
+						const index = meetups.findIndex((item) => {
 							return item.date == date
 						})
-						let name = response2[index].name;
-						let details = response2[index].description;
-						let meetupId = response2[index].meetupId;
+						let name = meetups[index].name;
+						let details = meetups[index].description;
+						let meetupId = meetups[index].meetupId;
 						Event.findOrCreate({date, name, details, meetupId})
-							.then(response3 => {
-								let eventId = response3[0].id
-								let ids = { speakerId, eventId };
+							.then(event => {
+								let eventId = event[0].id
 								Talk.create( { ...talkInfo, speakerId, eventId})
-									.then(response4 => {
-										return resolve(response4)
+									.then(talk => {
+										return resolve(talk)
 									})
-									.catch(err => console.log(err))
+									.catch(err => reject(err))
 							})
-							.catch(err => console.log(err))
+							.catch(err => reject(err))
 					})
-					.catch(err => console.log(err))
+					.catch(err => reject(err))
 			})
-			.catch(err => console.log(err))
-
+			.catch(err => reject(err))
 	})
 }
 

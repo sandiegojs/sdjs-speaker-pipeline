@@ -5,7 +5,7 @@ export const getEvents = accessToken => {
 		type: 'GET_EVENTS',
 		payload: axios({
 			method: 'get',
-			url: 'api/events/getEvents',
+			url: 'api/talks/getMeetups',
 			headers: {
 				Authorization: accessToken
 			}

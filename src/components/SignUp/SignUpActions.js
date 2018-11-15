@@ -35,5 +35,5 @@ export const getDates = () => ({
 	.then(response => {
 		return response.data
 	})
-	.catch(err => reject(err))
+	.catch(err => err)
 })

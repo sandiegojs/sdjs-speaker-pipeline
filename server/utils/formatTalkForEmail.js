@@ -18,9 +18,9 @@ function formatTalkForEmail(speakerId, eventId) {
                             meetupDate
                         })
                     })
-                    .catch(({error: 'could not find event', err}))
+                    .catch(err => reject({ error: 'could not find event', err }))
             })
-            .catch(err => ({ error: 'could not find talk', err}))
+            .catch(err => reject({ error: 'could not find talk', err }))
     })
 }
 

@@ -1,21 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import AdminNav from '../AdminNav/AdminNav';
 
-class Home extends Component {
-	constructor(props) {
-		super(props);
-
-		this.handleNewSpeaker = this.handleNewSpeaker.bind(this);
-
-	}
-	handleNewSpeaker() {
-		const { dispatch } = this.props;
-		dispatch(newSpeaker(true));
-	} 
-
-	render() {
+const Home = () => {
 		return (
 			<div>
 				<Navbar />
@@ -24,7 +11,7 @@ class Home extends Component {
 					<h2>Speaker Pipeline</h2>
 					<p>Share your perspective with the San Diego JavaScript community</p>
 					<Link to='/SignUp'>
-						<button className="btn" onClick={this.handleNewSpeaker}>Get Started</button>
+						<button className="btn">Get Started</button>
 					</Link>
 				</div>
 				<div className='info'>
@@ -92,7 +79,6 @@ class Home extends Component {
 				</div>
 			</div>
 		)
-	}
 }
 
 export default Home;

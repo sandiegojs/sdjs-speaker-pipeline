@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Field } from 'react-redux-form';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import {
 	talkSubmit,
@@ -13,8 +12,6 @@ import {
 	updateDescription,
 } from './SignUpActions'
 import Navbar from '../Navbar/Navbar';
-import { push } from 'react-router-redux'
-
 
 class SignUp extends Component {
 	constructor(props) {
@@ -69,9 +66,6 @@ class SignUp extends Component {
 			},
 			date,
 		));
-		dispatch(push('/Thankyou'));
-		
-
 	}
 
 	render() {
@@ -127,5 +121,4 @@ class SignUp extends Component {
 	}
 }
 
-const selector = (state) => ({ user: state.user });
-export default connect(selector)(SignUp);
+export default SignUp;

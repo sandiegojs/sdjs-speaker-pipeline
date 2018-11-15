@@ -1,9 +1,8 @@
-const initialstate = {
+const initialState = {
     talkInfo: [],
-    eventInfo: []
 }
 
-export default function TalksReducer(state = initialstate, action) {
+export default function TalksReducer(state = initialState, action) {
     const { payload, type } = action;
 
     switch (type) {

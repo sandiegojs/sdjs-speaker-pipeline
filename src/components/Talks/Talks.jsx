@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getTalkData, handleSelectStatus, handleSelectOwner, changeTalkStatus, changeTalkOwner, toggleStatusEdit, toggleOwnerEdit, toggleShowMore, deleteTalk, toggleTalkEdit, handleTalkChange, updateTalkInfo } from './TalksActions';
-import AdminNav from '../AdminNav/AdminNav';
-const moment = require('moment');
+import moment from 'moment';
 
 const TableRow = ({ data, children }) => {
   return <td>
