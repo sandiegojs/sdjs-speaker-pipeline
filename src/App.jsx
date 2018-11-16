@@ -9,7 +9,7 @@ import AdminLogin from './components/AdminLogin';
 import TalksPage  from './components/TalksPage/TalksPage';
 import Organizers from './components/Organizers';
 import SignUp     from './components/SignUp';
-import Thankyou   from './components/Thankyou/Thankyou'
+import Thankyou   from './components/Thankyou'
 
 class App extends Component {
     render() {

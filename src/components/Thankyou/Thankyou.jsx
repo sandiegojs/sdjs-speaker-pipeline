@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
+import { resetSubmitted } from '../SignUp/SignUpActions'
 
-const Thankyou = () => {
-	return (
-		<div>
-			<Navbar />
-			<div style={{ marginTop: '200px', textAlign: 'center' }}>
-				Thank you! Your submission has been recieved and we will be in contact shortly.
+class Thankyou extends Component{
+	constructor(props){
+		super(props)
+	}
+
+	componentDidMount(){
+		const { dispatch } = this.props;
+		dispatch(resetSubmitted())
+	}
+
+
+	render(){
+		return (
+			<div>
+				<Navbar />
+				<div style={{ marginTop: '200px', textAlign: 'center' }}>
+					Thank you! Your submission has been recieved and we will be in contact shortly.
+				</div>
 			</div>
-		</div>
-	)
+		)
+	}
 }
 export default Thankyou;

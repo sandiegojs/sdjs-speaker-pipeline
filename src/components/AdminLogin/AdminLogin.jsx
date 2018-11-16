@@ -30,7 +30,7 @@ class AdminLogin extends Component {
 
 	render() {
 		const { username, password, token} = this.props;
-		if (token) return <Redirect push to= '/Admin/Meetups' />
+		//if (token) return <Redirect push to= '/Admin/Meetups' />
 		return (
 			<div>
 				<Navbar />

@@ -37,3 +37,6 @@ export const getDates = () => ({
 	})
 	.catch(err => err)
 })
+export const resetSubmitted = () => ({
+	type: 'RESET_SUBMITTED'
+})
