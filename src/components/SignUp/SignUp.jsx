@@ -80,15 +80,15 @@ class SignUp extends Component {
 						<div className='form-container'>
 							<form onSubmit={this.submitSpeaker}>
 								<h3>Speaker Registration</h3>
-								<Field model='user.name'>
+								<Field model='speakerName'>
 									<label htmlFor='speaker-name'>Name: </label>
 									<input name='speakerName' placeholder='John Smith' id='speaker-firstname' value={speakerName} type='text'  onChange={this.handleSpeakerName} required />
 								</Field >
-								<Field model='user.speaker-email'>
+								<Field model='speakerEmail'>
 									<label htmlFor='speaker-email'>Email: </label>
 									<input type="email" placeholder='iamJohnSmith@email.com' name="speakerEmail" value={speakerEmail} required onChange={this.handleEmail} />
 								</Field>
-								<Field model='user.phone'>
+								<Field model='phone'>
 									<label htmlFor='speaker-phone'>Phone Number: </label>
 									<input type="tel" name="phone" placeholder='123-456-7890' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3')}format="### ### ####" onChange={this.handlePhone} />
 								</Field>
@@ -101,11 +101,11 @@ class SignUp extends Component {
 										))}
 									</select>
 								</div>
-								<Field model='user.topic'>
+								<Field model='topic'>
 									<label htmlFor='topic'>Topic:</label>
 									<input name='topic' id='topic' type='text' required onChange={this.handleTopic} />
 								</Field>
-								<Field model='user.description'>
+								<Field model='description'>
 									<label htmlFor='description'>Description: </label>
 									<textarea name='description' id='description' type='text' required onChange={this.handleDescription} />
 								</Field>

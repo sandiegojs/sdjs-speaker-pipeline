@@ -1,17 +1,16 @@
-const axios = require('axios');
+import axios from 'axios';
 
-export const addAdmin = (realm, newAdminName, newAdminEmail, newAdminPhone, adminTempPw, accessToken) => {
+export const addAdmin = (newAdminName, newAdminEmail, newAdminPhone, newAdminPassword, accessToken) => {
 	return {
 		type: 'ADD_ADMIN',
 		payload: axios({
 			method: 'post',
 			url: 'api/organizers',
 			data: {
-				realm: realm, 
 				username: newAdminName, 
 				email: newAdminEmail, 
 				phone: newAdminPhone, 
-				password: adminTempPw 
+				password: newAdminPassword 
 			},
 			headers: {
 				Authorization: accessToken
@@ -43,7 +42,7 @@ export const getAdmins = (accessToken) => {
 			}
 		})
 			.then(response => {
-				return response.data.map(admin => Object.assign({}, admin, { isEditing: false }))
+				return response.data.map(admin => ({...admin, isEditing: false}))
 			})
 	}
 }

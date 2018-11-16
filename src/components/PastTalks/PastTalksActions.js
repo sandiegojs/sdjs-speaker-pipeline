@@ -1,4 +1,4 @@
-const axios = require('axios')
+import axios from 'axios';
 
 export const getPastTalks = (accessToken) => ({
 	type: 'GET_PAST_TALKS',

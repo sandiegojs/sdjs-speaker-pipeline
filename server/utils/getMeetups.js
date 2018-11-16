@@ -17,8 +17,8 @@ function getMeetups() {
 					description: event.description,
 				})));
 			})
-			.catch(err => console.log({ error: 'could not get SDJS meetups', err, data: err.response.data.errors }))
-			.catch(err => console.log({ error: 'there was an issue with the request', err }))
+			.catch(err => reject({ error: 'could not get SDJS meetups', err, data: err.response.data.errors }))
+			.catch(err => reject({ error: 'there was an issue with the request', err }))
 	})
 }
 

@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 export const talkSubmit = (speakerInfo, talkInfo, date) => ({
 	type: 'TALK_SUBMIT',

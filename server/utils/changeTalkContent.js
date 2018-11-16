@@ -19,7 +19,6 @@ function changeTalkContent(talkId, newTopic, newDescription, newAdminNotes) {
 				Talk.replaceOrCreate(newTalk)
 					.then(() => resolve(newTalk))
 					.catch(err => reject(err));
-				return resolve(newTalk)
 			})
 			.catch(err => reject({ error: 'Could not find talk', err }))
 	})

@@ -23,8 +23,8 @@ class Organizers extends Component {
 
     addAdmin(e) {
         e.preventDefault();
-        const { newAdminName, newAdminEmail, newAdminPhone, dispatch, accessToken } = this.props;
-        dispatch(addAdmin(newAdminName, newAdminEmail, newAdminPhone, adminTempPw, accessToken));
+        const { newAdminName, newAdminEmail, newAdminPhone, newAdminPassword, dispatch, accessToken } = this.props;
+        dispatch(addAdmin(newAdminName, newAdminEmail, newAdminPhone, newAdminPassword, accessToken));
     }
     componentDidMount() {
         const { dispatch, accessToken } = this.props;

@@ -276,9 +276,10 @@ module.exports = function (Talk) {
 				const meetupTitle = response.meetupTitle;
 				const meetupDate = response.meetupDate;
 				sendEmailToSpeaker(process.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
-				.then(next);
+				.then(() => next())
+				.catch(err => next(new Error(err.message)));
 			})
-			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
+			.catch(() => next(new Error( 'error with formatTalkForEmail function' )));
 	});
 
 	Talk.afterRemote('changeTalkStatus', function (ctx, modelInstance, next) {
@@ -293,9 +294,10 @@ module.exports = function (Talk) {
 				const meetupTitle = response.meetupTitle;
 				const meetupDate = response.meetupDate;
 				sendEmailToSpeaker(proccess.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
-				.then(next);
+				.then(() => next())
+				.catch(err => next(new Error(err.message)))
 			})
-			.catch(err => ({ error: 'error with formatTalkForEmail function', err }))
+			.catch(() => next(new Error( 'error with formatTalkForEmail function' )));
 
 	});
 };

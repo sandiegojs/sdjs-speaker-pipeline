@@ -1,5 +1,5 @@
 const initialstate = {
-    
+    eventInfo: []
 }
 
 export default function MeetupsReducer(state = initialstate, action) {

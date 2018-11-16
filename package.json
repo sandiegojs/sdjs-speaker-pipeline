@@ -7,9 +7,10 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "dev": "webpack --mode development",
     "build": "webpack --p",
     "sass": "sass --watch src/css/style.scss public/style.css",
-    "start": "npm run build && node .",
+    "start": "npm run dev && node .",
     "test": "mocha --require ignore-styles test/**/**.spec.js --exit"
   },
   "dependencies": {

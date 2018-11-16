@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 export const getEvents = accessToken => {
 	return {
@@ -13,6 +13,6 @@ export const getEvents = accessToken => {
 			.then(response => {
 				return response.data
 			})
-			.catch(err => reject(err))
+			.catch(err => err)
 	}
 }

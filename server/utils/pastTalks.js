@@ -34,14 +34,14 @@ function pastTalks(){
                                                 resolve(mappedTalks);
                                             }
                                         })
-                                        .catch(err => console.log(err))
+                                        .catch(err => reject(err))
                                 })
-                                .catch(err => console.log(err));
+                                .catch(err => reject(err));
                         })
-                        .catch(err => console.log(err))
+                        .catch(err => reject(err))
                 })
             })
-            .catch(err => console.log(err))
+            .catch(err => reject(err))
     })
 }
 

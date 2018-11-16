@@ -11,8 +11,6 @@ function mapStoreToProps(store){
       speakerName   : store.SignUp.speakerName,
       submitted     : store.SignUp.submitted,
       topic         : store.SignUp.talkTopic,
-      user          : store.user,
-        
     };
 }
 
