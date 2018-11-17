@@ -2,6 +2,15 @@ const app = require('../server');
 
 function changeTalkOwner(talkId, selectedOwner) {
 	return new Promise((resolve, reject) => {
+		if (talkId == undefined) {
+            reject({ message: 'Bad Talk Id' });
+            return false;
+        }
+
+        if (selectedStatus == undefined) {
+            reject({ message: 'No Status Selected' });
+            return false;
+        }
 		const { Talk } = app.models;
 		Talk.findById(talkId)
 			.then((talk) => {

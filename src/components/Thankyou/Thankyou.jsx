@@ -17,7 +17,7 @@ class Thankyou extends Component{
 		return (
 			<div>
 				<Navbar />
-				<div style={{ marginTop: '200px', textAlign: 'center' }}>
+				<div id='thanks' style={{ marginTop: '200px', textAlign: 'center' }}>
 					Thank you! Your submission has been recieved and we will be in contact shortly.
 				</div>
 			</div>

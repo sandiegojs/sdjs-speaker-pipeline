@@ -65,11 +65,11 @@ class Organizers extends Component {
                         <h3 className='add-admin-title'>Add Other Admins Contact Info</h3>
                         <Field model='user.name'>
                             <label htmlFor='admin-name'>Name: </label>
-                            <input name='newAdminName' placeholder='John Smith' type='text' value={newAdminName} onChange={this.handleChange} required />
+                            <input name='newAdminName' id='newAdminName' placeholder='John Smith' type='text' value={newAdminName} onChange={this.handleChange} required />
                         </Field >
                         <Field model='user.admin-email'>
                             <label htmlFor='admin-email'>Email: </label>
-                            <input type="email" placeholder='iamJohnSmith@email.com' name="newAdminEmail" value={newAdminEmail} required onChange={this.handleChange} />
+                            <input type="email" placeholder='iamJohnSmith@email.com' id="newAdminEmail" name="newAdminEmail" value={newAdminEmail} required onChange={this.handleChange} />
                         </Field>
                         <Field model='user.admin-phone'>
                             <label htmlFor='admin-phone'>Phone Number: </label>
@@ -77,10 +77,10 @@ class Organizers extends Component {
                         </Field>
                         <Field model='user.admin-password'>
                             <label htmlFor='admin-password'>Password: </label>
-                            <input type="password" name="newAdminPassword" placeholder='********'  required value={newAdminPassword} onChange={this.handleChange} />
+                            <input type="password" id="newAdminPassword" name="newAdminPassword" placeholder='********'  required value={newAdminPassword} onChange={this.handleChange} />
                         </Field>
                         <div>
-                            <button className='btn'>Submit!</button>
+                            <button id='btn' className='btn'>Submit!</button>
                         </div>
                     </form>
                 </div>

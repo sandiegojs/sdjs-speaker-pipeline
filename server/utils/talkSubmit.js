@@ -24,13 +24,13 @@ function talkSubmit(speakerInfo, talkInfo, date) {
 										console.log('talks: ', talk)
 										return resolve(talk)
 									})
-									.catch(err => reject(err))
+									.catch(err => console.log(err))
 							})
-							.catch(err => reject(err))
+							.catch(err => console.log(err))
 					})
-					.catch(err => reject(err))
+					.catch(err => console.log(err))
 			})
-			.catch(err => reject(err))
+			.catch(err => console.log(err))
 	})
 }
 

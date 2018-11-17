@@ -40,10 +40,10 @@ class AdminLogin extends Component {
 							<h3>SDJS Admin Login</h3>
 							<div className="container">
 								<label htmlFor="username"><b>Username</b></label>
-								<input type="text" placeholder="Username" name="username" value={username} onChange={this.handleUsername} required/>
+								<input type="text" placeholder="Username" id='username' name="username" value={username} onChange={this.handleUsername} required/>
 								<label htmlFor="password"><b>Password</b></label>
-								<input type="password" placeholder="Password" name="password" value={password} onChange={this.handlePassword} required/>
-								<button type="submit" className='btn'>Login</button>
+								<input type="password" placeholder="Password" id='password' name="password" value={password} onChange={this.handlePassword} required/>
+								<button type="submit" id='submit' className='btn'>Login</button>
 								<label id='remember'>
 									<input type="checkbox" name="remember"/> Remember me
 								</label>
