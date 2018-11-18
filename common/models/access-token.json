@@ -1,21 +1,22 @@
 {
-  "name": "organizer",
-  "plural": "organizers",
-  "base": "User",
-  "idInjection": true,
+  "name": "accessToken",
+  "base": "AccessToken",
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {},
   "validations": [],
   "relations": {
-    "accessTokens": {
-      "type": "hasMany",
-      "model": "accessToken",
-      "foreignKey": "userId",
-      "options": {
-        "disableInclude": true
-      }
+    "organizer": {
+      "type": "belongsTo",
+      "model": "organizer",
+      "foreignKey": "userId"
+    },
+    "speaker": {
+      "type": "belongsTo",
+      "model": "speaker",
+      "foreignKey": "userId"
     }
   },
   "acls": [
