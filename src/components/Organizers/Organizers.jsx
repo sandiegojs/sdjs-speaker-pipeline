@@ -40,7 +40,7 @@ class Organizers extends Component {
 
     handleDelete(e) {
         const { dispatch, accessToken } = this.props;
-        dispatch(deleteAdmin(e.target.name, accessToken))
+        dispatch(deleteAdmin(e.target.getAttribute('name'), accessToken))
     }
     handleUpdate(id, index, obj) {
         const { dispatch, accessToken } = this.props;
@@ -50,7 +50,7 @@ class Organizers extends Component {
     toggleEdit(e) {
         const { adminList, dispatch } = this.props;
         const index = adminList.findIndex(admin => {
-            return admin.id == e.target.name
+            return admin.id == e.target.getAttribute('name')
         })
         dispatch(toggleEdit(index));
     }
@@ -60,73 +60,67 @@ class Organizers extends Component {
         if (!authorized) return <Redirect push to= '/Admin/Login' />
         return (
 
-            <div>
+            <div className='top-div'>
                 < AdminNav />
-                <div className='form-container'>
-                    <form onSubmit={this.addAdmin}>
+                <div className='organizer-container'>
+                    <div className='organizer-container-child'>
+                        <h1>Organizers</h1>
                         <h3 className='add-admin-title'>Add Other Admins Contact Info</h3>
-                        <Field model='user.name'>
-                            <label htmlFor='admin-name'>Name: </label>
-                            <input name='newAdminName' id='newAdminName' placeholder='John Smith' type='text' value={newAdminName} onChange={this.handleChange} required />
-                        </Field >
-                        <Field model='user.admin-email'>
-                            <label htmlFor='admin-email'>Email: </label>
-                            <input type="email" placeholder='iamJohnSmith@email.com' id="newAdminEmail" name="newAdminEmail" value={newAdminEmail} required onChange={this.handleChange} />
-                        </Field>
-                        <Field model='user.admin-phone'>
-                            <label htmlFor='admin-phone'>Phone Number: </label>
-                            <input type="tel" name="newAdminPhone" placeholder='123-456-7890'  required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={newAdminPhone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} format="### ### ####" onChange={this.handleChange} />
-                        </Field>
-                        <Field model='user.admin-password'>
-                            <label htmlFor='admin-password'>Password: </label>
-                            <input type="password" id="newAdminPassword" name="newAdminPassword" placeholder='********'  required value={newAdminPassword} onChange={this.handleChange} />
-                        </Field>
-                        <div>
-                            <button id='btn' className='btn'>Submit!</button>
-                        </div>
-                    </form>
-                </div>
+                        <form id='organizer-form' onSubmit={this.addAdmin}>
+                            <Field model='user.name'>
+                                <label htmlFor='admin-name'>Name: </label>
+                                <input name='newAdminName' placeholder='John Smith' type='text' value={newAdminName} onChange={this.handleChange} required />
+                            </Field >
+                            <Field model='user.admin-email'>
+                                <label htmlFor='admin-email'>Email: </label>
+                                <input type="email" placeholder='iamJohnSmith@email.com' name="newAdminEmail" value={newAdminEmail} required onChange={this.handleChange} />
+                            </Field>
+                            <Field model='user.admin-phone'>
+                                <label htmlFor='admin-phone'>Phone Number: </label>
+                                <input type="tel" name="newAdminPhone" placeholder='123-456-7890' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={newAdminPhone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} format="### ### ####" onChange={this.handleChange} />
+                            </Field>
+                            <div>
+                                <button className='btn'>Submit!</button>
+                            </div>
+                        </form>
+                    </div>
 
 
 
+                    <div className='organizer-edit-admins'>
+                    <h3>Current Organizers</h3>
+                        <div className='organizer-display-container'>
+                            {adminList && adminList.map((admin, index) => {
 
-                <div>
-                    {adminList && adminList.map((admin, index) => {
-
-                        if (admin.isEditing) {
-                            return (
-                                <OrganizersEdit key={admin.id} index={index} admin={admin} id={admin.id} onSubmit={this.handleUpdate} toggleEdit={this.toggleEdit}/>
-                            )
-                        }
-                        return (
-                            <div key={admin.id}>
-                                <div >
-                                    <div className='admin-map-content'>
-                                        <div> {admin.username}</div>
-                                        <div> {admin.email}</div>
-                                        <div> {admin.phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')}</div>
+                                if (admin.isEditing) {
+                                    return (
+                                        <OrganizersEdit key={admin.id} index={index} admin={admin} id={admin.id} onSubmit={this.handleUpdate} toggleEdit={this.toggleEdit} />
+                                    )
+                                }
+                                return (
+                                    <div key={admin.id}>
                                         <div >
-                                            <img
-                                                name={admin.id}
-                                                className="edit-icon"
-                                                onClick={this.toggleEdit}
-                                                src={`/pics/edit-icon.png`}
-                                            />
-                                            <img
-                                                name={admin.id}
-                                                className="trash-icon"
-                                                onClick={this.handleDelete}
-                                                src={`/pics/trash-icon.png`}
-                                            />
+                                            <div className='organizer-display-section'>
+                                                <div className='organizer-display-div' id='name'> {admin.username}</div>
+                                                <div className='organizer-display-div'> {admin.email}</div>
+                                                <div className='organizer-display-div'> {admin.phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')}</div>
+                                                <div >
+                                                    <i className="far fa-edit"
+                                                        name={admin.id}
+                                                        onClick={this.toggleEdit}></i>
+                                                    <i className="fas fa-trash-alt"
+                                                        name={admin.id}
+                                                        onClick={this.handleDelete}></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        )
-                    })}
+                                )
+                            })}
+                        </div>
+                    </div>
                 </div>
             </div>
-    
         )
     }
 }

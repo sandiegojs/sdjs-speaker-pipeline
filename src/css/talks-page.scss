@@ -39,6 +39,18 @@
             margin-bottom: 50px;
         }
 
+        .talks-owner-filter {
+            text-align: right;
+
+            select {
+                height: 30px;
+                margin-left: 5px;
+                border: 0px;
+                background-color: transparent;
+                font-size: 15px;
+            }
+        }
+
     }
 
 

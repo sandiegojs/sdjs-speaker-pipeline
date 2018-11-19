@@ -82,15 +82,15 @@ class SignUp extends Component {
 								<h3>Speaker Registration</h3>
 								<Field model='speakerName'>
 									<label htmlFor='speaker-name'>Name: </label>
-									<input name='speakerName' placeholder='John Smith' id='speakerName' value={speakerName} type='text'  onChange={this.handleSpeakerName} required />
+									<input name='speakerName' id='speakerName' value={speakerName} type='text'  onChange={this.handleSpeakerName} required />
 								</Field >
 								<Field model='speakerEmail'>
 									<label htmlFor='speaker-email'>Email: </label>
-									<input type="email" placeholder='iamJohnSmith@email.com'  id="speakerEmail" name="speakerEmail" value={speakerEmail} required onChange={this.handleEmail} />
+									<input type="email" id="speakerEmail" name="speakerEmail" value={speakerEmail} required onChange={this.handleEmail} />
 								</Field>
 								<Field model='phone'>
 									<label htmlFor='speaker-phone'>Phone Number: </label>
-									<input type="tel" name="phone" id='speakerPhone' placeholder='123-456-7890' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3')}format="### ### ####" onChange={this.handlePhone} />
+									<input type="tel" name="phone" id='speakerPhone' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3')}format="### ### ####" onChange={this.handlePhone} />
 								</Field>
 								<div>
 									<label htmlFor='event-date'>Date Requested: </label>

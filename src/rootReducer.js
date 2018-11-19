@@ -4,6 +4,7 @@ import MeetupsReducer          from './components/Meetups/MeetupsReducer'
 import OrganizersReducer       from './components/Organizers/OrganizersReducer';
 import SignUpReducer           from './components/SignUp/SignUpReducer';
 import TalksReducer            from './components/Talks/TalksReducer';
+import TalksPageReducer        from './components/TalksPage/TalksPageReducer';
 import PastTalksReducer        from './components/PastTalks/PastTalksReducer';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     Organizers       : OrganizersReducer,
     SignUp           : SignUpReducer,
     Talks            : TalksReducer, 
+    TalksPage        : TalksPageReducer, 
     PastTalks        : PastTalksReducer,
 });
 

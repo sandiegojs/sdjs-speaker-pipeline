@@ -8,12 +8,12 @@
         font-size: 15px;
         border: 1px solid #efefef;
         text-transform: capitalize;
-        background-color: white;
+        background-color: $off-white;
     }
 
     td {
         padding: 20px;
-        background-color: white;
+        background-color: $off-white;
     }
 
     select {
@@ -93,12 +93,6 @@
         i {
             margin-left: 10px;
         }
-    }
-
-    .table-header-meetups-page {
-        font-size: 15px;
-        margin: 0;
-        border-bottom: 1px solid black;
     }
 
     .table-editTalk {

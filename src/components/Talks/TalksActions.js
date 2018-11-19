@@ -12,12 +12,22 @@ export const getTalkData = accessToken => {
         })
         //filter by date order try this one second
             .then(talkInfo => {
-                const talkIds = talkInfo.data.map(talk => talk.talkId)
-                return {
-                    talkInfo: talkInfo.data,
-                    talkIds: talkIds
-                }
+                return axios({
+                    method: 'get',
+                    url: 'api/organizers',
+                    headers: {
+                        Authorization: accessToken
+                    }
+                })
+                    .then((organizers) => {
+                        return {
+                            talkInfo: talkInfo.data,
+                            organizers: organizers.data
+                        }
+                    })
+                    .catch(err => reject({ error: 'could not get organizers', err}))
             })
+            .catch(err => reject({ error: 'could not get talkInfo', err}))
     }
 }
 
@@ -138,7 +148,7 @@ export const deleteTalk = (talkId, accessToken) => {
                 Authorization: accessToken
             }
         })
-        .then(() => talkId)
+            .then(() => talkId)
     }
 }
 
@@ -167,14 +177,14 @@ export const updateTalkInfo = (talkId, newTopic, newDescription, newAdminNotes, 
                 newTopic,
                 newDescription,
                 newAdminNotes
-              }
+            }
         })
-          .then((updatedTalk) => {
-              return {
-                data: updatedTalk.data,
-                toggle: !toggle
-              }
-          })
+            .then((updatedTalk) => {
+                return {
+                    data: updatedTalk.data,
+                    toggle: !toggle
+                }
+            })
     }
 }
 

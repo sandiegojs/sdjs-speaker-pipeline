@@ -21,7 +21,7 @@ export default class OrganizersEdit extends Component {
 
         let jsonObject = {};
 
-        for(let property in this.state) {
+        for (let property in this.state) {
             if (this.state[property] && property !== 'id') {
                 jsonObject[property] = this.state[property];
             }
@@ -31,7 +31,7 @@ export default class OrganizersEdit extends Component {
             return this.props.toggleEdit();
         }
 
-        this.props.onSubmit(this.state.id, this.props.index, jsonObject); 
+        this.props.onSubmit(this.state.id, this.props.index, jsonObject);
     }
 
     handleAdminUpdate(e) {
@@ -39,34 +39,29 @@ export default class OrganizersEdit extends Component {
     }
 
     render() {
-        const { admin }  = this.props;
+        const { admin, toggleEdit } = this.props;
         return (
-        <div>
-            <form onSubmit={this.handleUpdate} className='admin-map-content'>
-            <Field model='user.name'>
-                <label htmlFor='username'>Name: </label>
-                <input id='username'  type='text'  placeholder={admin.username} onChange={this.handleAdminUpdate} />
-            </Field >
-            <Field model='user.admin-email'>
-                <label htmlFor='email'>Email: </label>
-                <input type="email" id='email' placeholder={admin.email} onChange={this.handleAdminUpdate} />
-            </Field >
-            <Field model='user.admin-phone'>
-                <label htmlFor='phone'>Phone Number: </label>
-                <input type="tel" id='phone' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder={admin.phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} value={this.state.phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} format="### ### ####" onChange={this.handleAdminUpdate} />
-            </Field >
-            <Field model='user.admin-password'>
-                <label htmlFor='password'>Password: </label>
-                <input type="password"  id='password' placeholder='********' onChange={this.handleAdminUpdate} />
-            </Field>
-            <Field model='user.admin-password'>
-                <label htmlFor='password'>Password: </label>
-                <input type="password"  id='password' placeholder='********' onChange={this.handleAdminUpdate} />
-            </Field>
-                <div>
-                    <button className='btn' id='admin-submit'>Update!</button>
-                </div>
-            </form>
-        </div>)
+            <div className='organizer-edit-section'>
+                <form id='organizer-edit-form' onSubmit={this.handleUpdate}>
+                    <i className="fas fa-times" name={admin.id} onClick={toggleEdit}></i>
+                    <Field model='user.name'>
+                        <label htmlFor='username'>Name: </label>
+                        <input id='username' type='text' value={admin.username} onChange={this.handleAdminUpdate} />
+                    </Field >
+                    <Field model='user.admin-email'>
+                        <label htmlFor='email'>Email: </label>
+                        <input type="email" id='email' value={admin.email} onChange={this.handleAdminUpdate} />
+                    </Field >
+                    <Field model='user.admin-phone'>
+                        <label htmlFor='phone'>Phone: </label>
+                        <input type="tel" id='phone' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder={admin.phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} value={this.state.phone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} format="### ### ####" onChange={this.handleAdminUpdate} />
+                    </Field >
+                    <Field model='user.admin-password'>
+                        <label htmlFor='password'>Password: </label>
+                        <input type="password" id='password' placeholder='********' onChange={this.handleAdminUpdate} />
+                    </Field>
+                    <button className='btn' id='admin-submit'>Save</button>
+                </form>
+            </div>)
     }
 }

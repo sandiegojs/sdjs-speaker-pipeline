@@ -3,12 +3,12 @@ import { Redirect } from 'react-router';
 import { getTalkData, handleSelectStatus, handleSelectOwner, changeTalkStatus, changeTalkOwner, toggleStatusEdit, toggleOwnerEdit, toggleShowMore, deleteTalk, toggleTalkEdit, handleTalkChange, updateTalkInfo } from './TalksActions';
 import moment from 'moment';
 
-const TableRow = ({ data, children }) => {
-  return <td>
+const TableRow = ({ data, children, mapKey }) => {
+  return <td key={mapKey}>
     {children
       ? children
-      : Object.keys(data).map(key =>
-        <div className={`table-${key}`}>{data[key]}</div>
+      : Object.keys(data).map((objKey, i) =>
+        <div key={i} className={`table-${objKey}`}>{data[objKey]}</div>
       )
     }
   </td>
@@ -151,7 +151,7 @@ class Talks extends Component {
   }
 
   render() {
-    const { talkInfo, authorized } = this.props;
+    const { talkInfo, authorized, organizers } = this.props;
 
     if (!authorized) return <Redirect push to= '/Admin/Login' />
 
@@ -175,109 +175,112 @@ class Talks extends Component {
       return (
         <div>
           <table className='table'>
-            <tr className={styling}>
+            <thead>
+              <tr className={styling}>
+                {
+                  headers.map((header, i) => (
+                    <th key={i}>{header}</th>
+                  ))}
+              </tr>
+            </thead>
+            <tbody>
               {
-                headers.map(header => (
-                  <th>{header}</th>
-                ))}
-            </tr>
-            {
-              talks.map((talk, i) =>
-                <tr key={i}>
-                  {
-                    headers.map(column => {
-                      switch (column) {
-                        case 'Speaker':
-                          return <TableRow data={{
-                            speaker: talk.speaker,
-                            speakerEmail: <a href={`mailto:${talk.speakerEmail}`} target="_top"><i className="far fa-envelope"></i>Send Email</a>,
-                            speakerPhone: <div><i className="fas fa-phone"></i>{talk.speakerPhone}</div>
-                          }} />
-                        case 'Talk':
-                          return <TableRow>
-                            <div className='options'>
-                              {talk.toggleShowMore ?
-                                <div>
-                                  {talk.topic}
-                                  <ShowMore
-                                    topic={talk.topic}
-                                    description={talk.description}
-                                    adminNotes={talk.adminNotes}
+                talks.map((talk, i) =>
+                  <tr key={i}>
+                    {
+                      headers.map((column) => {
+                        switch (column) {
+                          case 'Speaker':
+                            return <TableRow mapKey={i} 
+                            data={{
+                              speaker: talk.speaker,
+                              speakerEmail: <a href={`mailto:${talk.speakerEmail}`} target="_top"><i className="far fa-envelope"></i>Send Email</a>,
+                              speakerPhone: <div><i className="fas fa-phone"></i>{talk.speakerPhone}</div>
+                            }} />
+                          case 'Talk':
+                            return <TableRow>
+                              <div key={i} className='options'>
+                                {talk.toggleShowMore ?
+                                  <div>
+                                    {talk.topic}
+                                    <ShowMore
+                                      topic={talk.topic}
+                                      description={talk.description}
+                                      adminNotes={talk.adminNotes}
+                                      talkId={talk.talkId}
+                                      toggleShowMoreFunction={this.toggleShowMore}
+                                      deleteTalk={this.deleteTalk}
+                                      toggleTalkEditFunction={this.toggleTalkEdit}
+                                      toggleTalkEditProp={talk.toggleTalkEdit}
+                                      handleTalkChange={this.handleTalkChange}
+                                      updateTalkInfo={this.updateTalkInfo}
+                                    />
+                                  </div>
+                                  :
+                                  <div>
+                                    {talk.topic}
+                                    <div className='table-eventDate'>
+                                      <i className="fas fa-chevron-down" name={talk.talkId} value={talk.toggleShowMore} onClick={this.toggleShowMore}></i></div>
+                                  </div>
+                                }
+                              </div>
+                            </TableRow>
+                          case 'Event':
+                            return <TableRow mapKey={i} data={{ eventName: talk.eventName, eventDate: moment(talk.eventDate).add(1, 'day').format('YYYY-MM-DD') }} />
+                          case 'Status':
+                            return <TableRow>
+                              <div key={i} className='options'>
+                                {talk.toggleStatusEdit ?
+                                  <EditOptions
                                     talkId={talk.talkId}
-                                    toggleShowMoreFunction={this.toggleShowMore}
-                                    deleteTalk={this.deleteTalk}
-                                    toggleTalkEditFunction={this.toggleTalkEdit}
-                                    toggleTalkEditProp={talk.toggleTalkEdit}
-                                    handleTalkChange={this.handleTalkChange}
-                                    updateTalkInfo={this.updateTalkInfo}
-                                  />
-                                </div>
-                                :
-                                <div>
-                                  {talk.topic}
-                                  <div className='table-eventDate'>
-                                    <i className="fas fa-chevron-down" name={talk.talkId} value={talk.toggleShowMore} onClick={this.toggleShowMore}></i></div>
-                                </div>
-                              }
-                            </div>
-                          </TableRow>
-                        case 'Event':
-                          return <TableRow data={{ eventName: talk.eventName, eventDate: moment(talk.eventDate).add(1, 'day').format('YYYY-MM-DD') }} />
-                        case 'Status':
-                          return <TableRow>
-                            <div className='options'>
-                              {talk.toggleStatusEdit ?
-                                <EditOptions
-                                  talkId={talk.talkId}
-                                  handleSelect={this.handleSelectStatus}
-                                  handleSubmit={this.handleSubmitStatus}
-                                  toggleEditFunction={this.toggleStatusEdit}
-                                  toggleEditProp={talk.toggleStatusEdit}
-                                  name={'Status'}>
-                                  <option value='In Contact'>In Contact</option>
-                                  <option value='Approve'>Approve</option>
-                                  <option value='Deny'>Deny</option>
-                                  <option value='Disengaged'>Disengaged</option>
-                                </EditOptions>
-                                :
-                                <div>
-                                  {talk.currentStatus}
-                                  <i className="far fa-edit" name={talk.talkId} value={talk.toggleStatusEdit} onClick={this.toggleStatusEdit}></i>
-                                </div>
-                              }
-                            </div>
-                          </TableRow>
-                        case 'Owner':
-                          return <TableRow>
-                            <div className='options'>
-                              {talk.toggleOwnerEdit ?
-                                <EditOptions
-                                  talkId={talk.talkId}
-                                  handleSelect={this.handleSelectOwner}
-                                  handleSubmit={this.handleSubmitOwner}
-                                  toggleEditFunction={this.toggleOwnerEdit}
-                                  toggleEditProp={talk.toggleOwnerEdit}
-                                  name={'Owner'}
-                                >
-                                  <option value='Owner 1'>Owner 1</option>
-                                  <option value='Owner 2'>Owner 2</option>
-                                  <option value='Owner 3'>Owner 3</option>
-                                </EditOptions>
-                                :
-                                <div>
-                                  {talk.owner}
-                                  <i className="far fa-edit" name={talk.talkId} value={talk.toggleOwnerEdit} onClick={this.toggleOwnerEdit}></i>
-                                </div>
-                              }
-                            </div>
-                          </TableRow>
-                        default:
-                          return null;
-                      }
-                    })
-                  }
-                </tr>)
-            }
+                                    handleSelect={this.handleSelectStatus}
+                                    handleSubmit={this.handleSubmitStatus}
+                                    toggleEditFunction={this.toggleStatusEdit}
+                                    toggleEditProp={talk.toggleStatusEdit}
+                                    name={'Status'}>
+                                    <option value='In Contact'>In Contact</option>
+                                    <option value='Approve'>Approve</option>
+                                    <option value='Deny'>Deny</option>
+                                    <option value='Disengaged'>Disengaged</option>
+                                  </EditOptions>
+                                  :
+                                  <div>
+                                    {talk.currentStatus}
+                                    <i className="far fa-edit" name={talk.talkId} value={talk.toggleStatusEdit} onClick={this.toggleStatusEdit}></i>
+                                  </div>
+                                }
+                              </div>
+                            </TableRow>
+                          case 'Owner':
+                            return <TableRow>
+                              <div key={i} className='options'>
+                                {talk.toggleOwnerEdit ?
+                                  <EditOptions
+                                    talkId={talk.talkId}
+                                    handleSelect={this.handleSelectOwner}
+                                    handleSubmit={this.handleSubmitOwner}
+                                    toggleEditFunction={this.toggleOwnerEdit}
+                                    toggleEditProp={talk.toggleOwnerEdit}
+                                    name={'Owner'}
+                                  >
+                                    {organizers.map((organizer, i) => <option key={i} value={organizer.username}>{organizer.username}</option>)}
+                                  </EditOptions>
+                                  :
+                                  <div>
+                                    {talk.owner}
+                                    <i className="far fa-edit" name={talk.talkId} value={talk.toggleOwnerEdit} onClick={this.toggleOwnerEdit}></i>
+                                  </div>
+                                }
+                              </div>
+                            </TableRow>
+                          default:
+                            return null;
+                        }
+                      })
+                    }
+                  </tr>)
+              }
+            </tbody>
           </table>
         </div>
       )
@@ -285,13 +288,19 @@ class Talks extends Component {
     else {
       return (
         <table className='table'>
-          <tr className={styling}>
-            {
-              headers.map(header => (
-                <th>{header}</th>
-              ))}
-          </tr>
-          <td colspan={headers.length}>There are no speakers.</td>
+          <thead>
+            <tr className={styling}>
+              {
+                headers.map((header, i) => (
+                  <th key={i}>{header}</th>
+                ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colSpan={headers.length}>There are no speakers.</td>
+            </tr>
+          </tbody>
         </table>
       )
     }

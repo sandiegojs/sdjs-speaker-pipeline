@@ -15,11 +15,15 @@
     text-align: center;
     width: 100%;
 
-    h1 {
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: normal;
-        letter-spacing: 1px;
+    .table {
+        
+            .table-header-meetups-page {
+                font-size: 15px;
+                margin: 0;
+                border-bottom: 1px solid $dark-gray;
+                height: 50px;
+            }
+
     }
 }
 .meetups-child{
@@ -35,5 +39,5 @@
 }
 .single-meetup{
     margin: 50px 0;
-    border: 1px solid black;
+    border: 1px solid $dark-gray;
 }

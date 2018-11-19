@@ -3,6 +3,7 @@ $primary-color: #146fa5;
 $secondary-color: #ff5041;
 $background-color: #efebeb;
 $dark-gray: #313131;
+$off-white: #fbfbfb;
 
 @import 'js-meetup-home';
 @import 'navbar';
@@ -48,5 +49,12 @@ body {
     padding: 120px 0;
     display: flex;
     justify-content: center;
+
+    h1 {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: normal;
+        letter-spacing: 1px;
+    }
 }
 

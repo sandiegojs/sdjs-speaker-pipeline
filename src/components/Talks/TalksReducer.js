@@ -1,5 +1,6 @@
 const initialState = {
     talkInfo: [],
+    organizers: []
 }
 
 export default function TalksReducer(state = initialState, action) {
@@ -9,7 +10,8 @@ export default function TalksReducer(state = initialState, action) {
         case 'GET_TALK_DATA_FULFILLED': {
             return {
                 ...state,
-                talkInfo: payload.talkInfo
+                talkInfo: payload.talkInfo,
+                organizers: payload.organizers
             }
         }
         case 'UPDATE_TALK_STATUS_IN_STORE': {
