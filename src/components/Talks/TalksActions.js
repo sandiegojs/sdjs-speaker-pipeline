@@ -10,6 +10,7 @@ export const getTalkData = accessToken => {
                 Authorization: accessToken
             }
         })
+        //filter by date order try this one second
             .then(talkInfo => {
                 const talkIds = talkInfo.data.map(talk => talk.talkId)
                 return {

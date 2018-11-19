@@ -25,7 +25,7 @@ class Meetups extends Component {
                         <h1>Upcoming Meetups</h1>
                         <div>
                             {eventInfo && eventInfo.map(meetup => (
-                                <div className='single-meetup' key={meetup.venue.id}>
+                                <div className='single-meetup' key={meetup.meetupId}>
                                     <div className='header'>
                                         <div>{meetup.date}</div>
                                         <div>{meetup.name}</div>
