@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { getEvents } from './MeetupsActions';
 import Talks from '../Talks';
-import AdminNav from '../AdminNav/AdminNav';
+import AdminNav from '../AdminNav';
 
 class Meetups extends Component {
     constructor(props) {

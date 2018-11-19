@@ -82,7 +82,14 @@ export default function AdminLoginReducer(state = initialstate, action) {
 					authorized: false,
 				}
 			}
-        }
+		}
+		case 'POST_LOGOUT_FULFILLED': {
+			return {
+				...state,
+				token: '',
+				authorized: false,
+			}
+		}
 		case 'CHECK_TOKEN_FULFILLED': {
 			if (payload.id) return {
 				...state,

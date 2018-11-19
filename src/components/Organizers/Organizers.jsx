@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import AdminNav from '../AdminNav/AdminNav';
+import AdminNav from '../AdminNav';
 import { Field } from 'react-redux-form';
 import {
     addAdmin,
