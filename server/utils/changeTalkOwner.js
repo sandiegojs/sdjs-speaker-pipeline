@@ -7,8 +7,8 @@ function changeTalkOwner(talkId, selectedOwner) {
             return false;
         }
 
-        if (selectedStatus == undefined) {
-            reject({ message: 'No Status Selected' });
+        if (selectedOwner == undefined) {
+            reject({ message: 'No Owner Selected' });
             return false;
         }
 		const { Talk } = app.models;

@@ -4,7 +4,8 @@ import PastTalks from './PastTalks'
 function mapStoreToProps(store){
     return {
         pastTalks: store.PastTalks.pastTalks,
-        accessToken: store.AdminLogin.accessToken
+        accessToken: store.AdminLogin.accessToken,
+        talkInfo: store.Talks.talkInfo
     };
 }
 

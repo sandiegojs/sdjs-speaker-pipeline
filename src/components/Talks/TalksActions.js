@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment'
 
 export const getTalkData = accessToken => {
     return {
@@ -12,6 +13,13 @@ export const getTalkData = accessToken => {
         })
         //filter by date order try this one second
             .then(talkInfo => {
+                const date = moment().format();
+                const filtered = talkInfo.data.filter(talk => moment(talk.eventDate).format() > date)
+                filtered.sort(function(a, b) {
+                    a = moment(a.eventDate).format();
+                    b = moment(b.eventDate).format();
+                    return a<b ? -1 : a>b ? 1 : 0;
+                })
                 return axios({
                     method: 'get',
                     url: 'api/organizers',
@@ -20,8 +28,9 @@ export const getTalkData = accessToken => {
                     }
                 })
                     .then((organizers) => {
+                        console.log('organizers: ', organizers)
                         return {
-                            talkInfo: talkInfo.data,
+                            talkInfo: filtered,
                             organizers: organizers.data
                         }
                     })

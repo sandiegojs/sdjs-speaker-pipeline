@@ -58,7 +58,7 @@ function getTalkDetails() {
               b = moment(b.eventDate).format();
               return a<b ? -1 : a>b ? 1 : 0;
           })
-            resolve(filteredResults)
+            resolve(results)
           })
           .catch(err => reject({ error: 'could not return results', err }))
       })

@@ -89,7 +89,10 @@ class Talks extends Component {
 
   componentDidMount() {
     const { dispatch, accessToken } = this.props;
-    dispatch(getTalkData(accessToken));
+    console.log('access token: ', accessToken)
+    if(accessToken){
+      dispatch(getTalkData(accessToken));
+    }
   }
 
   handleSelectStatus(e) {
