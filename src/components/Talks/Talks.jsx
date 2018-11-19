@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import { getTalkData, handleSelectStatus, handleSelectOwner, changeTalkStatus, changeTalkOwner, toggleStatusEdit, toggleOwnerEdit, toggleShowMore, deleteTalk, toggleTalkEdit, handleTalkChange, updateTalkInfo } from './TalksActions';
 import moment from 'moment';
 
@@ -150,7 +151,9 @@ class Talks extends Component {
   }
 
   render() {
-    const { talkInfo } = this.props;
+    const { talkInfo, authorized } = this.props;
+
+    if (!authorized) return <Redirect push to= '/Admin/Login' />
 
     let talks = talkInfo;
     let styling = ''

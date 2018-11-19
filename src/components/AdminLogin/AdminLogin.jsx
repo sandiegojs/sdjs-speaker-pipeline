@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { updateUsername, updatePassword, postLogin } from './AdminLoginActions';
+import { updateUsername, updatePassword, postLogin, postLoginPersist, checkToken, rememberMe } from './AdminLoginActions';
 import Navbar from '../Navbar/Navbar';
 
 class AdminLogin extends Component {
@@ -9,28 +9,47 @@ class AdminLogin extends Component {
 
 		this.handleUsername = this.handleUsername.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
-		this.submitLogin    = this.submitLogin.bind(this);
+		this.handleRemember = this.handleRemember.bind(this);
+		this.submitLogin = this.submitLogin.bind(this);
+	}
+
+	componentDidMount() {
+		const { dispatch, accessToken } = this.props;
+		dispatch(checkToken(accessToken));
+	}
+
+	componentDidUpdate() {
+		const { dispatch, accessToken } = this.props;
+		dispatch(checkToken(accessToken));
 	}
 
 	handleUsername(e) {
-    const { dispatch } = this.props;
-    dispatch(updateUsername(e.target.value));
-  }
+		const { dispatch } = this.props;
+		dispatch(updateUsername(e.target.value));
+	}
 
-  handlePassword(e) {
-    const { dispatch } = this.props;
-    dispatch(updatePassword(e.target.value))
-  }
+	handlePassword(e) {
+		const { dispatch } = this.props;
+		dispatch(updatePassword(e.target.value))
+	}
 
-  submitLogin(e) {
-    e.preventDefault();
-    const { dispatch, username, password } = this.props;
-    dispatch(postLogin({ username, password, ttl: 60 * 60 * 24 }));
-  }
+	handleRemember(e) {
+		const { dispatch } = this.props;
+		let checked;
+		e.target.checked ? checked = true : checked = false;
+		dispatch(rememberMe(checked));
+	}
+
+	submitLogin(e) {
+		e.preventDefault();
+		const { dispatch, remember, username, password } = this.props;
+		if (remember) dispatch(postLoginPersist({ username, password, ttl: 60 * 60 }));
+		else dispatch(postLogin({ username, password, ttl: 60 * 60 }));
+	}
 
 	render() {
-		const { username, password, token} = this.props;
-		//if (token) return <Redirect push to= '/Admin/Meetups' />
+		const { username, password, authorized } = this.props;
+		if (authorized) return <Redirect push to='/Admin/Meetups' />
 		return (
 			<div>
 				<Navbar />
@@ -40,12 +59,12 @@ class AdminLogin extends Component {
 							<h3>SDJS Admin Login</h3>
 							<div className="container">
 								<label htmlFor="username"><b>Username</b></label>
-								<input type="text" placeholder="Username" id='username' name="username" value={username} onChange={this.handleUsername} required/>
+								<input type="text" placeholder="Username" id='username' name="username" value={username} onChange={this.handleUsername} required />
 								<label htmlFor="password"><b>Password</b></label>
-								<input type="password" placeholder="Password" id='password' name="password" value={password} onChange={this.handlePassword} required/>
+								<input type="password" placeholder="Password" id='password' name="password" value={password} onChange={this.handlePassword} required />
 								<button type="submit" id='submit' className='btn'>Login</button>
 								<label id='remember'>
-									<input type="checkbox" name="remember"/> Remember me
+									<input type="checkbox" name="remember" onChange={this.handleRemember} /> Remember me
 								</label>
 							</div>
 						</form>

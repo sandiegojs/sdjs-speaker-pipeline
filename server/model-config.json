@@ -54,7 +54,7 @@
   },
   "accessToken": {
     "dataSource": "sdjs",
-    "public": false,
+    "public": true,
     "relations": {
       "user": {
         "type": "belongsTo",

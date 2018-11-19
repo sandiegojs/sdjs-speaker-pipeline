@@ -29,7 +29,7 @@ const Navbar = props => {
                     <Link to='/Jobs' className={location.pathname === '/Jobs' ? 'nav-item w--current' : 'nav-item'}>
                         JOBS
                     </Link>
-                    <Link to='/AdminLogin' className={location.pathname === '/AdminLogin' ? 'nav-item w--current' : 'nav-item'}>
+                    <Link to='/Admin/Login' className={location.pathname === '/Admin/Login' ? 'nav-item w--current' : 'nav-item'}>
                         ADMIN
                     </Link>
                 </div>

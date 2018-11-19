@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import AdminNav from '../AdminNav/AdminNav';
 import { Field } from 'react-redux-form';
 import {
@@ -55,7 +56,8 @@ class Organizers extends Component {
     }
 
     render() {
-        const { adminList, newAdminPhone, newAdminEmail, newAdminPassword, newAdminName } = this.props;
+        const { adminList, newAdminPhone, newAdminEmail, newAdminPassword, newAdminName, authorized } = this.props;
+        if (!authorized) return <Redirect push to= '/Admin/Login' />
         return (
 
             <div>

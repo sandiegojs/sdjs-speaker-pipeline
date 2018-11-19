@@ -9,7 +9,8 @@ function mapStoreToProps(store){
         newAdminPhone   : store.Organizers.newAdminPhone,
         newAdminEmail   : store.Organizers.newAdminEmail,
         newAdminPassword: store.Organizers.newAdminPassword,
-        accessToken     : store.AdminLogin.token
+        accessToken     : store.AdminLogin.accessToken,
+        authorized      : store.AdminLogin.authorized
     };
 }
 

@@ -5,7 +5,9 @@ function mapStoreToProps(store){
     return {
         username: store.AdminLogin.username,
 		password: store.AdminLogin.password,
-		token: store.AdminLogin.token,
+        accessToken: store.AdminLogin.accessToken,
+        authorized: store.AdminLogin.authorized,
+        remember: store.AdminLogin.remember
     };
 }
 

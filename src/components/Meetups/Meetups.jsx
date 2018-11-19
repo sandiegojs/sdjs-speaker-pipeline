@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import { getEvents } from './MeetupsActions';
 import Talks from '../Talks';
 import AdminNav from '../AdminNav/AdminNav';
@@ -14,8 +15,8 @@ class Meetups extends Component {
     }
 
     render() {
-        const { eventInfo } = this.props;
-
+        const { eventInfo, authorized } = this.props;
+        if (!authorized) return <Redirect push to= '/Admin/Login' />
         return (
             <div className='top-div'>
                 <AdminNav />
