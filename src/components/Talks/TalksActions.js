@@ -11,7 +11,7 @@ export const getTalkData = accessToken => {
                 Authorization: accessToken
             }
         })
-        //filter by date order try this one second
+            //filter by date order try this one second
             .then(talkInfo => {
                 const date = moment().format();
                 const filtered = talkInfo.data.filter(talk => moment(talk.eventDate).format() > date)
@@ -34,9 +34,9 @@ export const getTalkData = accessToken => {
                             organizers: organizers.data
                         }
                     })
-                    .catch(err => reject({ error: 'could not get organizers', err}))
+                    .catch(err => reject({ error: 'could not get organizers', err }))
             })
-            .catch(err => reject({ error: 'could not get talkInfo', err}))
+            .catch(err => reject({ error: 'could not get talkInfo', err }))
     }
 }
 
@@ -173,6 +173,7 @@ export const handleTalkChange = (talkId, value, type) => {
 }
 
 export const updateTalkInfo = (talkId, newTopic, newDescription, newAdminNotes, toggle, accessToken) => {
+    console.log('access token update talk', accessToken)
     return {
         type: 'UPDATE_TALK_INFO',
         payload: axios({
@@ -189,6 +190,7 @@ export const updateTalkInfo = (talkId, newTopic, newDescription, newAdminNotes, 
             }
         })
             .then((updatedTalk) => {
+                console.log('updated talk', updatedTalk)
                 return {
                     data: updatedTalk.data,
                     toggle: !toggle

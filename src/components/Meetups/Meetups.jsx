@@ -30,7 +30,7 @@ class Meetups extends Component {
                                         <div>{meetup.date}</div>
                                         <div>{meetup.name}</div>
                                         <div >
-                                            <a className='meetup-link' href={meetup.link}>Meetup</a>
+                                            <a className='meetup-link' href={meetup.link} target='_blank'>Meetup</a>
                                         </div>
                                     </div>
                                         <div>

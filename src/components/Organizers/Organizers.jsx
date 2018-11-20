@@ -69,15 +69,19 @@ class Organizers extends Component {
                         <form id='organizer-form' onSubmit={this.addAdmin}>
                             <Field model='user.name'>
                                 <label htmlFor='admin-name'>Name: </label>
-                                <input name='newAdminName' placeholder='John Smith' type='text' value={newAdminName} onChange={this.handleChange} required />
+                                <input name='newAdminName' type='text' value={newAdminName} onChange={this.handleChange} required />
                             </Field >
                             <Field model='user.admin-email'>
                                 <label htmlFor='admin-email'>Email: </label>
-                                <input type="email" placeholder='iamJohnSmith@email.com' name="newAdminEmail" value={newAdminEmail} required onChange={this.handleChange} />
+                                <input type="email" name="newAdminEmail" value={newAdminEmail} required onChange={this.handleChange} />
                             </Field>
                             <Field model='user.admin-phone'>
                                 <label htmlFor='admin-phone'>Phone Number: </label>
-                                <input type="tel" name="newAdminPhone" placeholder='123-456-7890' required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={newAdminPhone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} format="### ### ####" onChange={this.handleChange} />
+                                <input type="tel" name="newAdminPhone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={newAdminPhone.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3')} format="### ### ####" onChange={this.handleChange} />
+                            </Field>
+                            <Field model='user.admin-password'>
+                                <label htmlFor='admin-password'>Password: </label>
+                                <input type="password" name="newAdminPassword" value={newAdminPassword} required onChange={this.handleChange} />
                             </Field>
                             <div>
                                 <button className='btn'>Submit!</button>

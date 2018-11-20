@@ -1,8 +1,9 @@
 .login {
     margin-top: 85px;
     background-image: linear-gradient(180deg, rgba(24, 132, 195, .64), rgba(24, 132, 195, .64)), url('/pics/background-meetup.png');
-    background-size: auto, cover;
+    background-size: cover;
     background-repeat: no-repeat;
+    height: 100%;
 }
 #remember {
     margin-bottom: 30px;
@@ -14,4 +15,7 @@
 }
 .login .btn {
     margin-bottom: 5px;
+}
+#admin-top-div {
+    height: 100%;
 }

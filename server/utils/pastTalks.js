@@ -6,14 +6,14 @@ function pastTalks(){
         const {Talk, Speaker, Event} = app.models;
         Talk.find({ where: {status: 'Approve'}})
             .then(talks => {
-                console.log('talks: ', talks)
+                //console.log('talks: ', talks)
                 const talkInformation = talks.map((talk) => {
                     return Speaker.find({where: {id: talk.speakerId}})
                         .then(speaker => {
-                            console.log('speaker: ', speaker)
+                            //console.log('speaker: ', speaker)
                             return Event.find({ where: {id: talk.eventId}})
                                 .then(event => {
-                                    console.log('Event: ', event)
+                                    //console.log('Event: ', event)
                                     return {
                                         date: event[0].date,
                                         event: event[0].name,
@@ -27,10 +27,10 @@ function pastTalks(){
                 })
                 Promise.all(talkInformation)
                     .then(results => {
-                        console.log(results)
+                        //console.log(results)
                         let date = moment('2019-03-14').format()
                         const filteredResults = results.filter(result => moment(result.date).format() < date)
-                        console.log('filterd: ', filteredResults)
+                        //console.log('filterd: ', filteredResults)
                         filteredResults.sort(function(a, b) {
                             a = moment(a.eventDate).format();
                             b = moment(b.eventDate).format();

@@ -3,8 +3,8 @@ import { Redirect } from 'react-router';
 import { getTalkData, handleSelectStatus, handleSelectOwner, changeTalkStatus, changeTalkOwner, toggleStatusEdit, toggleOwnerEdit, toggleShowMore, deleteTalk, toggleTalkEdit, handleTalkChange, updateTalkInfo } from './TalksActions';
 import moment from 'moment';
 
-const TableRow = ({ data, children, mapKey }) => {
-  return <td key={mapKey}>
+const TableRow = ({ data, children }) => {
+  return <td>
     {children
       ? children
       : Object.keys(data).map((objKey, i) =>
@@ -21,6 +21,7 @@ const EditOptions = ({ talkId, handleSelect, name, children, toggleEditProp, han
         <select data-type={name} name={talkId} onChange={handleSelect}>
           <option value=''>Change {name}</option>
           {children}
+          <option value='None'>None</option>
         </select>
         <div className='side-by-side-btns'>
           <button className='btn' name={talkId} value={toggleEditProp} onClick={handleSubmit}>Save</button>
@@ -89,8 +90,7 @@ class Talks extends Component {
 
   componentDidMount() {
     const { dispatch, accessToken } = this.props;
-    console.log('access token: ', accessToken)
-    if(accessToken){
+    if (accessToken) {
       dispatch(getTalkData(accessToken));
     }
   }
@@ -156,7 +156,7 @@ class Talks extends Component {
   render() {
     const { talkInfo, authorized, organizers } = this.props;
 
-    if (!authorized) return <Redirect push to= '/Admin/Login' />
+    if (!authorized) return <Redirect push to='/Admin/Login' />
 
     let talks = talkInfo;
     let styling = ''
@@ -191,18 +191,18 @@ class Talks extends Component {
                 talks.map((talk, i) =>
                   <tr key={i}>
                     {
-                      headers.map((column) => {
+                      headers.map((column, i) => {
                         switch (column) {
                           case 'Speaker':
-                            return <TableRow mapKey={i} 
-                            data={{
-                              speaker: talk.speaker,
-                              speakerEmail: <a href={`mailto:${talk.speakerEmail}`} target="_top"><i className="far fa-envelope"></i>Send Email</a>,
-                              speakerPhone: <div><i className="fas fa-phone"></i>{talk.speakerPhone}</div>
-                            }} />
+                            return <TableRow key={i}
+                              data={{
+                                speaker: talk.speaker,
+                                speakerEmail: <a href={`mailto:${talk.speakerEmail}`} target="_top"><i className="far fa-envelope"></i>Send Email</a>,
+                                speakerPhone: <div><i className="fas fa-phone"></i>{talk.speakerPhone}</div>
+                              }} />
                           case 'Talk':
-                            return <TableRow>
-                              <div key={i} className='options'>
+                            return <TableRow key={i}>
+                              <div className='options'>
                                 {talk.toggleShowMore ?
                                   <div>
                                     {talk.topic}
@@ -229,10 +229,10 @@ class Talks extends Component {
                               </div>
                             </TableRow>
                           case 'Event':
-                            return <TableRow mapKey={i} data={{ eventName: talk.eventName, eventDate: moment(talk.eventDate).add(1, 'day').format('YYYY-MM-DD') }} />
+                            return <TableRow key={i} data={{ eventName: talk.eventName, eventDate: moment(talk.eventDate).add(1, 'day').format('YYYY-MM-DD') }} />
                           case 'Status':
-                            return <TableRow>
-                              <div key={i} className='options'>
+                            return <TableRow key={i}>
+                              <div className='options'>
                                 {talk.toggleStatusEdit ?
                                   <EditOptions
                                     talkId={talk.talkId}
@@ -255,8 +255,8 @@ class Talks extends Component {
                               </div>
                             </TableRow>
                           case 'Owner':
-                            return <TableRow>
-                              <div key={i} className='options'>
+                            return <TableRow key={i}>
+                              <div className='options'>
                                 {talk.toggleOwnerEdit ?
                                   <EditOptions
                                     talkId={talk.talkId}

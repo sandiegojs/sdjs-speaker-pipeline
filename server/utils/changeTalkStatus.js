@@ -23,7 +23,8 @@ function changeTalkStatus(talkId, selectedStatus) {
 					"speakerId": talk.speakerId,
 					"eventId": talk.eventId,
 					"owner": talk.owner,
-					"adminNotes": talk.adminNotes
+					"adminNotes": talk.adminNotes,
+					"organizerId": talk.organizerId,
 				}
 				Talk.replaceOrCreate(newTalk)
 					.then(() => resolve(newTalk))

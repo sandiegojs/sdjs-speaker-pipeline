@@ -37,7 +37,7 @@ module.exports = function (Talk) {
 	}
 
 	Talk.remoteMethod('pastTalks', {
-		description:'Gets all talks from before today.',
+		description: 'Gets all talks from before today.',
 		http: {
 			path: '/pastTalks',
 			verb: 'get'
@@ -276,28 +276,41 @@ module.exports = function (Talk) {
 				const meetupTitle = response.meetupTitle;
 				const meetupDate = response.meetupDate;
 				sendEmailToSpeaker(process.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
-				.then(() => next())
-				.catch(err => next(new Error(err.message)));
+					.then(() => next())
+					.catch(err => next(new Error(err.message)));
 			})
-			.catch(() => next(new Error( 'error with formatTalkForEmail function' )));
+			.catch(() => next(new Error('error with formatTalkForEmail function')));
 	});
 
 	Talk.afterRemote('changeTalkStatus', function (ctx, modelInstance, next) {
-		const speakerId = ctx.result.speakerId;
-		const eventId = ctx.result.eventId;
-		const approved = ctx.result.approved;
-		const pending = false;
-		formatTalkForEmail(speakerId, eventId, next)
-			.then((response) => {
-				const speakerName = response.speakerName;
-				const speakerEmail = response.speakerEmail;
-				const meetupTitle = response.meetupTitle;
-				const meetupDate = response.meetupDate;
-				sendEmailToSpeaker(process.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
-				.then(() => next())
-				.catch(err => next(new Error(err.message)))
-			})
-			.catch(() => next(new Error( 'error with formatTalkForEmail function' )));
+		if (ctx.result.status == 'Approve' || ctx.result.status == 'Deny') {
+			let approved;
+			if (ctx.result.status == 'Approve') {
+				approved = true
+			} 
+			if (ctx.result.status == 'Deny') {
+				approved = false
+			}
+			const speakerId = ctx.result.speakerId;
+			const eventId = ctx.result.eventId;
+			const pending = false;
+			console.log('speakerId, eventId', speakerId, eventId)
+			formatTalkForEmail(speakerId, eventId, next)
+				.then((response) => {
+					console.log('formatEmail res', response)
+					const speakerName = response.speakerName;
+					const speakerEmail = response.speakerEmail;
+					const meetupTitle = response.meetupTitle;
+					const meetupDate = response.meetupDate;
+					sendEmailToSpeaker(process.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
+						.then(() => next())
+						.catch(err => next(new Error(err.message)))
+				})
+				.catch(err => next(new Error(err)));
+		}
+		else {
+			next();
+		}
 
 	});
 };

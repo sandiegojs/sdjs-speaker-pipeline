@@ -40,7 +40,8 @@ export default function OrganizersReducer(state = initialstate, action) {
 				adminList: state.adminList.concat(payload.data),
 				newAdminEmail: '',
 				newAdminName : '',
-				newAdminPhone: ''
+				newAdminPhone: '',
+				newAdminPassword: '',
 			}
 		}
 		case 'PATCH_ADMIN': {

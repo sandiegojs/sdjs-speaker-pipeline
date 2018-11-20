@@ -16,6 +16,14 @@
       "options": {
         "disableInclude": true
       }
+    },
+    "talks": {
+      "type": "hasMany",
+      "model": "talk",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [

@@ -7,7 +7,7 @@ require('dotenv').config()
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 function sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate) {
-    console.log('this is meetup date in emailer: '.meetupDate)
+    console.log('this is meetup date in emailer: ', meetupDate)
     return new Promise((resolve, reject) => {
         if (speakerEmail == undefined) {
             reject({ message: 'Bad Speaker Email' });

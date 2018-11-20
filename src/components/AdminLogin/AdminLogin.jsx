@@ -51,7 +51,7 @@ class AdminLogin extends Component {
 		const { username, password, authorized } = this.props;
 		if (authorized) return <Redirect push to='/Admin/Meetups' />
 		return (
-			<div>
+			<div id='admin-top-div'>
 				<Navbar />
 				<div className='signUp-container'>
 					<div className='form-container login'>
