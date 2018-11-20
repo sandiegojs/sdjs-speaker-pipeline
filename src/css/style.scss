@@ -50,3 +50,13 @@ body {
     justify-content: center;
 }
 
+@media (max-width: 767px) {
+    body {
+        padding-top: 66px;
+    }
+}
+@media (max-width: 479px) {
+    body {
+        padding-top: 105px;
+    }
+}

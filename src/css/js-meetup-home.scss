@@ -53,59 +53,80 @@
 }
 
 .dos-and-donts {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    // margin-top: 20px;
+    // margin-bottom: 20px;
+    // -webkit-box-align: stretch;
+    // -webkit-align-items: stretch;
+    // -ms-flex-align: stretch;
+    // align-items: stretch;
+    // justify-content: center;
+    // width: 100%;
+    // border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
     -webkit-box-align: stretch;
     -webkit-align-items: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
+    border-radius: 5px;
+    background-color: #fff;
     justify-content: center;
-    width: 100%;
+    display: flex;
+    overflow: scroll;
+    position: relative;
 }
 
 .dos {
     margin: 15px;
     padding: 15px;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 auto;
-    -ms-flex: 0 auto;
-    flex: 0 auto;
+    // -webkit-box-flex: 50%;
+    // -webkit-flex: 50%;
+    // -ms-flex: 50%;
+    flex: 0;
     border: 1px solid silver;
     border-radius: 3px;
     width: 25%;
+    -webkit-box-flex: 50%;
+    -webkit-flex: 50%;
+     -ms-flex: 50%;
+    flex: 50%;
+    background-color: #fff;
     box-shadow: 5px 5px #888888;
+    overflow: scroll;
         h5 {
             font-size: 30px;
             color: green;
             margin-bottom: 5px;
             margin-top: 5px;
-
         }
 }
 
 .donts {
     margin: 15px;
     padding: 15px;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 auto;
-    -ms-flex: 0 auto;
-    flex: 0 auto;
+    // -webkit-box-flex: 50%;
+    // -webkit-flex: 50%;
+    // -ms-flex: 50%;
+    // flex: 0 ;
     border: 1px solid silver;
     border-radius: 3px;
     width: 25%;
-    flex: 0 auto;
+    flex: 0 ;
     border: 1px solid silver;
     border-radius: 3px;
+    -webkit-box-flex: 50%;
+    -webkit-flex: 50%;
+    -ms-flex: 50%;
+    background-color: #fff;
     box-shadow: 5px 5px #888888;
+    overflow: scroll;
         h5 {
             font-size: 30px;
             color: red;
             margin-bottom: 5px;
             margin-top: 5px;
-
-
         }
 }
 
@@ -167,5 +188,34 @@
     p {
         font-size: 24px;
         padding-bottom: 15px;
+    }
+}
+
+@media (max-width: 767px){
+    .banner {
+        height: 800px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    .admin-banner {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+    }
+}
+@media (max-width: 479px){
+    .logo{
+        display: block;
+        float: none;
+    }
+    .dos {
+        margin: 10px;
+    }
+    .donts {
+        margin: 10px
     }
 }
