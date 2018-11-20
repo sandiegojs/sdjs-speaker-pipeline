@@ -32,7 +32,7 @@ describe('server/server.js', function () {
     nightmare = new Nightmare({ show: true });
 
   });
-  //working
+
   it('should respond to /SignUp', done => {
     chai
       .request(server)
@@ -43,7 +43,7 @@ describe('server/server.js', function () {
         done();
       });
   });
-  //working
+
   it('Speaker signup should have input tag with the id of "speakerName"', (done) => {
     nightmare
       .goto('http://localhost:4444/#/SignUp')
@@ -52,7 +52,7 @@ describe('server/server.js', function () {
       .then(input => expect(input).to.exist)
     done()
   });
-  //working
+  
   it('Admin dashboard should have a button with the classname "btn"', (done) => {
     nightmare
       .goto('http://localhost:4444/#/AdminDashboard')
@@ -60,7 +60,7 @@ describe('server/server.js', function () {
       .then(button => expect(button).to.exist)
     done()
   });
-  //working
+
   it('Admin dashboard should have an <h1> that says "Pending Speakers"', (done) => {
     nightmare
       .goto('http://localhost:4444/#/AdminDashboard')
@@ -68,30 +68,29 @@ describe('server/server.js', function () {
       .then(header => expect(header).to.contain('Pending Speakers'))
     done()
   });
-  //working. its commented out so it wont send emails every time the tests run
-  //it('It Should add a speaker', (done) => {
-  //   nightmare
-  //     .goto('http://localhost:4444/#/SignUp')
-  //     .wait(1000)
-  //     .type('#speakerName', 'John Smith')
-  //     .type('#speakerEmail', 'john@email.com')
-  //     .type('#speakerPhone', '111-111-1111')
-  //     .wait(1000)
-  //     .select('#event-date', '2018-12-20')
-  //     .type('#topic', 'topic')
-  //     .wait(1000)
-  //     .type('#description', 'description')
-  //     .wait(1000)
-  //     .click('#speaker-submit')
-  //     .wait(1000)
-  //     .goto('http://localhost:4444/#/Thankyou')
-  //     .wait(1000)
-  //     .evaluate(() => document.querySelector('div').innerText)
-  //     .then(header => expect(header).to.contain('thanks'))
-  //   done()
-  // })
 
-  //working
+  it('It Should add a speaker', (done) => {
+    nightmare
+      .goto('http://localhost:4444/#/SignUp')
+      .wait(1000)
+      .type('#speakerName', 'John Smith')
+      .type('#speakerEmail', 'john@email.com')
+      .type('#speakerPhone', '111-111-1111')
+      .wait(1000)
+      .select('#event-date', '2018-12-20')
+      .type('#topic', 'topic')
+      .wait(1000)
+      .type('#description', 'description')
+      .wait(1000)
+      .click('#speaker-submit')
+      .wait(1000)
+      .goto('http://localhost:4444/#/Thankyou')
+      .wait(1000)
+      .evaluate(() => document.querySelector('div').innerText)
+      .then(header => expect(header).to.contain('thanks'))
+    done()
+  })
+
   it('Should be able to log in as an admin', (done) => {
     nightmare
       .goto('http://localhost:4444/#/AdminLogin')
@@ -109,7 +108,6 @@ describe('server/server.js', function () {
     done()
   })
 
-  //working
   it('Speaker signup should have in input tag with the id of speakerEmail', (done) => {
     nightmare
       .goto('http://localhost:4444/#/SignUp')
@@ -117,7 +115,7 @@ describe('server/server.js', function () {
       .then(input => expect(input).to.exist)
     done()
   });
-  //working
+  
   it('Should be able to toggle the status of talks', (done) => {
     nightmare
       .goto('http://localhost:4444/#/Admin/Meetups')
@@ -151,45 +149,37 @@ describe('server/server.js', function () {
       .catch(err => console.log(err))
   })
 
-it('changeTalkContent should reject with "bad index"', function () {
-  return expect(changeTalkContent('this', 'test', 'should', 'fail')).to.be.rejectedWith('bad index');
+it('changeTalkContent should reject with "Bad talk Id"', function () {
+  return expect(changeTalkContent('this', 'test', 'should', 'fail')).to.be.rejectedWith('Bad talk Id');
 });
-
 
 it('changeTalkOwner should reject with Bad Talk Id"', function () {
   return expect(changeTalkOwner(undefined, undefined)).to.be.rejectedWith('Bad Talk Id');
 });
 
-
 it('changeTalkStatus should reject with Bad Talk Id"', function () {
   return expect(changeTalkStatus('Could not find talk')).to.be.rejectedWith('No Status Selected');
 });
-
 
 it('formatTalkForEmail should reject with Bad Talk Id"', function () {
   return expect(formatTalkForEmail('Bad Speaker Id')).to.be.rejectedWith('Bad Event Id');
 });
 
-
 it('getMeetups should reject with Bad Talk Id"', function () {
   return expect(getMeetups('this should pass with any params')).to.be.fulfilled;
 });
-
 
 it('getTalkDetails should reject with Bad Talk Id"', function () {
   return expect(getTalkDetails('this should pass with any params')).to.be.fulfilled;
 });
 
-
 it('pastTalks should reject with Bad Talk Id"', function () {
   return expect(pastTalks('this should pass with any params')).to.be.fulfilled;
 });
 
-
 it('sendEmailToSpeaker should reject with Bad Talk Id"', function () {
   return expect(sendEmailToSpeaker('Could not find talk')).to.be.rejectedWith('Bad Speaker Email');
 });
-
 
 it('sendEmailToSpeaker should reject with Bad Talk Id"', function () {
   return expect(sendEmailToSpeaker('Could not find talk')).to.be.rejectedWith('Bad Speaker Email');

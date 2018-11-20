@@ -24,6 +24,7 @@ export const postLogin = (userData) => {
             })
     }
 }
+
 export const postLoginPersist = (userData) => {
     return {
         type: 'POST_LOGIN_PERSIST',
@@ -33,6 +34,7 @@ export const postLoginPersist = (userData) => {
             })
     }
 }
+
 export const checkToken = (accessToken) => {
     return {
         type: 'CHECK_TOKEN',

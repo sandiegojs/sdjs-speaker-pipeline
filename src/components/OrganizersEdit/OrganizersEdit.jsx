@@ -35,7 +35,7 @@ export default class OrganizersEdit extends Component {
     }
 
     handleAdminUpdate(e) {
-        this.setState({ [e.target.id]: e.target.value })
+        this.setState({ [e.target.id]: e.target.value });
     }
 
     render() {

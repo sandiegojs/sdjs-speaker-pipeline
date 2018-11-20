@@ -71,21 +71,20 @@ const ShowMore = ({ topic, description, adminNotes, talkId, toggleShowMoreFuncti
   )
 }
 
-
 class Talks extends Component {
   constructor(props) {
     super(props);
-    this.handleSelectStatus = this.handleSelectStatus.bind(this)
-    this.handleSelectOwner = this.handleSelectOwner.bind(this)
-    this.handleSubmitStatus = this.handleSubmitStatus.bind(this)
-    this.handleSubmitOwner = this.handleSubmitOwner.bind(this)
-    this.toggleStatusEdit = this.toggleStatusEdit.bind(this)
-    this.toggleOwnerEdit = this.toggleOwnerEdit.bind(this)
-    this.toggleShowMore = this.toggleShowMore.bind(this)
-    this.deleteTalk = this.deleteTalk.bind(this)
-    this.toggleTalkEdit = this.toggleTalkEdit.bind(this)
-    this.handleTalkChange = this.handleTalkChange.bind(this)
-    this.updateTalkInfo = this.updateTalkInfo.bind(this)
+    this.handleSelectStatus = this.handleSelectStatus.bind(this);
+    this.handleSelectOwner = this.handleSelectOwner.bind(this);
+    this.handleSubmitStatus = this.handleSubmitStatus.bind(this);
+    this.handleSubmitOwner = this.handleSubmitOwner.bind(this);
+    this.toggleStatusEdit = this.toggleStatusEdit.bind(this);
+    this.toggleOwnerEdit = this.toggleOwnerEdit.bind(this);
+    this.toggleShowMore = this.toggleShowMore.bind(this);
+    this.deleteTalk = this.deleteTalk.bind(this);
+    this.toggleTalkEdit = this.toggleTalkEdit.bind(this);
+    this.handleTalkChange = this.handleTalkChange.bind(this);
+    this.updateTalkInfo = this.updateTalkInfo.bind(this);
   }
 
   componentDidMount() {
@@ -134,23 +133,23 @@ class Talks extends Component {
 
   deleteTalk(e) {
     const { dispatch, accessToken } = this.props;
-    dispatch(deleteTalk(e.target.getAttribute('name'), accessToken))
+    dispatch(deleteTalk(e.target.getAttribute('name'), accessToken));
   }
 
   toggleTalkEdit(e) {
     const { dispatch } = this.props;
-    dispatch(toggleTalkEdit(e.target.getAttribute('name'), e.target.getAttribute('value')))
+    dispatch(toggleTalkEdit(e.target.getAttribute('name'), e.target.getAttribute('value')));
   }
 
   handleTalkChange(e) {
     const { dispatch } = this.props;
-    dispatch(handleTalkChange(e.target.name, e.target.value, e.target.getAttribute('data-type')))
+    dispatch(handleTalkChange(e.target.name, e.target.value, e.target.getAttribute('data-type')));
   }
 
   updateTalkInfo(e) {
     const { dispatch, talkInfo, accessToken } = this.props;
     const selectedTalk = talkInfo.find((talk) => talk.talkId === e.target.name);
-    dispatch(updateTalkInfo(e.target.name, selectedTalk.talkChanges.topic, selectedTalk.talkChanges.description, selectedTalk.talkChanges.adminNotes, selectedTalk.toggleTalkEdit, accessToken))
+    dispatch(updateTalkInfo(e.target.name, selectedTalk.talkChanges.topic, selectedTalk.talkChanges.description, selectedTalk.talkChanges.adminNotes, selectedTalk.toggleTalkEdit, accessToken));
   }
 
   render() {
@@ -167,7 +166,7 @@ class Talks extends Component {
 
     let headers = ['Speaker', 'Talk', 'Event', 'Status', 'Owner']
     if (this.props.include) {
-      headers = headers.filter((header) => this.props.include.includes(header))
+      headers = headers.filter((header) => this.props.include.includes(header));
     }
 
     if (this.props.styling) {

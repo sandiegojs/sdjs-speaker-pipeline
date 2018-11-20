@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import { resetSubmitted } from '../SignUp/SignUpActions';
 
-const Home = () => {
+class Home extends Component {
+    constructor(props) {
+        super(props);
+	}
+
+	componentDidMount() {
+		const { dispatch, submitted } = this.props;
+		if (submitted) {
+			dispatch(resetSubmitted());
+		}
+	}
+
+	render() {
 		return (
 			<div>
 				<Navbar />
@@ -79,23 +92,7 @@ const Home = () => {
 				</div>
 			</div>
 		)
+	}
 }
 
 export default Home;
-
-
-
-
-
-function longestEven(input) {
-    const even = input.split('').filter(word => word %2 === 0)
-   let wordLength = -Infinity;
-    even.forEach(element => {
-        if (element.length > wordLength) {
-            wordLength = element
-        } else {
-            return wordLength
-        }
-        return wordLength
-    });
-}

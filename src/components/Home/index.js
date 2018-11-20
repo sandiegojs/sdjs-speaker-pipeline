@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Thankyou from './Thankyou';
+import Home from './Home';
 
 function mapStoreToProps(store){
     return {
@@ -7,4 +7,4 @@ function mapStoreToProps(store){
     };
 }
 
-export default connect(mapStoreToProps)(Thankyou);
+export default connect(mapStoreToProps)(Home);

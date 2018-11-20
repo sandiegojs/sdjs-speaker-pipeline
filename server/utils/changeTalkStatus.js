@@ -34,6 +34,4 @@ function changeTalkStatus(talkId, selectedStatus) {
 	})
 }
 
-
-
 module.exports = { changeTalkStatus };

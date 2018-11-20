@@ -11,14 +11,12 @@ export const getPastTalks = accessToken => {
                 Authorization: accessToken
             }
         })
-        //filter by date order try this one second
             .then(talkInfo => {
-				console.log(talkInfo.data)
-				const date = moment('2019-03-14').format()
+				(talkInfo.data)
+				const date = moment().format()
 				const filtered = talkInfo.data.filter(talk => 
-					talk.currentStatus == 'Approve' && moment(talk.eventDate).format() < date
+					(talk.currentStatus == 'Approve' || talk.currentStatus == 'Confirmed')  && moment(talk.eventDate).format() < date
 				)
-				console.log('filtered: ', filtered)
 				filtered.sort(function(a, b) {
 					a = moment(a.eventDate).format();
 					b = moment(b.eventDate).format();
@@ -28,17 +26,3 @@ export const getPastTalks = accessToken => {
             })
     }
 }
-
-// export const getPastTalks = (accessToken) => ({
-// 	type: 'GET_PAST_TALKS',
-// 	payload: axios({
-// 		method: 'get',
-// 		url: 'api/talks/pastTalks',
-// 		headers: {
-// 			Authorization: accessToken
-// 		}
-// 	})
-// 		.then(response => {
-// 			return response.data
-// 		})
-// })

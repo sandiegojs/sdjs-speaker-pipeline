@@ -32,7 +32,6 @@ export const deleteAdmin = (id, accessToken) => {
 	}
 }
 export const getAdmins = (accessToken) => {
-	console.log('inside organizers')
 	return {
 		type: 'GET_ADMINS',
 		payload: axios({

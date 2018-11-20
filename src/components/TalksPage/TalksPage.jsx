@@ -8,12 +8,12 @@ import AdminNav from '../AdminNav';
 class TalksPage extends Component {
     constructor(props) {
         super(props);
-        this.handleOwnerFilter = this.handleOwnerFilter.bind(this)
+        this.handleOwnerFilter = this.handleOwnerFilter.bind(this);
     }
 
     componentDidMount() {
         const { dispatch, accessToken } = this.props;
-        dispatch(getAdmins(accessToken))
+        dispatch(getAdmins(accessToken));
     }
 
     handleOwnerFilter(e) {

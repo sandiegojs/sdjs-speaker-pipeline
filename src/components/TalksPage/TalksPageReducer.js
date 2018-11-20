@@ -11,9 +11,9 @@ export default function TalksPageReducer(state = initialstate, action) {
                 ...state,
                 selectedOwner: payload,
             }
-        }
+        };
         default: {
             return state
           }
     }
-}
+};

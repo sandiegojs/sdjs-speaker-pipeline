@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import Organizers from './Organizers';
 
-
 function mapStoreToProps(store){
     return {
         adminList       : store.Organizers.adminList,

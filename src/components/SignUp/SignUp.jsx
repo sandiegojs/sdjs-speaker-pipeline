@@ -30,7 +30,6 @@ class SignUp extends Component {
 		const { dispatch } = this.props;
 		dispatch(getDates());
 	}
-
 	handleSpeakerName(e) {
 		const { dispatch } = this.props;
 		dispatch(updateSpeakerName(e.target.value));
@@ -59,7 +58,6 @@ class SignUp extends Component {
 	submitSpeaker(e) {
 		e.preventDefault();
 		const { dispatch, speakerName, speakerEmail, date, topic, phone, description } = this.props;
-		console.log('this is date right after speaker submit: ', date)
 		dispatch(talkSubmit({ speakerName, speakerEmail, phone, speakerEmail },
 			 {
 				topic, description

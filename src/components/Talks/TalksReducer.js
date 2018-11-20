@@ -222,4 +222,3 @@ export default function TalksReducer(state = initialState, action) {
           }
     }
 }
-

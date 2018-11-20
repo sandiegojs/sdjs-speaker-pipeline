@@ -17,11 +17,9 @@ function talkSubmit(speakerInfo, talkInfo, date) {
 						let meetupId = meetups[index].meetupId;
 						Event.findOrCreate({date, name, details, meetupId})
 							.then(event => {
-								console.log('event: ', event)
 								let eventId = event[0].id
 								Talk.create( { ...talkInfo, speakerId, eventId})
 									.then(talk => {
-										console.log('talks: ', talk)
 										return resolve(talk)
 									})
 									.catch(err => console.log(err))

@@ -45,4 +45,4 @@ class PastTalks extends Component {
     }
 }
 
-export default PastTalks
+export default PastTalks;

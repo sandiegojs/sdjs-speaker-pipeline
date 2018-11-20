@@ -13,23 +13,17 @@ $off-white: #fbfbfb;
 @import 'meetups';
 @import 'talks-page';
 @import 'organizers';
+@import 'ConfirmOrCancel';
 
 html{
     -webkit-font-smoothing: antialiased;
-    // height: 100%
 }
 
 body {
     font-family: $font;
     background-size: cover;
     margin: 0;
-    // height: 100%;
 }
-
-// #root {
-//     height: 100%;
-  
-// }
 
 .btn {
     background-color: #1884c3;
@@ -64,4 +58,3 @@ body {
         letter-spacing: 1px;
     }
 }
-

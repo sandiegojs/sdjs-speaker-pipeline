@@ -47,7 +47,7 @@ export default function AdminLoginReducer(state = initialstate, action) {
 				password: '',
 				accessToken: payload.id,
 				authorized: true,
-			};
+			}
 			else {
 				alert('Login failed');
 				return {
@@ -72,7 +72,7 @@ export default function AdminLoginReducer(state = initialstate, action) {
 				...state,
 				accessToken: payload.id,
 				authorized: true,
-			};
+			}
 			else {
 				alert('Login failed');
 				return {
@@ -94,7 +94,7 @@ export default function AdminLoginReducer(state = initialstate, action) {
 			if (payload.id) return {
 				...state,
 				authorized: true,
-			};
+			}
 			else return {
 				...state,
 				authorized: false,

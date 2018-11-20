@@ -17,7 +17,7 @@ class AdminNavbar extends Component {
 
     handleLogout() {
         const { dispatch, accessToken } = this.props;
-        dispatch(postLogout(accessToken))
+        dispatch(postLogout(accessToken));
     }
 
     render() {

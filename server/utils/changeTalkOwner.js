@@ -11,6 +11,7 @@ function changeTalkOwner(talkId, selectedOwner) {
 			reject({ message: 'No Owner Selected' });
 			return false;
 		}
+
 		const { Talk, Organizer } = app.models;
 		Talk.findById(talkId)
 			.then((talk) => {
@@ -36,7 +37,6 @@ function changeTalkOwner(talkId, selectedOwner) {
 				else {
 					Organizer.find({ where: { username: selectedOwner } })
 						.then((organizer) => {
-							console.log(organizer)
 							newTalk = {
 								...newTalk,
 								"owner": selectedOwner,
@@ -52,7 +52,5 @@ function changeTalkOwner(talkId, selectedOwner) {
 			.catch(err => reject({ error: 'Could not find talk', err }))
 	})
 }
-
-
 
 module.exports = { changeTalkOwner };

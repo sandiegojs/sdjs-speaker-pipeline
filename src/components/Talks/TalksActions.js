@@ -11,10 +11,9 @@ export const getTalkData = accessToken => {
                 Authorization: accessToken
             }
         })
-            //filter by date order try this one second
             .then(talkInfo => {
-                const date = moment().format();
-                const filtered = talkInfo.data.filter(talk => moment(talk.eventDate).format() > date)
+                const date = moment().subtract(1, 'day').format();
+                const filtered = talkInfo.data.filter(talk => moment(talk.eventDate).format() > date);
                 filtered.sort(function(a, b) {
                     a = moment(a.eventDate).format();
                     b = moment(b.eventDate).format();
@@ -28,17 +27,16 @@ export const getTalkData = accessToken => {
                     }
                 })
                     .then((organizers) => {
-                        console.log('organizers: ', organizers)
                         return {
                             talkInfo: filtered,
                             organizers: organizers.data
                         }
                     })
-                    .catch(err => reject({ error: 'could not get organizers', err }))
+                    .catch(err => reject({ error: 'could not get organizers', err }));
             })
             .catch(err => reject({ error: 'could not get talkInfo', err }))
     }
-}
+};
 
 export const handleSelectStatus = (talkId, selectedStatus) => {
     return {
@@ -48,7 +46,7 @@ export const handleSelectStatus = (talkId, selectedStatus) => {
             selectedStatus
         }
     }
-}
+};
 
 export const handleSelectOwner = (talkId, selectedOwner) => {
     return {
@@ -58,7 +56,7 @@ export const handleSelectOwner = (talkId, selectedOwner) => {
             selectedOwner
         }
     }
-}
+};
 
 export const changeTalkStatus = (talkId, selectedStatus, toggle, accessToken) => {
     return {
@@ -81,7 +79,7 @@ export const changeTalkStatus = (talkId, selectedStatus, toggle, accessToken) =>
                 }
             })
     }
-}
+};
 
 export const changeTalkOwner = (talkId, selectedOwner, toggle, accessToken) => {
     return {
@@ -104,7 +102,7 @@ export const changeTalkOwner = (talkId, selectedOwner, toggle, accessToken) => {
                 }
             })
     }
-}
+};
 
 export const toggleStatusEdit = (talkId, toggle) => {
     return {
@@ -114,7 +112,7 @@ export const toggleStatusEdit = (talkId, toggle) => {
             toggle: !toggle
         }
     }
-}
+};
 
 export const toggleOwnerEdit = (talkId, toggle) => {
     return {
@@ -124,7 +122,7 @@ export const toggleOwnerEdit = (talkId, toggle) => {
             toggle: !toggle
         }
     }
-}
+};
 
 export const toggleShowMore = (talkId, toggle) => {
     return {
@@ -134,7 +132,7 @@ export const toggleShowMore = (talkId, toggle) => {
             toggle: !toggle
         }
     }
-}
+};
 
 export const toggleTalkEdit = (talkId, toggle) => {
     return {
@@ -144,7 +142,7 @@ export const toggleTalkEdit = (talkId, toggle) => {
             toggle: !toggle,
         }
     }
-}
+};
 
 
 export const deleteTalk = (talkId, accessToken) => {
@@ -159,7 +157,7 @@ export const deleteTalk = (talkId, accessToken) => {
         })
             .then(() => talkId)
     }
-}
+};
 
 export const handleTalkChange = (talkId, value, type) => {
     return {
@@ -170,10 +168,9 @@ export const handleTalkChange = (talkId, value, type) => {
             type
         }
     }
-}
+};
 
 export const updateTalkInfo = (talkId, newTopic, newDescription, newAdminNotes, toggle, accessToken) => {
-    console.log('access token update talk', accessToken)
     return {
         type: 'UPDATE_TALK_INFO',
         payload: axios({
@@ -190,13 +187,10 @@ export const updateTalkInfo = (talkId, newTopic, newDescription, newAdminNotes, 
             }
         })
             .then((updatedTalk) => {
-                console.log('updated talk', updatedTalk)
                 return {
                     data: updatedTalk.data,
                     toggle: !toggle
                 }
             })
     }
-}
-
-
+};

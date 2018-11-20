@@ -2,12 +2,12 @@ const sgMail = require('@sendgrid/mail');
 const moment = require('moment');
 const ontime = require('ontime');
 const { getTalkDetails } = require('./getTalkDetails');
+const axios = require('axios');
 require('dotenv').config()
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 function sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate) {
-    console.log('this is meetup date in emailer: ', meetupDate)
     return new Promise((resolve, reject) => {
         if (speakerEmail == undefined) {
             reject({ message: 'Bad Speaker Email' });
@@ -35,7 +35,7 @@ function sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speaker
         if (pending) {
             emailContent = `Thank you for signing up to speak ${meetupTitle} on ${meetupDate}. You will be notified as soon as a SDJS admin reviews your request.`
             sendEmailToAdmin(adminEmail, meetupDate, meetupTitle, speakerEmail, speakerName)
-            .catch(err => console.log(err));
+                .catch(err => console.log(err));
         }
 
         const email = {
@@ -45,6 +45,8 @@ function sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speaker
             templateId: 'd-b593d56913f7494cb1faf97354fb475c',
             dynamic_template_data: {
                 emailContent: emailContent,
+                sdjsBtn: false,
+                title: 'SDJS Meetup Speaker Request'
             }
         }
         sgMail.send(email)
@@ -88,11 +90,17 @@ function sendEmailToAdmin(adminEmail, meetupDate, meetupTitle, speakerEmail, spe
             return false;
         }
 
+        let emailContent = `You have a pending speaker request from ${speakerName} for ${meetupTitle} on ${meetupDate}. would you like to approve or deny them.`
         const email = {
             to: adminEmail,
             from: adminEmail,
             subject: 'SDJS Meetup Speaker Request',
-            text: `You have a pending speaker request from ${speakerName} for ${meetupTitle} on ${meetupDate}. would you like to approve or deny them.`
+            templateId: 'd-b593d56913f7494cb1faf97354fb475c',
+            dynamic_template_data: {
+                emailContent: emailContent,
+                sdjsBtn: false,
+                title: 'SDJS Meetup Speaker Request'
+            }
         }
         sgMail.send(email)
             .then(() => resolve({ email }))
@@ -102,12 +110,65 @@ function sendEmailToAdmin(adminEmail, meetupDate, meetupTitle, speakerEmail, spe
             });
     })
 }
+function sendConfirmCancelToAdmin(confirm, meetupDate, meetupTitle, speakerName) {
+    return new Promise((resolve, reject) => {
+        if (confirm == undefined) {
+            reject({ message: 'message is not confirmed or engaged' });
+            return false;
+        }
+
+        if (meetupDate == undefined) {
+            reject({ message: 'Bad Meetup Date' });
+            return false;
+        }
+        if (meetupTitle == undefined) {
+
+            reject({ message: 'Bad Meetup Title' });
+            return false;
+        }
+
+        if (speakerName == undefined) {
+            reject({ message: 'Bad Meetup Date' });
+            return false;
+        }
+
+        let emailContent;
+        let verb;
+        if (confirm) {
+            emailContent = `${speakerName} has confirmed thier talk on ${meetupDate} for ${meetupTitle}`
+            verb = 'confirmed.'
+        }
+        if (!confirm) {
+            emailContent = `${speakerName} has canceled thier talk on ${meetupDate} for ${meetupTitle}`
+            verb = 'canceled.'
+        }
+
+        const email = {
+            to: process.env.MAIN_ADMIN_EMAIL,
+            from: process.env.MAIN_ADMIN_EMAIL,
+            subject: 'SDJS Meetup Speaker Request',
+            templateId: 'd-b593d56913f7494cb1faf97354fb475c',
+            dynamic_template_data: {
+                emailContent: emailContent,
+                sdjsBtn: false,
+                title: `SDJS Meetup Speaker ${verb}`
+            }
+        }
+
+        sgMail.send(email)
+            .then(() => {
+                return resolve({ email })
+            })
+            .catch(err => {
+                console.log(err);
+                reject(err);
+            });
+    })
+}
 
 function sendEmailToNewAdmin(username, email) {
     return new Promise((resolve, reject) => {
-
         if (username == undefined) {
-
             reject({ message: 'Bad New Admin username' });
             return false;
         }
@@ -118,17 +179,23 @@ function sendEmailToNewAdmin(username, email) {
             return false;
         }
 
-        const newAdminEmail = {
+        let emailContent = `You have been made an admin on the SDJS Meetup website. 
+                To login please go to http/localhost/3000/AdminLogin and enter your 
+                email and your temporary password. To edit your user name, email, 
+                password go to the Organizers tab and click on the edit button.`;
+        const email = {
             to: email,
             from: process.env.MAIN_ADMIN_EMAIL,
             subject: 'SDJS Meetup Admin Appointment',
-            text: `You have been made an admin on the SDJS Meetup website. 
-                    To login please go to http/localhost/3000/AdminLogin and enter your 
-                    email and your temporary password. To edit your user name, email, 
-                    password go to the Organizers tab and click on the edit button.`
+            templateId: 'd-b593d56913f7494cb1faf97354fb475c',
+            dynamic_template_data: {
+                emailContent: emailContent,
+                sdjsBtn: false,
+                title: 'SDJS Meetup Admin Appointment'
+            }
         }
-        sgMail.send(newAdminEmail)
-            .then(() => resolve({ newAdminEmail }))
+        sgMail.send(email)
+            .then(() => resolve({ email }))
             .catch(err => {
                 console.log(err);
                 reject(err);
@@ -143,53 +210,83 @@ ontime({
     getTalkDetails()
         .then(res => {
             let date = new Date();
-            let threeDaysFromNow = moment(date).add(2, 'day').format('YYYY-MM-DD');
-            res = res.filter(talk => talk.currentStatus === 'Approve' && moment(talk.eventDate).format('YYYY-MM-DD') === threeDaysFromNow)
-
+            let threeDaysFromNow = moment(date).add(3, 'day').format('YYYY-MM-DD');
+            res = res.filter(talk => talk.currentStatus === 'Approve' && moment(talk.eventDate).add(1, 'day').format('YYYY-MM-DD') === threeDaysFromNow)
             if (
                 res.length !== 0) {
-                res.forEach(speaker => {
-                    return new Promise((resolve, reject) => {
-                        if (
-                            speaker.speakerEmail == undefined) {
-                            reject({ message: 'Bad Speaker Email in reminder email' });
-                            return false;
-                        }
+                axios.post('http://localhost:3000/api/organizers/login', { username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD, ttl: 60 * 5 })
+                    .then(response => {
+                        return response.data.id
+                    }).then(accessToken => {
+                        res.forEach(speaker => {
+                            return new Promise((resolve, reject) => {
+                                if (accessToken == undefined) {
+                                    reject({ message: 'Bad accessToken in reminder email' });
+                                    return false;
+                                }
 
-                        if (
-                            speaker.eventName == undefined) {
-                            reject({ message: 'Bad event name in reminder email' });
-                            return false;
-                        }
+                                if ( speaker.speakerEmail == undefined) {
+                                    reject({ message: 'Bad Speaker Email in reminder email' });
+                                    return false;
+                                }
 
-                        if (
-                            speaker.eventDate == undefined) {
-                            reject({ message: 'Bad Meetup Date in reminder email' });
-                            return false;
-                        }
+                                if ( speaker.eventName == undefined) {
+                                    reject({ message: 'Bad event name in reminder email' });
+                                    return false;
+                                }
 
-                        var emailContent = `SDJS would like to remind you that you have 
-                        been approved to speeak at ${speaker.eventName} on ${speaker.eventDate.toDateString()}. 
-                        Please click this button to visit out site to confirm or cancel your talk. `
+                                if ( speaker.eventDate == undefined) {
+                                    reject({ message: 'Bad Meetup Date in reminder email' });
+                                    return false;
+                                }
 
-                        const reminder = {
-                            to: speaker.speakerEmail,
-                            from: process.env.MAIN_ADMIN_EMAIL,
-                            subject: 'SDJS Meetup Speaker Reminder',
-                            templateId: 'd-b593d56913f7494cb1faf97354fb475c',
-                            dynamic_template_data: {
-                                emailContent: emailContent,
-                            }
-                        }
+                                if (speaker.talkId == undefined) {
+                                    reject({ message: 'Bad talkId in reminder email' });
+                                    return false;
+                                }
+                                    
+                                axios({
+                                    method: 'post',
+                                    url: `http://localhost:3000/api/accessTokens`,
+                                    headers: {
+                                        Authorization: accessToken
+                                    },
+                                    data: {
+                                        id: speaker.TalkId,
+                                        ttl: 60 * 60 * 24 * 3
+                                    }
+                                }).then(response => {
+                                    return response.data.id
+                                }).then(speakerToken => {
+                                    let emailContent = `SDJS would like to remind you that you have 
+                                                        been approved to speeak at ${speaker.eventName} on ${speaker.eventDate.toDateString()}. 
+                                                        Please click this button to visit out site to confirm or cancel your talk. `
 
-                        sgMail.send(reminder)
-                            .then(() => resolve({ reminder })
-                                .catch(err => {
-                                    console.log(err);
-                                    reject(err);
-                                }));
+                                    const url = 'http://localhost:3000/#/ConfirmOrCancel/?t=';
+                                    const reminder = {
+                                        to: speaker.speakerEmail,
+                                        from: process.env.MAIN_ADMIN_EMAIL,
+                                        subject: 'SDJS Meetup Speaker Reminder',
+                                        templateId: 'd-227d9b43edf14c92964db9bd00fdf002',
+                                        dynamic_template_data: {
+                                            emailContent: emailContent,
+                                            sdjsBtn: true,
+                                            url: (url + speakerToken + '&eventId=' + speaker.talkId),
+                                            title: 'SDJS Meetup Speaker Reminder'
+                                        }
+                                    }
+                                    sgMail.send(reminder)
+                                        .then(() => {
+                                            resolve({ reminder })
+                                        })
+                                        .catch(err => {
+                                            console.log(err);
+                                            reject(err);
+                                        })
+                                })
+                            })
+                        })
                     })
-                })
             }
         })
 
@@ -197,4 +294,4 @@ ontime({
     return
 })
 
-module.exports = { sendEmailToSpeaker, sendEmailToAdmin, sendEmailToNewAdmin } 
+module.exports = { sendEmailToSpeaker, sendEmailToAdmin, sendEmailToNewAdmin, sendConfirmCancelToAdmin } 

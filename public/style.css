@@ -188,6 +188,7 @@
   width: 40%;
   display: flex;
   justify-content: space-evenly;
+  margin-right: 30px;
 }
 
 .nav-item {
@@ -603,6 +604,34 @@ label {
 
 #name {
   text-transform: capitalize;
+}
+
+#confirmation {
+  margin-top: 200px;
+  text-align: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px;
+  background-color: #fbfbfb;
+  border: solid 1px #313131;
+}
+
+.buttons .btn {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+p {
+  margin: 30px 0px;
 }
 
 html {

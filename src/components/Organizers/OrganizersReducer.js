@@ -1,4 +1,3 @@
-
 const initialstate = {
 	adminList       : [], 
     newAdminEmail   : '',
@@ -6,6 +5,7 @@ const initialstate = {
 	newAdminPhone   : '',
 	newAdminPassword: '',
 }
+
 export default function OrganizersReducer(state = initialstate, action) {
 	const { payload, type } = action;
 

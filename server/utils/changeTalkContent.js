@@ -35,7 +35,6 @@ function changeTalkContent(talkId, newTopic, newDescription, newAdminNotes) {
 					"organizerId": talk.organizerId,
 					"adminNotes": newAdminNotes
 				}
-				console.log('new talk in changetalkcontent', newTalk)
 				Talk.replaceOrCreate(newTalk)
 					.then(() => resolve(newTalk))
 					.catch(err => reject(err));
@@ -43,7 +42,5 @@ function changeTalkContent(talkId, newTopic, newDescription, newAdminNotes) {
 			.catch(err => reject({ error: 'Could not find talk', err }))
 	})
 }
-
-
 
 module.exports = { changeTalkContent };
