@@ -97,7 +97,7 @@ class SignUp extends Component {
 									<select name='date' id='event-date' type='select' required onChange={this.handleDate}>
 										<option>Select a Date</option>
 										{events && events.map(event => (
-											<option key={event.date} >{event.date}</option>
+											<option key={event.date} >{event.date}&nbsp;&nbsp;-&nbsp;&nbsp;{event.name}</option>
 										))}
 									</select>
 								</div>
