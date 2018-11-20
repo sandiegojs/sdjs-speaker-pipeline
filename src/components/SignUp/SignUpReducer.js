@@ -24,9 +24,10 @@ export default function SignUpReducer(state = initialstate, action) {
 			}
 		}
 		case 'UPDATE_DATE': {
+			const date = payload.slice(0, 10)
 			return {
 				...state,
-				date: payload
+				date: date
 			}
 		}
 		case 'UPDATE_PHONE': {

@@ -1,12 +1,1 @@
-{
-  "sdjs": {
-    "host": "localhost",
-    "port": 27017,
-    "url": "",
-    "database": "sdjs-speaker",
-    "password": "",
-    "name": "sdjs",
-    "user": "",
-    "connector": "mongodb"
-  }
-}
+{}
