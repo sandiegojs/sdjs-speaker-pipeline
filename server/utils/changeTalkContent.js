@@ -3,22 +3,18 @@ const app = require('../server');
 function changeTalkContent(talkId, newTopic, newDescription, newAdminNotes) {
 	return new Promise((resolve, reject) => {
 		if (talkId == undefined) {
-            reject({ message: 'Bad talk Id' });
-            return false;
+           return reject(new Error('talkId is undefinded'));
         }
 
         if (newTopic == undefined) {
-            reject({ message: 'Bad newTopic' });
-            return false;
+             return reject(new Error('newTopic is undefined'));
 		}
 		if (newDescription == undefined) {
-            reject({ message: 'Bad newDescription' });
-            return false;
+            return reject(new Error('newDescription is undefined'));
         }
 
         if (newAdminNotes == undefined) {
-            reject({ message: 'newAdminNotes' });
-            return false;
+            return reject(new Error('newAdminNotes is undefined'));
         }
 		const { Talk } = app.models;
 		Talk.findById(talkId)
@@ -39,7 +35,7 @@ function changeTalkContent(talkId, newTopic, newDescription, newAdminNotes) {
 					.then(() => resolve(newTalk))
 					.catch(err => reject(err));
 			})
-			.catch(err => reject({ error: 'Could not find talk', err }))
+			.catch(err => reject(err))
 	})
 }
 

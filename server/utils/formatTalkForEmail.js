@@ -3,13 +3,11 @@ const app = require('../server');
 function formatTalkForEmail(speakerId, eventId) {
     return new Promise((resolve, reject) => {
         if (speakerId == undefined) {
-            reject({ message: 'Bad Speaker Id' });
-            return false;
+           return reject(new Error('speakerId is undefined'));
         }
 
         if (eventId == undefined) {
-            reject({ message: 'Bad Event Id' });
-            return false;
+            return reject(new Error('eventId is undefined'));
         }
         const { Speaker, Event } = app.models;
         Speaker.findById(speakerId)
@@ -27,9 +25,9 @@ function formatTalkForEmail(speakerId, eventId) {
                             meetupDate
                         })
                     })
-                    .catch(err => reject({ error: 'could not find event', err }))
+                    .catch(err => reject( err ))
             })
-            .catch(err => reject({ error: 'could not find talk', err }))
+            .catch(err => reject(err))
     })
 }
 

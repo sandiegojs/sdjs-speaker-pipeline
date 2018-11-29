@@ -1,4 +1,3 @@
-const app = require('../server');
 const axios = require('axios');
 
 function getMeetups() {
@@ -17,8 +16,7 @@ function getMeetups() {
 					description: event.description,
 				})));
 			})
-			.catch(err => reject({ error: 'could not get SDJS meetups', err, data: err.response.data.errors }))
-			.catch(err => reject({ error: 'there was an issue with the request', err }))
+			.catch(err => reject(new Error('getMeetups failed to get SDJS meetups')))
 	})
 }
 

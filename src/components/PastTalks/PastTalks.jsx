@@ -33,7 +33,7 @@ class PastTalks extends Component {
                 <tbody>
                     {pastTalks.map((talk, i) => (
                         <tr key={i}>
-                            <td>{moment(talk.date).add(1, 'day').format('YYYY-MM-DD')}</td>
+                            <td>{moment(talk.eventDate).add(1, 'day').format('YYYY-MM-DD')}</td>
                             <td>{talk.eventName}</td>
                             <td>{talk.speaker}</td>
                             <td>{talk.topic}</td>

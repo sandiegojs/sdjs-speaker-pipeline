@@ -1,7 +1,7 @@
 'use strict';
 
 const { getMeetups } = require('../../server/utils/getMeetups');
-const { talkSubmit } = require('../../server/utils/talkSubmit')
+const { talkSubmit } = require('../../server/utils/talkSubmit');
 const { getTalkDetails } = require('../../server/utils/getTalkDetails');
 const { changeTalkStatus } = require('../../server/utils/changeTalkStatus');
 const { changeTalkOwner } = require('../../server/utils/changeTalkOwner');
@@ -197,7 +197,7 @@ module.exports = function (Talk) {
 	})
 
 	Talk.sendEmailToSpeaker = function (adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate, cb) {
-		sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate, cb)
+		sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
 			.then(email => cb(null, email))
 			.catch(err => cb(err))
 	}
@@ -257,18 +257,18 @@ module.exports = function (Talk) {
 				const meetupDate = response.meetupDate;
 				sendEmailToSpeaker(process.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
 					.then(() => next())
-					.catch(err => next(new Error(err.message)));
+					.catch(err => next(err));
 			})
-			.catch(() => next(new Error('error with formatTalkForEmail function')));
-	});
+			.catch(err => next(err));
+		});
 
 	Talk.afterRemote('changeTalkStatus', function (ctx, modelInstance, next) {
-		if (ctx.result.status == 'Approve' || ctx.result.status == 'Deny') {
+		if (ctx.result.status === 'Approve' || ctx.result.status == 'Deny') {
 			let approved;
-			if (ctx.result.status == 'Approve') {
+			if (ctx.result.status === 'Approve') {
 				approved = true
 			} 
-			if (ctx.result.status == 'Deny') {
+			if (ctx.result.status === 'Deny') {
 				approved = false
 			}
 			const speakerId = ctx.result.speakerId;
@@ -282,10 +282,10 @@ module.exports = function (Talk) {
 					const meetupDate = response.meetupDate;
 					sendEmailToSpeaker(process.env.MAIN_ADMIN_EMAIL, approved, pending, speakerEmail, speakerName, meetupTitle, meetupDate)
 						.then(() => next())
-						.catch(err => next(new Error(err.message)))
+						.catch(err => next(err));
 				})
-				.catch(err => next(new Error(err)));
-		}
+				.catch(err => next(err));
+			}
 		if ( ctx.result.status == 'Confirmed' || ctx.result.status == 'Disengaged') {
 			let confirm;
 			if (ctx.result.status == 'Confirmed') {
@@ -303,9 +303,9 @@ module.exports = function (Talk) {
 					const meetupDate = response.meetupDate;
 					sendConfirmCancelToAdmin(confirm, meetupDate, meetupTitle, speakerName)
 						.then(() => next())
-						.catch(err => next(new Error(err.message)))
-				})
-				.catch(err => next(new Error(err))); 
+						.catch(err => next(err));
+					})
+					.catch(err => next(err));
 
 		}
 		else {

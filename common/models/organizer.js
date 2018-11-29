@@ -9,7 +9,6 @@ module.exports = function(Organizer) {
         sendEmailToNewAdmin(username, email)
         .then(() => next())
         .catch(err => {
-            console.log(err);
             next(new Error(err.message));
         })
     });

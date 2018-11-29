@@ -32,9 +32,7 @@ export const getTalkData = accessToken => {
                             organizers: organizers.data
                         }
                     })
-                    .catch(err => reject({ error: 'could not get organizers', err }));
             })
-            .catch(err => reject({ error: 'could not get talkInfo', err }))
     }
 };
 

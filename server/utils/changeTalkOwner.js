@@ -3,13 +3,11 @@ const app = require('../server');
 function changeTalkOwner(talkId, selectedOwner) {
 	return new Promise((resolve, reject) => {
 		if (talkId == undefined) {
-			reject({ message: 'Bad Talk Id' });
-			return false;
+			return reject(new Error('TalkId is undefined'));
 		}
 
 		if (selectedOwner == undefined) {
-			reject({ message: 'No Owner Selected' });
-			return false;
+			return reject(new Error('SelectedOwner is undefined'));
 		}
 
 		const { Talk, Organizer } = app.models;
@@ -25,7 +23,7 @@ function changeTalkOwner(talkId, selectedOwner) {
 					"eventId": talk.eventId,
 					"adminNotes": talk.adminNotes
 				}
-				if (selectedOwner == 'None') {
+				if (selectedOwner === 'None') {
 					newTalk = {
 						...newTalk,
 						"owner": selectedOwner,
@@ -46,10 +44,10 @@ function changeTalkOwner(talkId, selectedOwner) {
 								.then(() => resolve(newTalk))
 								.catch(err => reject(err));
 						})
-						.catch(err => reject({ error: 'Could not find organizer', err }))
+						.catch(err => reject(err))
 				}
 			})
-			.catch(err => reject({ error: 'Could not find talk', err }))
+			.catch(err => reject(err))
 	})
 }
 

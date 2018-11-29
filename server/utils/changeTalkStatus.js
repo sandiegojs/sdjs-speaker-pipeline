@@ -3,13 +3,11 @@ const app = require('../server');
 function changeTalkStatus(talkId, selectedStatus) {
 	return new Promise((resolve, reject) => {
 		if (talkId == undefined) {
-            reject({ message: 'Bad Talk Id' });
-            return false;
+             return reject(new Error('TalkId is undefined'));
         }
 
         if (selectedStatus == undefined) {
-            reject({ message: 'No Status Selected' });
-            return false;
+          return  reject(new Error('selectedStatus is undefined'));
         }
 		const { Talk } = app.models;
 		Talk.findById(talkId)
@@ -30,7 +28,7 @@ function changeTalkStatus(talkId, selectedStatus) {
 					.then(() => resolve(newTalk))
 					.catch(err => reject(err));
 			})
-			.catch(err => reject({ error: 'Could not find talk', err }))
+			.catch(err => reject(err))
 	})
 }
 

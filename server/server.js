@@ -2,7 +2,7 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-const axios = require('axios');
+//const axios = require('axios');
 
 require('dotenv').config()
 
@@ -23,17 +23,17 @@ app.start = function() {
  });
 };
 
-app.get('/api/robotLogin', (req, res) => {
-  axios({
-    method: 'post',
-    url: 'http://localhost:3000/api/organizers/login',
-    data: {
-      username: process.env.ADMIN_USERNAME,
-      password: process.env.ADMIN_PASSWORD,
-      ttl: 60 * 5
-    }
-  }).then(response => res.send(response.data));
-});
+// app.get('/api/robotLogin', (req, res) => {
+//   axios({
+//     method: 'post',
+//     url: 'http://localhost:3000/api/organizers/login',
+//     data: {
+//       username: process.env.ADMIN_USERNAME,
+//       password: process.env.ADMIN_PASSWORD,
+//       ttl: 60 * 1
+//     }
+//   }).then(response => res.send(response.data));
+// });
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
