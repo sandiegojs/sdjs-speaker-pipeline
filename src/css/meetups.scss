@@ -1,0 +1,43 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 20px;
+    font-size: 15pt;
+    background-color: #146fa5;
+    color: white;
+    letter-spacing: 1px;
+}
+.meetups{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+
+    .table {
+        
+            .table-header-meetups-page {
+                font-size: 15px;
+                margin: 0;
+                border-bottom: 1px solid $dark-gray;
+                height: 50px;
+            }
+
+    }
+}
+.meetups-child{
+    width: 80%;
+}
+.meetup-link{
+    background: $secondary-color;
+    color: white;
+    font-size: 15px;
+    box-shadow: 1px 1px darkslategrey;
+    text-decoration: none;
+    padding: 10px;
+}
+.single-meetup{
+    margin: 50px 0;
+    border: 1px solid $dark-gray;
+}

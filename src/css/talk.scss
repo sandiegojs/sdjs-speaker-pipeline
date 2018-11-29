@@ -1,0 +1,119 @@
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+
+    tr {
+        color:rgb(59, 59, 59);
+        font-size: 15px;
+        border: 1px solid #efefef;
+        text-transform: capitalize;
+        background-color: $off-white;
+    }
+
+    td {
+        padding: 20px;
+        background-color: $off-white;
+    }
+
+    select {
+        height: 50px;
+        width: 120px;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        width: 60px;
+        border-radius: 5%;
+        font-size: 10px;
+        padding: 2px;
+        margin-left: initial;
+        margin: 5px;
+    }
+
+    .btn:hover {
+        background-color: #146fa5;
+    }
+
+    .table-speakerEmail {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .table-speakerPhone {
+        font-size: 15px;
+    }
+
+    a {
+        color: #1884c3;
+    }
+
+    i {
+        margin-right: 5px;
+        color: rgb(59, 59, 59);
+    }
+
+    .table-description {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    .table-eventDate {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .table-tableAction {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .table-tableStatus {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .table-tableConfirmation {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    .table-flex-column-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-by-side-btns {
+        margin: 5px;
+    }
+
+    .options {
+        i {
+            margin-left: 10px;
+        }
+    }
+
+    .table-editTalk {
+        margin: 20px 0;
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        input {
+            height: 20px;
+            border: 1px solid lightgray;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        textarea {
+            height: 50px;
+            border: 1px solid lightgray;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+    }
+}

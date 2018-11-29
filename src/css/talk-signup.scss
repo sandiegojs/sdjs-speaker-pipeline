@@ -1,0 +1,88 @@
+.signUp-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    h1 {
+        text-align: center;
+    }
+    h3 {
+        text-align: center;
+        font-size: 32px;
+        margin: 0;
+        padding: 30px;
+        font-weight: normal;
+        letter-spacing: 2px;
+    }
+    hr {
+        width: 80%;
+    }
+}
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $background-color;
+    border: 1px solid gray;
+    form {
+        margin: 200px 100px;
+        width: 60%;
+        background:#1884c3;
+        color: white;
+        box-shadow: 1px 1px gray;
+        border-radius: 5px;
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            label{
+                justify-content: right;
+                width: 70%;
+                margin: 10px 0;
+                font-weight: normal;
+                letter-spacing: 1px;
+            }
+            input{
+                width: 70%;
+                height: 30px;
+                font-size: 15px;
+                box-shadow: 1px 1px gray;
+                border-radius: 5px;
+                border: none;
+            }
+            textarea{
+                width: 70%;
+                font-size: 15px;
+                box-shadow: 1px 1px gray;
+                border-radius: 5px;
+                border: none;
+                height: 50px;
+            }
+            select {
+                width: 70%;
+                height: 30px;
+                font-size: 15px;
+                color: $dark-gray;
+                box-shadow: 1px 1px gray;
+                border: none;
+            }
+            button{
+                background-color: #ff5041;
+                margin: 30px;
+            }
+        }
+    }
+}
+
+.form-title {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #fff;
+    text-align: center;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;        
+}

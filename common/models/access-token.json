@@ -1,0 +1,37 @@
+{
+  "name": "accessToken",
+  "base": "AccessToken",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "organizer": {
+      "type": "belongsTo",
+      "model": "organizer",
+      "foreignKey": "userId"
+    },
+    "speaker": {
+      "type": "belongsTo",
+      "model": "speaker",
+      "foreignKey": "userId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

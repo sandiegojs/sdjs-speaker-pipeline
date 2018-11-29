@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = function(event) {
+module.exports = function(Event) {
 
 };

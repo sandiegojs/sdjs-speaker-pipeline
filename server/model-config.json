@@ -14,37 +14,53 @@
     ]
   },
   "User": {
-    "dataSource": "sdjs"
+    "dataSource": "atlas",
+    "public": false
   },
   "AccessToken": {
-    "dataSource": "sdjs",
+    "dataSource": "atlas",
     "public": false
   },
   "ACL": {
-    "dataSource": "sdjs",
+    "dataSource": "atlas",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "sdjs",
+    "dataSource": "atlas",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "sdjs",
+    "dataSource": "atlas",
     "public": false
   },
   "speaker": {
-    "dataSource": "sdjs",
+    "dataSource": "atlas",
     "public": true
   },
   "event": {
-    "dataSource": "sdjs",
+    "dataSource": "atlas",
     "public": true
   },
   "talk": {
-    "dataSource": "sdjs",
+    "dataSource": "atlas",
     "public": true
+  },
+  "organizer": {
+    "dataSource": "atlas",
+    "public": true
+  },
+  "accessToken": {
+    "dataSource": "atlas",
+    "public": true,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "organizer",
+        "foreignKey": "organizerId"
+      }
+    }
   }
 }
