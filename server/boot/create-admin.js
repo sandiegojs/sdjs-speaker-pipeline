@@ -1,19 +1,17 @@
-'use strict';
-
 module.exports = app => {
   const { Organizer, Role, RoleMapping } = app.models;
 
   Organizer.findOrCreate(
     {
       where: {
-        'username': process.env.ADMIN_USERNAME,
-      },
+        username: process.env.ADMIN_USERNAME
+      }
     },
     {
-      'username': process.env.ADMIN_USERNAME,
-      'email': process.env.ADMIN_EMAIL,
-      'password': process.env.ADMIN_PASSWORD,
-      'phone': process.env.ADMIN_PHONE,
+      username: process.env.ADMIN_USERNAME,
+      email: process.env.ADMIN_EMAIL,
+      password: process.env.ADMIN_PASSWORD,
+      phone: process.env.ADMIN_PHONE
     },
     (err, organizer) => {
       if (err) {
@@ -23,13 +21,13 @@ module.exports = app => {
       Role.findOrCreate(
         {
           where: {
-            'name': 'admin',
-          },
+            name: "admin"
+          }
         },
         {
-          'name': 'admin',
+          name: "admin"
         },
-        (err) => {
+        err => {
           if (err) {
             console.log(err);
             return;
@@ -37,15 +35,15 @@ module.exports = app => {
           RoleMapping.findOrCreate(
             {
               where: {
-                principalType: 'admin',
-                principalId: organizer.id,
-              },
+                principalType: "admin",
+                principalId: organizer.id
+              }
             },
             {
-              principalType: 'admin',
-              principalId: organizer.id,
+              principalType: "admin",
+              principalId: organizer.id
             },
-            (err) => {
+            err => {
               if (err) {
                 console.log(err);
                 return;

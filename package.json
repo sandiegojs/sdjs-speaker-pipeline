@@ -6,12 +6,12 @@
     "node": ">=4"
   },
   "scripts": {
-    "lint": "eslint .",
     "dev": "webpack --mode development",
     "build": "webpack --p",
     "sass": "sass --watch src/css/style.scss public/style.css",
     "start": "npm run dev && node .",
-    "test": "mocha --require ignore-styles test/setup.js test/**/**.spec.js --exit"
+    "test": "mocha --require ignore-styles test/setup.js test/**/**.spec.js --exit",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@babel/register": "^7.0.0",
@@ -50,12 +50,16 @@
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.0-beta.6",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "dotenv": "^6.1.0",
-    "eslint": "^3.17.1",
-    "eslint-config-loopback": "^8.0.0",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "ignore-styles": "^5.0.1",
     "nsp": "^2.1.0",
     "webpack": "^4.20.2",
