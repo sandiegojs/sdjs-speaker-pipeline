@@ -58,3 +58,8 @@ body {
         letter-spacing: 1px;
     }
 }
+@media (max-width: 480px) {
+    body {
+        padding-top: 105px;
+    }
+}

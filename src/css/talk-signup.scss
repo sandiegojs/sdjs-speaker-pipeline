@@ -1,8 +1,7 @@
 .signUp-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
     h1 {
         text-align: center;
     }
@@ -85,4 +84,18 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;        
+}
+
+@media (max-width: 480px) {
+    .signUp-container {
+       width: 100%;
+       box-sizing: border-box;
+    }
+    .form-container {
+        width: 100%;
+        form {
+            width: 100%;
+        }
+
+    }
 }

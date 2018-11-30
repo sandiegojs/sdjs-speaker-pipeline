@@ -169,3 +169,12 @@
         padding-bottom: 15px;
     }
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .donts {
+        margin: 10px;
+    }
+    .dos {
+        margin: 10px;
+    }
+}

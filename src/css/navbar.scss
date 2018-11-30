@@ -49,3 +49,19 @@
         justify-content: space-evenly;
     }
 }
+
+@media (max-width: 480px) {
+    .navbar {
+        display: block;
+        width: 100%;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .nav-items {
+        margin-top: 7px;
+        float: none;
+    }
+    .nav-item {
+        margin-left: 0px;
+    }
+}
