@@ -1,3 +1,5 @@
+'use strict';
+
 const app = require('../server');
 const { getMeetups } = require('./getMeetups');
 

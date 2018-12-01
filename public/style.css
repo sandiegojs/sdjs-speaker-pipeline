@@ -76,6 +76,7 @@
   border-radius: 3px;
   width: 25%;
   box-shadow: 5px 5px #888888;
+  float: left;
 }
 .dos h5 {
   font-size: 30px;
@@ -98,12 +99,19 @@
   border: 1px solid silver;
   border-radius: 3px;
   box-shadow: 5px 5px #888888;
+  float: left;
 }
 .donts h5 {
   font-size: 30px;
   color: red;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+.dos-and-donts:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .border {
@@ -124,7 +132,7 @@
 }
 .info p {
   color: #777;
-  font-size: 20;
+  font-size: 20px;
 }
 
 .inline-link {
@@ -167,6 +175,57 @@
   padding-bottom: 15px;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+  .banner {
+    width: 100%;
+  }
+
+  .dos-and-donts {
+    position: relative;
+    padding-right: 5px;
+    padding-left: 5px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .donts {
+    width: 100%;
+  }
+
+  .dos {
+    width: 100%;
+  }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .dos-and-donts {
+    position: relative;
+    padding-right: 5px;
+    padding-left: 5px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .donts {
+    width: 100%;
+  }
+
+  .dos {
+    width: 100%;
+  }
+
+  .banner h1 {
+    margin-top: 8px;
+  }
+  .banner p {
+    text-align: center;
+  }
+}
 .navbar {
   position: fixed;
   left: 0px;
@@ -185,7 +244,7 @@
 
 .nav-items {
   text-transform: uppercase;
-  width: 40%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   margin-right: 30px;
@@ -220,6 +279,26 @@
   justify-content: space-evenly;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+  .navbar {
+    width: 100%;
+  }
+
+  .nav-item {
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .nav-item {
+    margin-left: 0x;
+  }
+
+  .nav-items {
+    margin-top: 7px;
+    float: none;
+  }
+}
 .signUp-container {
   display: flex;
   flex-direction: column;
@@ -259,7 +338,9 @@
 .form-container form div {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
 }
 .form-container form div label {
   justify-content: right;
@@ -310,6 +391,29 @@ label {
   font-weight: bold;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+  .signUp-container h3 {
+    font-size: 25px;
+    padding-bottom: 1px;
+  }
+
+  .form-container {
+    font-size: 13px;
+  }
+  .form-container form label {
+    margin: 2px;
+  }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .signUp-container h3 {
+    padding-bottom: 1px;
+    font-size: 18px;
+  }
+
+  .form-container {
+    font-size: 13px;
+  }
+}
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -407,6 +511,35 @@ label {
   width: 100%;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+  .talk-component-container {
+    width: auto;
+    position: absolute;
+  }
+
+  .table {
+    font-size: 40px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .talk-component-container {
+    width: auto;
+    position: absolute;
+  }
+
+  .table {
+    font-size: 20px;
+  }
+  .table .table-speakerEmail {
+    font-size: 15px;
+  }
+  .table .table-speakerPhone {
+    font-size: 15px;
+  }
+  .table .table-description {
+    font-size: 15px;
+  }
+}
 .login {
   margin-top: 85px;
   background-image: linear-gradient(180deg, rgba(24, 132, 195, 0.64), rgba(24, 132, 195, 0.64)), url("/pics/background-meetup.png");
@@ -433,6 +566,27 @@ label {
   height: 100%;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+  .login {
+    padding: 2px;
+  }
+
+  .login .btn {
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .login {
+    padding: 2px;
+    justify-content: center;
+  }
+
+  .login .btn {
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+}
 .header {
   display: flex;
   align-items: center;
@@ -461,6 +615,9 @@ label {
 .meetups-child {
   width: 80%;
 }
+.meetups-child h1 {
+  text-align: center;
+}
 
 .meetup-link {
   background: #ff5041;
@@ -476,6 +633,18 @@ label {
   border: 1px solid #313131;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+  .meetups-child {
+    display: block !important;
+    width: 100% !important;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .meetups-child {
+    display: block !important;
+    width: 100% !important;
+  }
+}
 .talks-page-container {
   width: 80%;
   text-align: center;
@@ -520,6 +689,23 @@ label {
   font-size: 15px;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+  .talks-page-container {
+    width: 100%;
+  }
+  .talks-page-container h1 {
+    font-size: 30px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .talks-page-container {
+    width: 100%;
+  }
+
+  .talk-component-on-talks-page {
+    width: 100%;
+  }
+}
 .organizer-container {
   width: 100%;
 }
@@ -537,7 +723,7 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 70%;
   padding: 50px;
 }
 #organizer-form div {
@@ -563,7 +749,7 @@ label {
   width: 70%;
   margin: 50px auto;
   background-color: #fbfbfb;
-  padding: 20px;
+  padding: 50px;
 }
 .organizer-display-container .organizer-display-section {
   display: flex;
@@ -574,15 +760,18 @@ label {
   margin: 0px 10px;
 }
 .organizer-display-container .organizer-display-section .organizer-display-div {
-  width: 30%;
+  display: inline-block;
 }
 
 .organizer-edit-section {
   margin: 50px 0;
+  width: 100%;
+  display: block;
 }
 .organizer-edit-section #organizer-edit-form {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 .organizer-edit-section #organizer-edit-form div {
   margin: 0 10px;
@@ -606,6 +795,34 @@ label {
   text-transform: capitalize;
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+  h1 {
+    font-size: 2.8rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .organizer-display-div {
+    padding: 10px;
+    border: 5px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .organizer-display-div {
+    padding: 10px;
+    border: 5px;
+  }
+}
 #confirmation {
   margin-top: 200px;
   text-align: center;

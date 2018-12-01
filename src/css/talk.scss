@@ -117,3 +117,30 @@
         }
     }
 }
+@media (min-width: 481px) and (max-width: 767px) {
+   .talk-component-container{
+    width: auto;
+    position: absolute;
+   }
+    .table {
+       font-size: 40px;
+   }
+  }
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+   .talk-component-container {
+    width: auto;
+    position: absolute;
+   }
+    .table {
+       font-size: 20px;
+       .table-speakerEmail {
+           font-size: 15px;
+       }
+       .table-speakerPhone {
+           font-size: 15px;
+       }
+       .table-description {
+           font-size: 15px;
+       }
+   }
+ }

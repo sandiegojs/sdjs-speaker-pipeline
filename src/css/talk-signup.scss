@@ -35,7 +35,10 @@
         div{
             display: flex;
             flex-direction: column;
+            flex-wrap: wrap;
             align-items: center;
+            justify-content: space-between;
+
             label{
                 justify-content: right;
                 width: 70%;
@@ -85,4 +88,43 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;        
+}
+@media (min-width: 481px) and (max-width: 767px) {
+    .signUp-container {
+        h3 {
+            font-size: 25px;
+            padding-bottom: 1px;
+        }
+    }
+    .form-container {
+        font-size: 13px;
+        form {
+            label {
+               display: inline-block;
+               width: 140px;
+               text-align: right;
+            }
+            
+        }
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+   .signUp-container {
+       h3 {
+           padding-bottom: 1px;
+           font-size: 18px;
+       }
+   }
+    .form-container {
+        font-size: 13px;
+      form {
+          label {
+             display: inline-block;
+             width: 140px;
+             text-align: right;
+          }
+          
+      }
+        
+    }
 }

@@ -19,3 +19,22 @@
 #admin-top-div {
     height: 100%;
 }
+@media (min-width: 481px) and (max-width: 767px) {
+    .login{
+        padding: 2px;
+    }
+    .login .btn {
+        margin-top:1px;
+        margin-bottom:1px;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    .login{
+        padding: 2px;
+        justify-content: center;
+    }
+    .login .btn {
+        margin-top:1px;
+        margin-bottom:1px;
+    }
+}

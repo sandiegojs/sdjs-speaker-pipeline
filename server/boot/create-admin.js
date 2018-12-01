@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-  const { Organizer, Role, RoleMapping } = app.models;
+  const {Organizer, Role, RoleMapping} = app.models;
 
   Organizer.findOrCreate(
     {

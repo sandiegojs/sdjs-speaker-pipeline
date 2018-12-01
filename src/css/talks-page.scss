@@ -50,3 +50,19 @@
         }
 
     }
+ @media (min-width: 481px) and (max-width: 767px) {
+        .talks-page-container {
+            width: 100%;
+            h1 {
+                font-size: 30px;
+            }
+        }
+}
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+     .talks-page-container{
+         width: 100%;
+     }
+     .talk-component-on-talks-page {
+         width: 100%;
+     } 
+     }

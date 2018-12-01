@@ -1,5 +1,7 @@
 /client/
 /public/
-/src/
 /server/
 /dist/
+/test/
+/node_modules/
+/common/

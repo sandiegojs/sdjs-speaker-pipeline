@@ -1,6 +1,5 @@
 .organizer-container {
   width: 100%;
-
   h3 {
     text-align: center;
     font-weight: normal;
@@ -16,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 70%;
     padding: 50px;
 
     div {
@@ -47,7 +46,7 @@
     width: 70%;
     margin: 50px auto;
     background-color: $off-white;
-    padding: 20px;
+    padding: 50px;
 
     .organizer-display-section {
       display: flex;
@@ -59,17 +58,20 @@
       }
 
       .organizer-display-div {
-        width: 30%
+        display: inline-block;
       }
     }
   }
 
   .organizer-edit-section {
     margin: 50px 0;
+    width: 100%;
+    display: block;
 
     #organizer-edit-form {
       display: flex;
       justify-content: space-between;
+      width: 100%;
 
       div {
         margin: 0 10px; 
@@ -98,3 +100,30 @@
   #name {
     text-transform: capitalize;
   }
+
+@media (min-width: 481px) and (max-width: 767px) {
+    h1 {
+      font-size: 2.8rem;
+    }
+    h3 { 
+      font-size: 1.5rem;
+    }
+    .organizer-display-div {
+      padding: 10px;
+      border:5px;
+    }
+
+  }
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+    }
+    .organizer-display-div {
+      padding: 10px;
+      border:5px;
+    }
+}
+

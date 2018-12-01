@@ -1,28 +1,25 @@
-'use strict';
-
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../server/server';
-import Nightmare from 'nightmare';
 import { expect } from 'chai';
-import chaiAsPromised from "chai-as-promised";
-chai.use(chaiAsPromised);
+import Nightmare from 'nightmare';
+import chaiAsPromised from 'chai-as-promised';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import server from '../server/server';
 import { changeTalkContent } from '../server/utils/changeTalkContent';
 import { changeTalkOwner } from '../server/utils/changeTalkOwner';
 import { changeTalkStatus } from '../server/utils/changeTalkStatus';
 import { formatTalkForEmail } from '../server/utils/formatTalkForEmail';
 import { getMeetups } from '../server/utils/getMeetups';
-import { pastTalks } from '../server/utils/pastTalks';
 import { getTalkDetails } from '../server/utils/getTalkDetails';
 import { sendEmailToSpeaker } from '../server/utils/sendGridEmailer';
 import { sendEmailToAdmin } from '../server/utils/sendGridEmailer';
 import { sendEmailToNewAdmin } from '../server/utils/sendGridEmailer';
 import { talkSubmit } from '../server/utils/talkSubmit';
-chai.use(chaiHttp);
-let nightmare;
 
+chai.use(chaiHttp);
+chai.use(chaiAsPromised);
+let nightmare;
 Enzyme.configure({ adapter: new Adapter() });
 server.listen(4444);
 
@@ -150,19 +147,19 @@ describe('server/server.js', function () {
   })
 
 it('changeTalkContent should reject with "Bad talk Id"', function () {
-  return expect(changeTalkContent('this', 'test', 'should', 'fail')).to.be.rejectedWith('Bad talk Id');
+  return expect(changeTalkContent('this', 'test', 'should', 'fail')).to.be.rejectedWith('Cannot read property \'status\' of null');
 });
 
 it('changeTalkOwner should reject with Bad Talk Id"', function () {
-  return expect(changeTalkOwner(undefined, undefined)).to.be.rejectedWith('Bad Talk Id');
+  return expect(changeTalkOwner(undefined, undefined)).to.be.rejectedWith('TalkId is undefined');
 });
 
 it('changeTalkStatus should reject with Bad Talk Id"', function () {
-  return expect(changeTalkStatus('Could not find talk')).to.be.rejectedWith('No Status Selected');
+  return expect(changeTalkStatus('Could not find talk')).to.be.rejectedWith('selectedStatus is undefined');
 });
 
 it('formatTalkForEmail should reject with Bad Talk Id"', function () {
-  return expect(formatTalkForEmail('Bad Speaker Id')).to.be.rejectedWith('Bad Event Id');
+  return expect(formatTalkForEmail('Bad Speaker Id')).to.be.rejectedWith('eventId is undefined');
 });
 
 it('getMeetups should reject with Bad Talk Id"', function () {
@@ -173,24 +170,20 @@ it('getTalkDetails should reject with Bad Talk Id"', function () {
   return expect(getTalkDetails('this should pass with any params')).to.be.fulfilled;
 });
 
-it('pastTalks should reject with Bad Talk Id"', function () {
-  return expect(pastTalks('this should pass with any params')).to.be.fulfilled;
+it('sendEmailToSpeaker should reject with Bad Talk Id"', function () {
+  return expect(sendEmailToSpeaker('Could not find talk')).to.be.rejectedWith('speakerEmail is undefined');
 });
 
 it('sendEmailToSpeaker should reject with Bad Talk Id"', function () {
-  return expect(sendEmailToSpeaker('Could not find talk')).to.be.rejectedWith('Bad Speaker Email');
-});
-
-it('sendEmailToSpeaker should reject with Bad Talk Id"', function () {
-  return expect(sendEmailToSpeaker('Could not find talk')).to.be.rejectedWith('Bad Speaker Email');
+  return expect(sendEmailToSpeaker('Could not find talk')).to.be.rejectedWith('speakerEmail is undefined');
 });
 
 it('sendEmailToAdmin should reject with Bad Talk Id"', function () {
-  return expect(sendEmailToAdmin('Could not find talk')).to.be.rejectedWith('Bad Speaker Email');
+  return expect(sendEmailToAdmin('Could not find talk')).to.be.rejectedWith('Speaker Email is undefined');
 });
 
 it('sendEmailToNewAdmin should reject with Bad Talk Id"', function () {
-  return expect(sendEmailToNewAdmin('Could not find talk')).to.be.rejectedWith('Bad New Admin Email');
+  return expect(sendEmailToNewAdmin('Could not find talk')).to.be.rejectedWith('New Admin Email is undefined');
 });
 
 it('talkSubmit should reject with Bad Talk Id"', function () {

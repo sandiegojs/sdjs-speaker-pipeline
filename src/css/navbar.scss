@@ -15,7 +15,7 @@
 }
 .nav-items {
     text-transform: uppercase;
-    width: 40%;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     margin-right: 30px;
@@ -47,5 +47,24 @@
         width: 50%;
         display: flex;
         justify-content: space-evenly;
+    }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .navbar {
+      width: 100%;
+  }
+    .nav-item {
+        font-size: 18px;
+        line-height: 20px;
+    }
+    
+  }
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .nav-item {
+        margin-left: 0x;
+    }
+    .nav-items {
+        margin-top: 7px;
+        justify-content: space-around;
     }
 }
