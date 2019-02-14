@@ -14,46 +14,46 @@
     ]
   },
   "User": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": false
   },
   "AccessToken": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": false
   },
   "ACL": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": false
   },
   "speaker": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": true
   },
   "event": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": true
   },
   "talk": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": true
   },
   "organizer": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": true
   },
   "accessToken": {
-    "dataSource": "atlas",
+    "dataSource": "mongo",
     "public": true,
     "relations": {
       "user": {

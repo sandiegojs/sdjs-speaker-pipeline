@@ -27,10 +27,10 @@ jobs:
           command: sudo npm install --global --unsafe-perm now
       - run:
           name: Deploy using now.sh
-          command: now -e MONGODB_URI -e ADMIN_PASSWORD -e NODE_ENV -t ${NOW_TOKEN} -T origin && alias
+          command: now -e MONGODB_URI -e ADMIN_PASSWORD -e NODE_ENV -t ${NOW_TOKEN} -T sdjs-dev && alias
       - run:
           name: Set now.sh alias
-          command: now -t ${NOW_TOKEN} -T origin alias
+          command: now -t ${NOW_TOKEN} -T sdjs-dev alias
 workflows:
   version: 2
   build:

@@ -1,8 +1,7 @@
 'use strict';
 module.exports = {
-  mongo: {
-    database: 'sdjs-speaker',
-    name: 'sdjs',
+  monogo: {
+    url: process.env.MONGODB_URI,
     connector: 'mongodb',
   }
 };
