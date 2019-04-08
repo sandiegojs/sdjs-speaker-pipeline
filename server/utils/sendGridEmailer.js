@@ -38,7 +38,7 @@ function sendEmailToSpeaker(adminEmail, approved, pending, speakerEmail, speaker
             to: speakerEmail,
             from: adminEmail,
             subject: 'SDJS Meetup Speaker Request',
-            templateId: 'd-b593d56913f7494cb1faf97354fb475c',
+            templateId: process.env.EMAIL_TEMPLATE,
             dynamic_template_data: {
                 emailContent: emailContent,
                 sdjsBtn: false,
@@ -82,7 +82,7 @@ function sendEmailToAdmin(adminEmail, meetupDate, meetupTitle, speakerEmail, spe
             to: adminEmail,
             from: adminEmail,
             subject: 'SDJS Meetup Speaker Request',
-            templateId: 'd-b593d56913f7494cb1faf97354fb475c',
+            templateId: process.env.EMAIL_TEMPLATE,
             dynamic_template_data: {
                 emailContent: emailContent,
                 sdjsBtn: false,
@@ -129,7 +129,7 @@ function sendConfirmCancelToAdmin(confirm, meetupDate, meetupTitle, speakerName)
             to: process.env.MAIN_ADMIN_EMAIL,
             from: process.env.MAIN_ADMIN_EMAIL,
             subject: 'SDJS Meetup Speaker Request',
-            templateId: 'd-b593d56913f7494cb1faf97354fb475c',
+            templateId: process.env.EMAIL_TEMPLATE,
             dynamic_template_data: {
                 emailContent: emailContent,
                 sdjsBtn: false,
@@ -158,15 +158,15 @@ function sendEmailToNewAdmin(username, email) {
            return reject(new Error('New Admin Email is undefined'));
         }
 
-        let emailContent = `You have been made an admin on the SDJS Meetup website. 
-                To login please go to ${process.env.SITE_URL}/AdminLogin and enter your 
-                email and your temporary password. To edit your user name, email, 
+        let emailContent = `You have been made an admin on the SDJS Meetup website.
+                To login please go to ${process.env.SITE_URL}/AdminLogin and enter your
+                email and your temporary password. To edit your user name, email,
                 password go to the Organizers tab and click on the edit button.`;
         const newAdminEmail = {
             to: email,
             from: process.env.MAIN_ADMIN_EMAIL,
             subject: 'SDJS Meetup Admin Appointment',
-            templateId: 'd-b593d56913f7494cb1faf97354fb475c',
+            templateId: process.env.EMAIL_TEMPLATE,
             dynamic_template_data: {
                 emailContent: emailContent,
                 sdjsBtn: false,
@@ -223,7 +223,7 @@ function sendEmailToNewAdmin(username, email) {
 //                                     reject({ message: 'Bad talkId in reminder email' });
 //                                     return false;
 //                                 }
-                                    
+
 //                                 axios({
 //                                     method: 'post',
 //                                     url: `http://localhost:3000/api/accessTokens`,
@@ -237,8 +237,8 @@ function sendEmailToNewAdmin(username, email) {
 //                                 }).then(response => {
 //                                     return response.data.id
 //                                 }).then(speakerToken => {
-//                                     let emailContent = `SDJS would like to remind you that you have 
-//                                                         been approved to speeak at ${speaker.eventName} on ${speaker.eventDate.toDateString()}. 
+//                                     let emailContent = `SDJS would like to remind you that you have
+//                                                         been approved to speeak at ${speaker.eventName} on ${speaker.eventDate.toDateString()}.
 //                                                         Please click this button to visit out site to confirm or cancel your talk. `
 
 //                                     const url = 'http://localhost:3000/#/ConfirmOrCancel/?t=';
@@ -273,4 +273,4 @@ function sendEmailToNewAdmin(username, email) {
 //     return
 // })
 
-module.exports = { sendEmailToSpeaker, sendEmailToAdmin, sendEmailToNewAdmin, sendConfirmCancelToAdmin } 
+module.exports = { sendEmailToSpeaker, sendEmailToAdmin, sendEmailToNewAdmin, sendConfirmCancelToAdmin }

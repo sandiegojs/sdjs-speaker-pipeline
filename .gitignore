@@ -19,3 +19,4 @@ npm-debug.log
 .DS_Store
 dist
 .env
+data.json

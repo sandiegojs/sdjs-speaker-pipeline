@@ -8,9 +8,10 @@
   "scripts": {
     "lint": "eslint .",
     "dev": "webpack --mode development",
-    "build": "webpack --p",
+    "build": "npm run build:sass && webpack --p",
+    "build:sass": "sass src/css/style.scss dist/style.css",
     "sass": "sass --watch src/css/style.scss dist/style.css",
-    "start": "npm run dev && node .",
+    "start": "node .",
     "test": "mocha --require ignore-styles test/setup.js test/**/**.spec.js --exit"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "chai-as-promised": "^7.1.1",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
+    "dotenv": "^6.2.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "helmet": "^3.10.0",
@@ -53,18 +55,16 @@
     "babel-loader": "^8.0.0-beta.6",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
-    "dotenv": "^6.1.0",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
     "ignore-styles": "^5.0.1",
-    "nsp": "^2.1.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "git",
+    "url": "https://github.com/sandiegojs/sdjs-speaker-pipeline"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "description": "sdjs-pipeline"
 }

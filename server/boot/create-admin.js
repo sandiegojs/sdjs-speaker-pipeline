@@ -5,8 +5,8 @@ module.exports = app => {
 
   Organizer.findOrCreate(
     {
-      where: {
-        'username': process.env.ADMIN_USERNAME,
+      'where': {
+        'email': process.env.ADMIN_EMAIL,
       },
     },
     {
@@ -17,12 +17,12 @@ module.exports = app => {
     },
     (err, organizer) => {
       if (err) {
-        console.log(err);
+        console.log(`Error creating new organizer. An organizer exists.`);
         return;
       }
       Role.findOrCreate(
         {
-          where: {
+          'where': {
             'name': 'admin',
           },
         },
@@ -36,7 +36,7 @@ module.exports = app => {
           }
           RoleMapping.findOrCreate(
             {
-              where: {
+              'where': {
                 principalType: 'admin',
                 principalId: organizer.id,
               },
