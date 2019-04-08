@@ -14,20 +14,20 @@ import Thankyou        from './components/Thankyou'
 
 class App extends Component {
     render() {
-        return (
-            <Router>
-        	<div>
-				<Route exact path='/'          component={Home} />
-        <Route path='/Admin/Login'      component={AdminLogin} />
-        <Route path='/Admin/Meetups'   component={Meetups} />
-				<Route path='/Admin/Talks'     component={TalksPage} />
-        <Route path='/ConfirmOrCancel' component={ConfirmOrCancel} />
-        <Route path='/Organizers'      component={Organizers} />
-				<Route path='/SignUp'          component={SignUp} />
-        <Route path='/Thankyou'        component={Thankyou} />
-			</div>
-      </Router>
+      return (
+        <Router>
+          <div>
+            <Route exact path='/' component={Home} />
+            <Route path='/Admin/Login' component={AdminLogin} />
+            <Route path='/Admin/Meetups' component={Meetups} />
+            <Route path='/Admin/Talks' component={TalksPage} />
+            <Route path='/ConfirmOrCancel' component={ConfirmOrCancel} />
+            <Route path='/Organizers' component={Organizers} />
+            <Route path='/SignUp' component={SignUp} />
+            <Route path='/Thankyou' component={Thankyou} />
+          </div>
+        </Router>
     );
   }
-} 
+}
 export default App;

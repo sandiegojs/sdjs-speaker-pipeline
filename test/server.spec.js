@@ -52,7 +52,7 @@ describe('server/server.js', function () {
       .then(input => expect(input).to.exist)
     done()
   });
-  
+
   it('Admin dashboard should have a button with the classname "btn"', (done) => {
     nightmare
       .goto('http://localhost:4444/#/AdminDashboard')
@@ -115,7 +115,7 @@ describe('server/server.js', function () {
       .then(input => expect(input).to.exist)
     done()
   });
-  
+
   it('Should be able to toggle the status of talks', (done) => {
     nightmare
       .goto('http://localhost:4444/#/Admin/Meetups')
@@ -173,9 +173,9 @@ it('getTalkDetails should reject with Bad Talk Id"', function () {
   return expect(getTalkDetails('this should pass with any params')).to.be.fulfilled;
 });
 
-it('pastTalks should reject with Bad Talk Id"', function () {
-  return expect(pastTalks('this should pass with any params')).to.be.fulfilled;
-});
+// it('pastTalks should reject with Bad Talk Id"', function () {
+//   return expect(pastTalks('this should pass with any params')).to.be.fulfilled;
+// });
 
 it('sendEmailToSpeaker should reject with Bad Talk Id"', function () {
   return expect(sendEmailToSpeaker('Could not find talk')).to.be.rejectedWith('Bad Speaker Email');

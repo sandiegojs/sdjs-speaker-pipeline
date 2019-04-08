@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {
-    "node": ">=4"
+    "node": ">=8.16"
   },
   "scripts": {
     "lint": "eslint .",
     "dev": "webpack --mode development",
     "build": "webpack --p",
-    "sass": "sass --watch src/css/style.scss public/style.css",
+    "sass": "sass --watch src/css/style.scss dist/style.css",
     "start": "npm run dev && node .",
     "test": "mocha --require ignore-styles test/setup.js test/**/**.spec.js --exit"
   },
