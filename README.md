@@ -1,6 +1,6 @@
 # SDJS Speaker Pipeline
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![Greenkeeper badge](https://badges.greenkeeper.io/sandiegojs/sdjs-speaker-pipeline.svg)](https://greenkeeper.io/)
 
 ## Setting up the local environment
 
