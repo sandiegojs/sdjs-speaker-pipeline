@@ -74,7 +74,7 @@ $ npm run cy:open
 
 ### Reporting Bugs
 
-1. Navigate to the "issues" tab, or [click here](https://github.com/huynhicode/speaker-pipeline/issues)
+1. Navigate to the "issues" tab, or [click here](https://github.com/sandiegojs/speaker-pipeline/issues)
 ![issues tab screenshot](readme-images/tab_issues.png)
 1. Click on the "New issue" button
 ![new issue button screenshot](readme-images/button_new-issue.png)
