@@ -1,6 +1,6 @@
 # SDJS Speaker Pipeline
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](#how-to-contribute) [![CircleCI](https://circleci.com/gh/sandiegojs/sdjs-speaker-pipeline.svg?style=svg)](https://circleci.com/gh/sandiegojs/sdjs-speaker-pipeline)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](#how-to-contribute) [![CircleCI](https://circleci.com/gh/sandiegojs/sdjs-speaker-pipeline.svg?style=svg)](https://circleci.com/gh/sandiegojs/sdjs-speaker-pipeline) [![Greenkeeper badge](https://badges.greenkeeper.io/sandiegojs/sdjs-speaker-pipeline.svg)](https://greenkeeper.io/)
 
 ## Initial Setup
 ---
