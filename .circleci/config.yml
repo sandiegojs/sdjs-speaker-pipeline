@@ -24,7 +24,6 @@ jobs:
     working_directory: ~/sdjs-speaker-pipeline
     docker:
       - image: circleci/node:8.11.0
-      - image: mongo:3.4.4
     steps:
       - checkout
       - run:
