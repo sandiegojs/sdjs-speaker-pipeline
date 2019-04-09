@@ -5,7 +5,7 @@
 ## Setting up the local environment
 
 ```sh
-$ npm i
+$ npm install
 ```
 
 ## Environment variables required
@@ -23,6 +23,10 @@ SENDGRID_API_KEY=XXXXXXX
 ```
 
 ## Run tests
+
+Make sure you have all the dependencies installed. See above.
+
+Then from the command line you can run the tests using:
 
 ```
 $ npm run test

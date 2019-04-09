@@ -20,3 +20,4 @@ npm-debug.log
 dist
 .env
 data.json
+cypress/videos

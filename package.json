@@ -7,12 +7,16 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "dev": "cross-env NODE_ENV=development npm-run-all --parallel watch:server build",
     "build": "npm run build:sass && webpack --p",
     "build:sass": "sass src/css/style.scss dist/style.css",
+    "ci": "start-server-and-test start http://localhost:3000 cy:run",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "dev": "cross-env NODE_ENV=development npm-run-all --parallel watch:server build",
     "sass": "sass --watch src/css/style.scss dist/style.css",
     "start": "node .",
-    "test": "mocha --require ignore-styles test/setup.js test/**/**.spec.js --exit",
+    "test": "cross-env NODE_ENV=development npm-run-all --parallel ci test:unit",
+    "test:unit": "mocha --require ignore-styles test/setup.js test/**/**.spec.js --exit",
     "watch:server": "nodemon server/server.js"
   },
   "dependencies": {
@@ -57,11 +61,13 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "cross-env": "^5.1.4",
+    "cypress": "^3.2.0",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
     "ignore-styles": "^5.0.1",
     "nodemon": "^1.18.11",
     "npm-run-all": "^4.1.1",
+    "start-server-and-test": "^1.7.13",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
