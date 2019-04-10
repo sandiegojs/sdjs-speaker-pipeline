@@ -66,11 +66,9 @@ $ npm run cy:open
 ![clone repo screenshot](readme-images/button_clone-repo.png)
 1. Make sure you are in the right directory: `cd speaker-pipeline`
 1. Add an `upstream` remote for keeping your local repository up-to-date:
-   > `git remote add upstream git@github.com:huynhicode/speaker-pipeline.git`
+   > `git remote add upstream git@github.com:sandiegojs/speaker-pipeline.git`
 1. Create a file called `.env`
-1. Grab the environment variables from a project organizer, and paste them into the `.env` file
-1. Run `npm install` to install the project dependencies
-1. Run `npm start` to start your dev environment
+1. Follow the instructions to complete the [initial setup](#initial-setup)
 
 ### Reporting Bugs
 
