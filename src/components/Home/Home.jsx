@@ -46,8 +46,8 @@ class Home extends Component {
 					</p>
 					<h3>Want to do an extended talk?</h3>
 					<p>
-						We do accept extended talks but prefer presentors to have done a
-						lightning talk before. If you're unsure&nbsp;
+						We do accept extended talks, but prefer presenters to have done a
+						lightning talk before. If you're unsure,&nbsp;
 						<a
 							href="mailto:sandiegojs-organizers@googlegroups.com?subject=Extended%20talk%20request"
 							className='inline-link'>

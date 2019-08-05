@@ -29,7 +29,6 @@ class AdminNavbar extends Component {
                     <Link to='/Admin/Meetups' className={location.pathname === '/Admin/Meetups' ? 'nav-item w--current' : 'nav-item'}>Meetups</Link>
                     <Link to='/Admin/Talks' className={location.pathname === '/Admin/Talks' ? 'nav-item w--current' : 'nav-item'}>Talks</Link>
                     <Link to='/Organizers' className={location.pathname === '/Organizers' ? 'nav-item w--current' : 'nav-item'}>Organizers</Link>
-                    <Link to='/Account' className={location.pathname === '/Account' ? 'nav-item w--current' : 'nav-item'}>Account</Link>
                     <Link to='/' onClick={this.handleLogout} className='nav-item'>LOG OUT</Link>
                 </div>
             </div>

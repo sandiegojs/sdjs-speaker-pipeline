@@ -41,7 +41,9 @@ class Organizers extends Component {
 
     handleDelete(e) {
         const { dispatch, accessToken } = this.props;
-        dispatch(deleteAdmin(e.target.getAttribute('name'), accessToken));
+        if (window.confirm('Please confirm you wish to delete this organizer.')) {
+            dispatch(deleteAdmin(e.target.getAttribute('name'), accessToken));
+        }
     }
 
     handleUpdate(id, index, obj) {
