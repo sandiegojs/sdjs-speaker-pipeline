@@ -71,7 +71,7 @@ class Home extends Component {
 					<div className='dos-and-donts'>
 
 						<div className='dos'>
-							<h5>Do</h5>
+							<h5>DO</h5>
 							<ul>
 								<li>Use a large legible font</li>
 								<li>Use white slides with black text</li>
@@ -79,10 +79,10 @@ class Home extends Component {
 							</ul>
 						</div>
 						<div className='donts'>
-							<h5>Do not</h5>
+							<h5>DO NOT</h5>
 							<ul>
 								<li>Use more than a few slides. 
-									<strong>We recommend less than 10 slides.</strong>
+									<strong>{" "}We recommend less than 10 slides.</strong>
 								</li>
 								<li>Live code/demo for your first talk. It's really hard for a lightning talk.</li>
 								<li>Forget to practice</li>
