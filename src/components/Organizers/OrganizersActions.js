@@ -16,11 +16,12 @@ export const addAdmin = (newAdminName, newAdminEmail, newAdminPhone, newAdminPas
 				Authorization: accessToken
 			}
 		})
+		.catch(err => (window.alert('User already exists')))
 	}
 }
 export const deleteAdmin = (id, accessToken) => {
 	return {
-		type: 'DELETE_ADMIN',
+		type: 'DELETE_ADMIN', 
 		payload: axios({ 
 			method: 'delete',
 			url:`api/organizers/${id}`,

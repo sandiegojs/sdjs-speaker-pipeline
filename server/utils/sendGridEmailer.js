@@ -126,8 +126,8 @@ function sendConfirmCancelToAdmin(confirm, meetupDate, meetupTitle, speakerName)
         }
 
         const email = {
-            to: process.env.MAIN_ADMIN_EMAIL,
-            from: process.env.MAIN_ADMIN_EMAIL,
+            to: process.env.ADMIN_EMAIL,
+            from: process.env.ADMIN_EMAIL,
             subject: 'SDJS Meetup Speaker Request',
             templateId: process.env.EMAIL_TEMPLATE,
             dynamic_template_data: {
@@ -164,7 +164,7 @@ function sendEmailToNewAdmin(username, email) {
                 password go to the Organizers tab and click on the edit button.`;
         const newAdminEmail = {
             to: email,
-            from: process.env.MAIN_ADMIN_EMAIL,
+            from: process.env.ADMIN_EMAIL,
             subject: 'SDJS Meetup Admin Appointment',
             templateId: process.env.EMAIL_TEMPLATE,
             dynamic_template_data: {
