@@ -18,18 +18,18 @@ const Navbar = props => {
                     <Link to='/SignUp' className={location.pathname === '/SignUp' ? 'nav-item w--current' : 'nav-item'}>
                         SIGN UP
                     </Link>
-                    <Link to='/Connect' className={location.pathname === '/Connect' ? 'nav-item w--current' : 'nav-item'}>
+                    <a href='https://www.sandiegojs.org/connect' className={location.pathname === '/Connect' ? 'nav-item w--current' : 'nav-item'}>
                         CONNECT
-                    </Link>
-                    <Link to='/Shirts' className={location.pathname === '/Shirts' ? 'nav-item w--current' : 'nav-item'}>
+                    </a>
+                    <a href='https://www.sandiegojs.org/shirts' className={location.pathname === '/Shirts' ? 'nav-item w--current' : 'nav-item'}>
                         SHIRTS
-                    </Link>
-                    <Link to='/Learn' className={location.pathname === '/Learn' ? 'nav-item w--current' : 'nav-item'}>
+                    </a>
+                    <a href='https://www.sandiegojs.org/learn' className={location.pathname === '/Learn' ? 'nav-item w--current' : 'nav-item'}>
                         LEARN
-                    </Link>
-                    <Link to='/Jobs' className={location.pathname === '/Jobs' ? 'nav-item w--current' : 'nav-item'}>
+                    </a>
+                    <a href='https://www.sandiegojs.org/jobs' className={location.pathname === '/Jobs' ? 'nav-item w--current' : 'nav-item'}>
                         JOBS
-                    </Link>
+                    </a>
                     <Link to='/Admin/Login' className={location.pathname === '/Admin/Login' ? 'nav-item w--current' : 'nav-item'}>
                         ADMIN
                     </Link>

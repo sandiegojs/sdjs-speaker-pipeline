@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { resetSubmitted } from '../SignUp/SignUpActions';
+import Footer from '../Footer/Footer';
 
 class Home extends Component {
     constructor(props) {
@@ -90,6 +91,7 @@ class Home extends Component {
 						</div>
 					</div>
 				</div>
+				<Footer/>
 			</div>
 		)
 	}

@@ -14,6 +14,7 @@ $off-white: #fbfbfb;
 @import 'talks-page';
 @import 'organizers';
 @import 'ConfirmOrCancel';
+@import 'footer';
 
 html{
     -webkit-font-smoothing: antialiased;
@@ -43,6 +44,10 @@ body {
     transition-duration: 200ms, 200ms, 200ms;
     transition-timing-function: ease, ease, ease;
     transition-delay: 0s, 0s, 0s;
+}
+
+.btn:hover {
+    cursor: pointer;
 }
 
 .top-div {

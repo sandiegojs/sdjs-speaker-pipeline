@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field } from 'react-redux-form';
 import { Redirect } from 'react-router';
+import Footer from '../Footer/Footer';
 import {
 	talkSubmit,
 	getDates,
@@ -113,6 +114,7 @@ class SignUp extends Component {
 							</form>
 						</div>
 					</div>
+					<Footer/>
 				</div>
 
 			)

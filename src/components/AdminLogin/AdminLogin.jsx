@@ -13,16 +13,6 @@ class AdminLogin extends Component {
 		this.submitLogin = this.submitLogin.bind(this);
 	}
 
-	componentDidMount() {
-		const { dispatch, accessToken } = this.props;
-		dispatch(checkToken(accessToken));
-	}
-
-	componentDidUpdate() {
-		const { dispatch, accessToken } = this.props;
-		dispatch(checkToken(accessToken));
-	}
-
 	handleUsername(e) {
 		const { dispatch } = this.props;
 		dispatch(updateUsername(e.target.value));
