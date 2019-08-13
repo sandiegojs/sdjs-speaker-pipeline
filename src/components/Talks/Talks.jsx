@@ -106,7 +106,7 @@ class Talks extends Component {
 
   handleSubmitOwner(e) {
     const { dispatch, talkInfo, accessToken } = this.props;
-    const selectedTalk = talkInfo.find((talk) => talk.talkId === e.target.name);
+    const selectedTalk = talkInfo.find((talk) => talk.talkId.toString() === e.target.name);
     dispatch(changeTalkOwner(e.target.name, selectedTalk.selectedOwner, e.target.value, accessToken));
   }
 

@@ -69,7 +69,7 @@ class Organizers extends Component {
                 <div className='organizer-container'>
                     <div className='organizer-container-child'>
                         <h1>Organizers</h1>
-                        <h3 className='add-admin-title'>Add Other Admins Contact Info</h3>
+                        <h3 className='add-admin-title'>Create New Admin Account</h3>
                         <form id='organizer-form' onSubmit={this.addAdmin}>
                             <Field model='user.name'>
                                 <label htmlFor='admin-name'>Username: </label>
