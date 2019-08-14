@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { getTalkData, handleSelectStatus, handleSelectOwner, changeTalkStatus, changeTalkOwner, toggleStatusEdit, toggleOwnerEdit, toggleShowMore, deleteTalk, toggleTalkEdit, handleTalkChange, updateTalkInfo } from './TalksActions';
+import { getTalkData, handleSelectStatus, handleSelectOwner, changeTalkStatus, changeTalkOwner, toggleShowMore, deleteTalk, toggleTalkEdit, handleTalkChange, updateTalkInfo } from './TalksActions';
 import moment from 'moment';
 
 const TableRow = ({ data, children }) => {
@@ -14,7 +14,7 @@ const TableRow = ({ data, children }) => {
   </td>
 }
 
-const EditOptions = ({ talkId, handleSelect, name, children, toggleEditProp, handleSubmit, toggleEditFunction }) => {
+const EditOptions = ({ talkId, handleSelect, name, children }) => {
   return (
     <div className='table-tableAction'>
       <div className='table-tableStatus'>
@@ -23,10 +23,6 @@ const EditOptions = ({ talkId, handleSelect, name, children, toggleEditProp, han
           {children}
           <option value='None'>None</option>
         </select>
-        <div className='side-by-side-btns'>
-          <button className='btn' name={talkId} value={toggleEditProp} onClick={handleSubmit}>Save</button>
-          <button className='btn' name={talkId} onClick={toggleEditFunction}>Cancel</button>
-        </div>
       </div>
     </div>
   )
@@ -48,7 +44,10 @@ const ShowMore = ({ topic, description, adminNotes, talkId, toggleShowMoreFuncti
             <label>Admin Notes: </label>
             <textarea defaultValue={adminNotes} name={talkId} data-type={'Admin Notes'} onChange={handleTalkChange} />
           </div>
+          <div className='side-by-side-btns'>
           <button className='btn' name={talkId} onClick={updateTalkInfo}>Save</button>
+          <button className='btn' name={talkId} onClick={toggleTalkEditFunction}>Cancel</button>
+          </div>
         </div>
         :
         <div>
@@ -76,10 +75,6 @@ class Talks extends Component {
     super(props);
     this.handleSelectStatus = this.handleSelectStatus.bind(this);
     this.handleSelectOwner = this.handleSelectOwner.bind(this);
-    this.handleSubmitStatus = this.handleSubmitStatus.bind(this);
-    this.handleSubmitOwner = this.handleSubmitOwner.bind(this);
-    this.toggleStatusEdit = this.toggleStatusEdit.bind(this);
-    this.toggleOwnerEdit = this.toggleOwnerEdit.bind(this);
     this.toggleShowMore = this.toggleShowMore.bind(this);
     this.deleteTalk = this.deleteTalk.bind(this);
     this.toggleTalkEdit = this.toggleTalkEdit.bind(this);
@@ -104,28 +99,6 @@ class Talks extends Component {
     dispatch(handleSelectOwner(e.target.name, e.target.value));
   }
 
-  handleSubmitOwner(e) {
-    const { dispatch, talkInfo, accessToken } = this.props;
-    const selectedTalk = talkInfo.find((talk) => talk.talkId.toString() === e.target.name);
-    dispatch(changeTalkOwner(e.target.name, selectedTalk.selectedOwner, e.target.value, accessToken));
-  }
-
-  handleSubmitStatus(e) {
-    const { dispatch, talkInfo, accessToken } = this.props;
-    const selectedTalk = talkInfo.find((talk) => talk.talkId === e.target.name);
-    dispatch(changeTalkStatus(e.target.name, selectedTalk.selectedStatus, e.target.value, accessToken));
-  }
-
-  toggleStatusEdit(e) {
-    const { dispatch } = this.props;
-    dispatch(toggleStatusEdit(e.target.getAttribute('name'), e.target.getAttribute('value')));
-  }
-
-  toggleOwnerEdit(e) {
-    const { dispatch } = this.props;
-    dispatch(toggleOwnerEdit(e.target.getAttribute('name'), e.target.getAttribute('value')));
-  }
-
   toggleShowMore(e) {
     const { dispatch } = this.props;
     dispatch(toggleShowMore(e.target.getAttribute('name'), e.target.getAttribute('value')));
@@ -148,8 +121,10 @@ class Talks extends Component {
 
   updateTalkInfo(e) {
     const { dispatch, talkInfo, accessToken } = this.props;
-    const selectedTalk = talkInfo.find((talk) => talk.talkId === e.target.name);
+    const selectedTalk = talkInfo.find((talk) => talk.talkId.toString() === e.target.name);
     dispatch(updateTalkInfo(e.target.name, selectedTalk.talkChanges.topic, selectedTalk.talkChanges.description, selectedTalk.talkChanges.adminNotes, selectedTalk.toggleTalkEdit, accessToken));
+    dispatch(changeTalkStatus(e.target.name, selectedTalk.selectedStatus, e.target.value, accessToken));
+    dispatch(changeTalkOwner(e.target.name, selectedTalk.selectedOwner, e.target.value, accessToken));
   }
 
   render() {
@@ -232,7 +207,7 @@ class Talks extends Component {
                           case 'Status':
                             return <TableRow key={i}>
                               <div className='options'>
-                                {talk.toggleStatusEdit ?
+                                {talk.toggleTalkEdit ?
                                   <EditOptions
                                     talkId={talk.talkId}
                                     handleSelect={this.handleSelectStatus}
@@ -248,7 +223,6 @@ class Talks extends Component {
                                   :
                                   <div>
                                     {talk.currentStatus}
-                                    <i className="far fa-edit" name={talk.talkId} value={talk.toggleStatusEdit} onClick={this.toggleStatusEdit}></i>
                                   </div>
                                 }
                               </div>
@@ -256,7 +230,7 @@ class Talks extends Component {
                           case 'Owner':
                             return <TableRow key={i}>
                               <div className='options'>
-                                {talk.toggleOwnerEdit ?
+                                {talk.toggleTalkEdit ?
                                   <EditOptions
                                     talkId={talk.talkId}
                                     handleSelect={this.handleSelectOwner}
@@ -270,7 +244,6 @@ class Talks extends Component {
                                   :
                                   <div>
                                     {talk.owner}
-                                    <i className="far fa-edit" name={talk.talkId} value={talk.toggleOwnerEdit} onClick={this.toggleOwnerEdit}></i>
                                   </div>
                                 }
                               </div>

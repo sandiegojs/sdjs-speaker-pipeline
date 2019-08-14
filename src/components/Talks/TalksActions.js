@@ -102,25 +102,6 @@ export const changeTalkOwner = (talkId, selectedOwner, toggle, accessToken) => {
     }
 };
 
-export const toggleStatusEdit = (talkId, toggle) => {
-    return {
-        type: 'TOGGLE_STATUS_EDIT',
-        payload: {
-            talkId,
-            toggle: !toggle
-        }
-    }
-};
-
-export const toggleOwnerEdit = (talkId, toggle) => {
-    return {
-        type: 'TOGGLE_OWNER_EDIT',
-        payload: {
-            talkId,
-            toggle: !toggle
-        }
-    }
-};
 
 export const toggleShowMore = (talkId, toggle) => {
     return {

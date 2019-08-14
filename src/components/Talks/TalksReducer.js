@@ -219,6 +219,6 @@ export default function TalksReducer(state = initialState, action) {
         }
         default: {
             return state
-          }
+        }
     }
 }
