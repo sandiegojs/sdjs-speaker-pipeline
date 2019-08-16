@@ -19,4 +19,4 @@ const rootReducer = combineReducers({
     PastTalks        : PastTalksReducer,
 });
 
-export default rootReducer; 
+export default rootReducer;

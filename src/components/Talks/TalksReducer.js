@@ -152,6 +152,7 @@ export default function TalksReducer(state = initialState, action) {
                 talkInfo: updatedTalkInfo
             }
         }
+
         case 'DELETE_TALK_FULFILLED': {
             const deleteIndex = state.talkInfo.findIndex((talk) => talk.talkId == payload)
             const updatedTalkInfo = [...state.talkInfo]

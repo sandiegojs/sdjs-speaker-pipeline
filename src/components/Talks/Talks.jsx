@@ -18,7 +18,7 @@ const EditOptions = ({ talkId, handleSelect, name, children }) => {
   return (
     <div className='table-tableAction'>
       <div className='table-tableStatus'>
-        <select data-type={name} name={talkId} onChange={handleSelect}>
+        <select data-type={name} name={talkId} onChange={handleSelect} >
           <option value=''>Change {name}</option>
           {children}
           <option value='None'>None</option>
@@ -38,15 +38,11 @@ const ShowMore = ({ topic, description, adminNotes, talkId, toggleShowMoreFuncti
           </div>
           <div className='table-editTalk'>
             <label>Topic: </label>
-            <input defaultValue={topic} name={talkId} data-type={'Topic'} onChange={handleTalkChange} />
+            <textarea defaultValue={topic} name={talkId} data-type={'Topic'} onChange={handleTalkChange} />
             <label>Description: </label>
             <textarea defaultValue={description} name={talkId} data-type={'Description'} onChange={handleTalkChange} />
             <label>Admin Notes: </label>
             <textarea defaultValue={adminNotes} name={talkId} data-type={'Admin Notes'} onChange={handleTalkChange} />
-          </div>
-          <div className='side-by-side-btns'>
-          <button className='btn' name={talkId} onClick={updateTalkInfo}>Save</button>
-          <button className='btn' name={talkId} onClick={toggleTalkEditFunction}>Cancel</button>
           </div>
         </div>
         :
@@ -102,6 +98,7 @@ class Talks extends Component {
   toggleShowMore(e) {
     const { dispatch } = this.props;
     dispatch(toggleShowMore(e.target.getAttribute('name'), e.target.getAttribute('value')));
+    
   }
 
   deleteTalk(e) {
@@ -111,8 +108,9 @@ class Talks extends Component {
 
   toggleTalkEdit(e) {
     const { dispatch } = this.props;
+    dispatch(toggleShowMore(e.target.getAttribute('name'), e.target.getAttribute('value')));
     dispatch(toggleTalkEdit(e.target.getAttribute('name'), e.target.getAttribute('value')));
-  }
+   }
 
   handleTalkChange(e) {
     const { dispatch } = this.props;
@@ -172,8 +170,20 @@ class Talks extends Component {
                               data={{
                                 speaker: talk.speaker,
                                 speakerEmail: <a href={`mailto:${talk.speakerEmail}`} target="_top"><i className="far fa-envelope"></i>Send Email</a>,
-                                speakerPhone: <div><i className="fas fa-phone"></i>{talk.speakerPhone}</div>
-                              }} />
+                                speakerPhone: <div><i className="fas fa-phone"></i>{talk.speakerPhone}</div>,
+                                speakerEdit: <div><br/><br/>
+                                                <div> { talk.toggleTalkEdit ? null: [
+                                                <div ><i className="far fa-edit" name={talk.talkId} value={talk.toggleTalkEdit} onClick={this.toggleTalkEdit}></i>Edit</div>,
+                                                <div><i className="fas fa-trash-alt" name={talk.talkId} onClick={this.deleteTalk}></i>Delete</div>
+                                                ] }
+                                                </div>
+                                                <div className='side-by-side-btns'>{ talk.toggleTalkEdit ? [
+                                                <button className='btn' name={talk.talkId} onClick={this.updateTalkInfo}>Save all</button>,
+                                                <button className='btn' name={talk.talkId} onClick={this.toggleTalkEdit}>Cancel</button> 
+                                                ] : null} 
+                                                </div>
+                                            </div>
+                                    }} />
                           case 'Talk':
                             return <TableRow key={i}>
                               <div className='options'>
@@ -214,7 +224,7 @@ class Talks extends Component {
                                     handleSubmit={this.handleSubmitStatus}
                                     toggleEditFunction={this.toggleStatusEdit}
                                     toggleEditProp={talk.toggleStatusEdit}
-                                    name={'Status'}>
+                                    name={talk.currentStatus}>
                                     <option value='In Contact'>In Contact</option>
                                     <option value='Approve'>Approve</option>
                                     <option value='Deny'>Deny</option>
@@ -237,7 +247,7 @@ class Talks extends Component {
                                     handleSubmit={this.handleSubmitOwner}
                                     toggleEditFunction={this.toggleOwnerEdit}
                                     toggleEditProp={talk.toggleOwnerEdit}
-                                    name={'Owner'}
+                                    name={talk.owner}
                                   >
                                     {organizers.map((organizer, i) => <option key={i} value={organizer.username}>{organizer.username}</option>)}
                                   </EditOptions>

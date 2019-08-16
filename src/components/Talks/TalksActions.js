@@ -123,7 +123,6 @@ export const toggleTalkEdit = (talkId, toggle) => {
     }
 };
 
-
 export const deleteTalk = (talkId, accessToken) => {
     return {
         type: 'DELETE_TALK',
