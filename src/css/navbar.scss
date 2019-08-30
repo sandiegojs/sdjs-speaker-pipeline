@@ -1,51 +1,45 @@
-.navbar {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    z-index: 100;
-    width: 100%;
-    padding: 15px 25px 10px;
-    background-color: #f7f7f7;
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .55);
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.nav-items {
-    text-transform: uppercase;
-    width: 40%;
-    display: flex;
-    justify-content: space-evenly;
-    margin-right: 30px;
-}
-.nav-item {
-    display: inline-block;
-    border-bottom: 1px dotted transparent;
-    -webkit-transition: color 200ms ease, border 200ms ease;
-    transition: color 200ms ease, border 200ms ease;
-    color: silver;
-    font-size: 18px;
-    line-height: 24px;
-    text-decoration: none;
-    text-transform: uppercase;
-    
-}
-.nav-item.w--current {
-    color: #1884c3;
-    font-weight: 700;
-}
-.nav-item:hover {
-    color: #1884c3;
-    border-bottom-color: #1884c3;
-}
-
-.home-nav {
-    .nav-items {
-        text-transform: uppercase;
-        width: 50%;
+@media(min-width: 850px){
+    .navbar {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        z-index: 100;
+        width: auto;
+        padding: 15px 25px 10px;
+        background-color: #f7f7f7;
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, .55);
+        height: 60px;
         display: flex;
         justify-content: space-evenly;
+        height: auto;
+        font:18px;
     }
 }
+    .nav-items {
+        text-transform: uppercase;
+        width: 1000;
+        height: auto;
+        
+    }
+    .nav-item {
+        padding: 15px;
+        display: inline-block;
+        border-bottom: 1px dotted transparent;
+        -webkit-transition: color 200ms ease, border 200ms ease;
+        transition: color 200ms ease, border 200ms ease;
+        color: silver;
+        font-size: 18px;
+        width: 100;
+        line-height: 24px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    .nav-item.w--current {
+        color: #1884c3;
+        font-weight: 700;
+    }
+    .nav-item:hover {
+        color: #1884c3;
+        border-bottom-color: #1884c3;
+    }

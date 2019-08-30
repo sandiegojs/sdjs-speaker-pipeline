@@ -21,7 +21,8 @@ class Home extends Component {
 			<div>
 				<Navbar />
 				<div className='banner'>
-					<h1>sandiego.js</h1>
+				<br></br>
+				<h1>sandiego.js</h1>
 					<h2>Speaker Pipeline</h2>
 					<p>Share your perspective with the San Diego JavaScript community</p>
 					<Link to='/SignUp'>
