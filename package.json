@@ -28,7 +28,7 @@
     "cors": "^2.5.2",
     "dotenv": "^6.2.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "helmet": "^3.10.0",
     "loopback": "^3.19.0",
     "loopback-boot": "^2.6.5",
