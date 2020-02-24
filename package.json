@@ -29,7 +29,7 @@
     "dotenv": "^6.2.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
-    "helmet": "^3.10.0",
+    "helmet": "3.21.2",
     "loopback": "^3.19.0",
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.0.0",
