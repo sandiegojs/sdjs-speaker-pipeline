@@ -39,7 +39,7 @@
     "nightmare": "^3.0.1",
     "ontime": "0.0.6",
     "react": "^16.13.0",
-    "react-dom": "^16.6.0",
+    "react-dom": "^16.13.0",
     "react-redux": "^5.1.0",
     "react-redux-form": "^1.16.10",
     "react-router": "^4.3.0",
