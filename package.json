@@ -20,7 +20,7 @@
     "watch:server": "nodemon server/server.js"
   },
   "dependencies": {
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^7.8.6",
     "@sendgrid/mail": "^6.3.1",
     "axios": "^0.18.0",
     "chai-as-promised": "^7.1.1",
